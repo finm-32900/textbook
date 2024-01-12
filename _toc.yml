@@ -1,0 +1,22 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro.md
+chapters:
+- file: README.md # This is the syllabus. It is designed this way 
+# so that it can be viewed on GitHub as well.
+- file: lectures/Week1/HW0.md
+- file: lectures/Week1/README.md
+  sections:
+  - file: lectures/Week1/what_is_this_course_about.md
+  - file: lectures/Week1/reproducible_analytical_pipelines.md
+  - file: lectures/Week1/case_study_reproducibility_in_finance.md
+- file: lectures/Week1/HW1.md
+  sections:
+  - file: lectures/Week1/_repo_spikes.ipynb
+- file: lectures/Week2/README.md
+  sections:
+  - file: lectures/Week2/what_is_a_build_system.md
+  - file: lectures/Week2/case_study_atlanta_fed_wage_growth_tracker.md
+  - file: lectures/Week2/HW2.md
