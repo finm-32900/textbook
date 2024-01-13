@@ -16,7 +16,68 @@
 # 
 # Moreover, the repo market is critical in implementing monetary policy, especially considering the diminished role of the unsecured interbank market compared to the secured market following the 2007-2008 financial crisis. Its central role in providing liquidity and facilitating monetary policy execution underscores the necessity of the repo market's efficient functioning for financial stability and the broader economy. Disruptions within this market can have widespread impacts, affecting various financial participants, including banks, money market funds, hedge funds, and corporations.
 # 
+
+# ## What is a repurchase agreement?
 # 
+# A repurchase agreement, often referred to as a repo, is a form of short-term borrowing mainly used in the money markets.
+# A repurchase agreement can be visualized as follows. The following Figure is from *Fixed Income Securities*, by Veronsi.
+# This demonstrates a trader purchasing a bond in the market and financing the purchase via a repurchase agreement.
+# 
+# ![](./assets/hw01_repo_diagram_veronesi.png)
+# 
+# ### At Time $t$
+# 
+# 1. **Choosing Bond to Finance**:
+#    - The **TRADER** initiates the transaction by purchasing a bond from the **MARKET** at a price $P_t$.
+#    - The **TRADER** then agrees to sell this bond to the **REPO DEALER** while simultaneously agreeing to repurchase it at a future date for a predetermined price.
+# 
+# 2. **Exchange of Bond for Cash**:
+#    - The **TRADER** delivers the bond to the **REPO DEALER**.
+#    - In return, the **REPO DEALER** pays the **TRADER** an amount equal to $P_t$ minus a "haircut." The haircut is a discount on the bond's value, which serves as a protection for the dealer against the risk of the bond's price decline.
+# 
+# ### At Time $T = t + n \text{ days}$
+# 
+# 3. **Repurchase of the Bond**:
+#    - At the end of the repo term, the **TRADER** repurchases the bond from the **REPO DEALER**.
+#    - The repurchase price is calculated as $(P_t - \text{haircut}) \times \left(1 + \frac{\text{repo rate} \times n}{360}\right)$, where the repo rate is the interest rate agreed upon for the repo, and $n$ is the number of days the repo agreement lasts.
+# 
+# 4. **Unwinding Bond Financing**:
+#    - The **TRADER** pays the calculated repurchase price to the **REPO DEALER** and receives the bond back.
+#    - If the **TRADER** does not refinance the bond, the **TRADER** sells the bond back to the **MARKET** for a price of $P_T$.
+# 
+# The repo transaction allows the **TRADER** to obtain short-term financing by temporarily transferring a security to a **REPO DEALER** in exchange for cash, with the agreement to buy back the security at a later date for a slightly higher price, the difference being equivalent to the interest on the loan. The repo rate effectively acts as the interest rate on the cash borrowed by the **TRADER**.
+# 
+# In quantitative finance, repos are commonly used to raise short-term capital. They are also used for leveraged trades and managing liquidity. Repos are secured loans because they involve the transfer of securities; they are usually seen as low-risk instruments because the terms of the transaction are secured by the collateral, which is the bond in this case. That said, they can be used to create highly levered positions which are not low risk.
+
+# 
+# The haircut on the repo pins down the maximum amount of leverage that can be obtained with the repo. Such a position is highly risky.
+# 
+# $$
+# \text{Repo interest} = \frac{n}{360} \times \text{Repo rate} \times (P_t - \text{haircut})
+# $$
+# and
+# $$
+# \text{Return on capital for TRADER} = \frac{P_T - P_t - \text{Repo interest}}{\text{Haircut}}
+# $$
+# 
+# Consider some back-of-the-envelop calculations within a highly simplified 2-period model to demonstrate this:
+# 
+# **Example 1:**
+# No leverage, interest rates go down from 4\% to 3\%
+# 
+# $$Ret = (97 – 92 – 4)/92 = 1.1\%$$
+# 
+# **Example 2:**
+# Full leverage, interest rates go down from 4\% to 3\%
+# 
+# $$Ret = (97 – 92 – 4)/(92*0.02) = 54\%$$
+# 
+# **Example 3:**
+# Full leverage, interest rates go up from 4\% to 5\%
+# 
+# $$Ret = (95 – 92 – 4)/(92*0.02) = -54\%$$
+# 
+
 # ## Money market dislocations and the repo rate spikes of 2018-2019
 # 
 # Repo rates are the interest rates at which financial institutions borrow or lend funds via repurchase agreements (repos). In recent years, there have been several notable spikes in these rates. The most significant spike occurred in September 2019, although smaller spikes also occurred throughout 2018 and 2019. A repo spike refers to a sudden, substantial increase in repo rates within the financial market. These spikes indicate an abrupt imbalance in the supply and demand for funds in the repo market, leading to an increase in borrowing costs. Such spikes can disrupt the financial system and may signal deeper issues related to liquidity and funding stress.
@@ -137,6 +198,8 @@ for s in ['DFEDTARU', 'DFEDTARL', 'REPO-TRI_AR_OO-P',
     df_norm[s] = df[s] - df['target_midpoint']
 
 
+# Now, plot the series that is normalized by the fed funds target midpoint.
+
 # In[ ]:
 
 
@@ -156,6 +219,8 @@ ax.annotate('Sep. 17, 2019: 3.06%',
             xytext=('2017-Oct-27', 0.9),
             arrowprops = arrowprops);
 
+
+# Now, let's consider interest on reserves as well as the ON-RRP rate, as these in theory put bounds on the repo rate.
 
 # In[ ]:
 

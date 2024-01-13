@@ -55,7 +55,6 @@ book_source_files = [
     "intro.md",
     "README.md",
     ##
-    "lectures/Week1/_repo_spikes.ipynb",
     "lectures/Week1/case_study_reproducibility_in_finance.md",
     "lectures/Week1/HW0.md",
     "lectures/Week1/HW1.md",

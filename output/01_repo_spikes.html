@@ -7476,7 +7476,7 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13d415df">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=323c3791">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7490,6 +7490,88 @@ an overnight basis or for other short tenures, thereby ensuring operational
 continuity.  Its collateralized nature minimizes credit risk, making it a
 preferred avenue for secure, short-term lending and borrowing.</p>
 <p>Moreover, the repo market is critical in implementing monetary policy, especially considering the diminished role of the unsecured interbank market compared to the secured market following the 2007-2008 financial crisis. Its central role in providing liquidity and facilitating monetary policy execution underscores the necessity of the repo market's efficient functioning for financial stability and the broader economy. Disruptions within this market can have widespread impacts, affecting various financial participants, including banks, money market funds, hedge funds, and corporations.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9244cb12">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="What-is-a-repurchase-agreement?">What is a repurchase agreement?<a class="anchor-link" href="#What-is-a-repurchase-agreement?">¶</a></h2><p>A repurchase agreement, often referred to as a repo, is a form of short-term borrowing mainly used in the money markets.
+A repurchase agreement can be visualized as follows. The following Figure is from <em>Fixed Income Securities</em>, by Veronsi.
+This demonstrates a trader purchasing a bond in the market and financing the purchase via a repurchase agreement.</p>
+<p><img alt="" src="./assets/hw01_repo_diagram_veronesi.png"/></p>
+<h3 id="At-Time-$t$">At Time $t$<a class="anchor-link" href="#At-Time-$t$">¶</a></h3><ol>
+<li><p><strong>Choosing Bond to Finance</strong>:</p>
+<ul>
+<li>The <strong>TRADER</strong> initiates the transaction by purchasing a bond from the <strong>MARKET</strong> at a price $P_t$.</li>
+<li>The <strong>TRADER</strong> then agrees to sell this bond to the <strong>REPO DEALER</strong> while simultaneously agreeing to repurchase it at a future date for a predetermined price.</li>
+</ul>
+</li>
+<li><p><strong>Exchange of Bond for Cash</strong>:</p>
+<ul>
+<li>The <strong>TRADER</strong> delivers the bond to the <strong>REPO DEALER</strong>.</li>
+<li>In return, the <strong>REPO DEALER</strong> pays the <strong>TRADER</strong> an amount equal to $P_t$ minus a "haircut." The haircut is a discount on the bond's value, which serves as a protection for the dealer against the risk of the bond's price decline.</li>
+</ul>
+</li>
+</ol>
+<h3 id="At-Time-$T-=-t-+-n-%5Ctext%7B-days%7D$">At Time $T = t + n \text{ days}$<a class="anchor-link" href="#At-Time-$T-=-t-+-n-%5Ctext%7B-days%7D$">¶</a></h3><ol start="3">
+<li><p><strong>Repurchase of the Bond</strong>:</p>
+<ul>
+<li>At the end of the repo term, the <strong>TRADER</strong> repurchases the bond from the <strong>REPO DEALER</strong>.</li>
+<li>The repurchase price is calculated as $(P_t - \text{haircut}) \times \left(1 + \frac{\text{repo rate} \times n}{360}\right)$, where the repo rate is the interest rate agreed upon for the repo, and $n$ is the number of days the repo agreement lasts.</li>
+</ul>
+</li>
+<li><p><strong>Unwinding Bond Financing</strong>:</p>
+<ul>
+<li>The <strong>TRADER</strong> pays the calculated repurchase price to the <strong>REPO DEALER</strong> and receives the bond back.</li>
+<li>If the <strong>TRADER</strong> does not refinance the bond, the <strong>TRADER</strong> sells the bond back to the <strong>MARKET</strong> for a price of $P_T$.</li>
+</ul>
+</li>
+</ol>
+<p>The repo transaction allows the <strong>TRADER</strong> to obtain short-term financing by temporarily transferring a security to a <strong>REPO DEALER</strong> in exchange for cash, with the agreement to buy back the security at a later date for a slightly higher price, the difference being equivalent to the interest on the loan. The repo rate effectively acts as the interest rate on the cash borrowed by the <strong>TRADER</strong>.</p>
+<p>In quantitative finance, repos are commonly used to raise short-term capital. They are also used for leveraged trades and managing liquidity. Repos are secured loans because they involve the transfer of securities; they are usually seen as low-risk instruments because the terms of the transaction are secured by the collateral, which is the bond in this case. That said, they can be used to create highly levered positions which are not low risk.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b2ab4d4f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The haircut on the repo pins down the maximum amount of leverage that can be obtained with the repo. Such a position is highly risky.</p>
+<p>$$
+\text{Repo interest} = \frac{n}{360} \times \text{Repo rate} \times (P_t - \text{haircut})
+$$
+and
+$$
+\text{Return on capital for TRADER} = \frac{P_T - P_t - \text{Repo interest}}{\text{Haircut}}
+$$</p>
+<p>Consider some back-of-the-envelop calculations within a highly simplified 2-period model to demonstrate this:</p>
+<p><strong>Example 1:</strong>
+No leverage, interest rates go down from 4% to 3%</p>
+<p>$$Ret = (97 – 92 – 4)/92 = 1.1\%$$</p>
+<p><strong>Example 2:</strong>
+Full leverage, interest rates go down from 4% to 3%</p>
+<p>$$Ret = (97 – 92 – 4)/(92*0.02) = 54\%$$</p>
+<p><strong>Example 3:</strong>
+Full leverage, interest rates go up from 4% to 5%</p>
+<p>$$Ret = (95 – 92 – 4)/(92*0.02) = -54\%$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13d415df">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Money-market-dislocations-and-the-repo-rate-spikes-of-2018-2019">Money market dislocations and the repo rate spikes of 2018-2019<a class="anchor-link" href="#Money-market-dislocations-and-the-repo-rate-spikes-of-2018-2019">¶</a></h2><p>Repo rates are the interest rates at which financial institutions borrow or lend funds via repurchase agreements (repos). In recent years, there have been several notable spikes in these rates. The most significant spike occurred in September 2019, although smaller spikes also occurred throughout 2018 and 2019. A repo spike refers to a sudden, substantial increase in repo rates within the financial market. These spikes indicate an abrupt imbalance in the supply and demand for funds in the repo market, leading to an increase in borrowing costs. Such spikes can disrupt the financial system and may signal deeper issues related to liquidity and funding stress.</p>
 <p>Additionally, these rate spikes can be seen as dislocations in the money markets. Specifically, these repo spikes represented significant deviations between repo rates and the interest on reserve balances or the Federal Reserve's Overnight Reverse Repo Facility rate (ON/RRP rate). These dislocations imply potential arbitrage opportunities, suggesting that institutions capable of earning interest on reserves or with access to the Fed's ON/RRP facility should theoretically show no preference between using these facilities and lending in the repo markets. Since lending in repo markets typically involves overcollateralization with Treasury securities and occurs overnight, repo market rates should align closely with other near risk-free rates. Understanding the causes of these deviations is crucial for grasping their implications for the financial sector.</p>
 <h2 id="Relationship-to-Quantitative-Investors">Relationship to Quantitative Investors<a class="anchor-link" href="#Relationship-to-Quantitative-Investors">¶</a></h2><p>See here: <a href="https://www.bloomberg.com/news/articles/2023-12-20/inside-the-basis-trade-hedge-fund-traders-dominate-gigantic-bond-bet">https://www.bloomberg.com/news/articles/2023-12-20/inside-the-basis-trade-hedge-fund-traders-dominate-gigantic-bond-bet</a></p>
@@ -7522,7 +7604,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
@@ -7540,7 +7622,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">config</span>
 
 <span class="n">OUTPUT_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">output_dir</span><span class="p">)</span>
@@ -7569,7 +7651,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">load_repo_data</span><span class="o">.</span><span class="n">series_descriptions</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">load_repo_data</span><span class="o">.</span><span class="n">series_descriptions</span>
 </pre></div>
 </div>
 </div>
@@ -7629,7 +7711,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">new_labels</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">new_labels</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">'REPO-TRI_AR_OO-P'</span><span class="p">:</span><span class="s1">'Tri-Party Overnight Average Rate'</span><span class="p">,</span>
     <span class="s1">'RRPONTSYAWARD'</span><span class="p">:</span> <span class="s1">'ON-RRP facility rate'</span><span class="p">,</span>
     <span class="s1">'Gen_IORB'</span><span class="p">:</span> <span class="s1">'Interest on Reserves'</span><span class="p">,</span> <span class="c1"># This series uses FRED's Interest on </span>
@@ -7649,7 +7731,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">load_repo_data</span><span class="o">.</span><span class="n">load_all</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">DATA_DIR</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">load_repo_data</span><span class="o">.</span><span class="n">load_all</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">DATA_DIR</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7666,7 +7748,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4bd26582">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_remove-input" id="cell-id=4bd26582">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7674,7 +7756,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">'DFEDTARU'</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">'DFEDTARL'</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[[</span><span class="s1">'REPO-TRI_AR_OO-P'</span><span class="p">,</span> <span class="s1">'EFFR'</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">new_labels</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 </pre></div>
@@ -7711,7 +7793,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6efb0afb">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_remove-input" id="cell-id=6efb0afb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7719,7 +7801,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">date_start</span> <span class="o">=</span> <span class="s1">'2014-Aug'</span>
 <span class="n">date_end</span> <span class="o">=</span> <span class="s1">'2019-Dec'</span>
 <span class="n">_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">date_start</span><span class="p">:</span><span class="n">date_end</span><span class="p">,</span> <span class="p">:]</span>
@@ -7760,7 +7842,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=57c77dfe">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs celltag_remove-input" id="cell-id=57c77dfe">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7768,7 +7850,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df_norm</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df_norm</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">'target_midpoint'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'DFEDTARU'</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">'DFEDTARL'</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
 <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'DFEDTARU'</span><span class="p">,</span> <span class="s1">'DFEDTARL'</span><span class="p">,</span> <span class="s1">'REPO-TRI_AR_OO-P'</span><span class="p">,</span> 
           <span class="s1">'EFFR'</span><span class="p">,</span> <span class="s1">'target_midpoint'</span><span class="p">,</span> 
@@ -7779,7 +7861,18 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0852575f">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49b8e383">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Now, plot the series that is normalized by the fed funds target midpoint.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_remove-input" id="cell-id=0852575f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7787,7 +7880,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">date_start</span> <span class="o">=</span> <span class="s1">'2014-Aug'</span>
 <span class="n">date_end</span> <span class="o">=</span> <span class="s1">'2019-Dec'</span>
 <span class="n">_df</span> <span class="o">=</span> <span class="n">df_norm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">date_start</span><span class="p">:</span><span class="n">date_end</span><span class="p">,</span> <span class="p">:]</span>
@@ -7819,7 +7912,18 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34df5d1c">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67eb402b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Now, let's consider interest on reserves as well as the ON-RRP rate, as these in theory put bounds on the repo rate.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_remove-input" id="cell-id=34df5d1c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7827,7 +7931,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">date_start</span> <span class="o">=</span> <span class="s1">'2014-Aug'</span>
 <span class="n">date_end</span> <span class="o">=</span> <span class="s1">'2019-Dec'</span>
 <span class="n">_df</span> <span class="o">=</span> <span class="n">df_norm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">date_start</span><span class="p">:</span><span class="n">date_end</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -7860,7 +7964,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8b0f8fb3">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_remove-input" id="cell-id=8b0f8fb3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7868,7 +7972,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">date_start</span> <span class="o">=</span> <span class="s1">'2018-Apr'</span>
 <span class="n">date_end</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">_df</span> <span class="o">=</span> <span class="n">df_norm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">date_start</span><span class="p">:</span><span class="n">date_end</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -7897,7 +8001,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;matplotlib.legend.Legend at 0x17be1c5e690&gt;</pre>
+<pre>&lt;matplotlib.legend.Legend at 0x1ea80162660&gt;</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -7908,7 +8012,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63203a19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_remove-input" id="cell-id=63203a19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7916,7 +8020,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">date_start</span> <span class="o">=</span> <span class="s1">'2023-Jul'</span>
 <span class="n">date_end</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">_df</span> <span class="o">=</span> <span class="n">df_norm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">date_start</span><span class="p">:</span><span class="n">date_end</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -7945,7 +8049,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;matplotlib.legend.Legend at 0x17be1e6ecc0&gt;</pre>
+<pre>&lt;matplotlib.legend.Legend at 0x1ea81722f90&gt;</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -7964,7 +8068,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'SOFR-IORB'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'SOFR'</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Gen_IORB'</span><span class="p">]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'SOFR-IORB'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'SOFR'</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Gen_IORB'</span><span class="p">]</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'2018'</span><span class="p">:</span><span class="s1">'2020'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'SOFR-IORB'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -7997,7 +8101,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'2018'</span><span class="p">:,</span> <span class="p">[</span><span class="s1">'SOFR-IORB'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'2018'</span><span class="p">:,</span> <span class="p">[</span><span class="s1">'SOFR-IORB'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8041,7 +8145,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'net_fed_repo'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'RPONTSYD'</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">'RRPONTSYD'</span><span class="p">])</span> <span class="o">/</span> <span class="mi">1000</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'net_fed_repo'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'RPONTSYD'</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">'RRPONTSYD'</span><span class="p">])</span> <span class="o">/</span> <span class="mi">1000</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">'triparty_less_fed_onrrp_rate'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'REPO-TRI_AR_OO-P'</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">'RRPONTSYAWARD'</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">'total reserves / currency'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'TOTRESNS'</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">'CURRCIR'</span><span class="p">]</span>
 </pre></div>
@@ -8057,7 +8161,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
 <span class="n">df</span><span class="p">[[</span><span class="s1">'TOTRESNS'</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
     <span class="n">columns</span><span class="o">=</span><span class="n">load_repo_data</span><span class="o">.</span><span class="n">series_descriptions</span>
@@ -8105,7 +8209,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
 <span class="n">df</span><span class="p">[[</span><span class="s1">'total reserves / currency'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">'g'</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[[</span><span class="s1">'triparty_less_fed_onrrp_rate'</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
@@ -8152,7 +8256,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">'RPONTSYD'</span><span class="p">,</span><span class="s1">'RRPONTSYD'</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">'RPONTSYD'</span><span class="p">,</span><span class="s1">'RRPONTSYD'</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
     <span class="n">columns</span><span class="o">=</span><span class="n">load_repo_data</span><span class="o">.</span><span class="n">series_descriptions</span>
 <span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
@@ -8186,7 +8290,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1"># Net Fed Repo Lending (positive is net lending by the Fed.</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Net Fed Repo Lending (positive is net lending by the Fed.</span>
 <span class="c1"># Negative is the use of the reverse repo facility.)</span>
 <span class="n">df</span><span class="p">[[</span><span class="s1">'net_fed_repo'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'$ Trillions'</span><span class="p">);</span>
@@ -8215,7 +8319,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1"># TODO</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># TODO</span>
 <span class="c1"># # Net Fed Repo Lending (positive is net lending by the Fed.</span>
 <span class="c1"># # Negative is the use of the reverse repo facility.)</span>
 <span class="c1"># df.loc['2023',['net_fed_repo']].plot()</span>
@@ -8233,7 +8337,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">'net_fed_repo'</span><span class="p">,</span> <span class="s1">'triparty_less_fed_onrrp_rate'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">'net_fed_repo'</span><span class="p">,</span> <span class="s1">'triparty_less_fed_onrrp_rate'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -8277,7 +8381,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
 <span class="n">df</span><span class="p">[[</span><span class="s1">'net_fed_repo'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">'g'</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[[</span><span class="s1">'triparty_less_fed_onrrp_rate'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
@@ -8335,7 +8439,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'is_tri_above_fed_upper'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'REPO-TRI_AR_OO-P'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">df</span><span class="p">[</span><span class="s1">'DFEDTARU'</span><span class="p">]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'is_tri_above_fed_upper'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'REPO-TRI_AR_OO-P'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">df</span><span class="p">[</span><span class="s1">'DFEDTARU'</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -8349,7 +8453,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_tri_above_fed_upper'</span><span class="p">]]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_tri_above_fed_upper'</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -8384,7 +8488,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_tri_above_fed_upper'</span><span class="p">]])</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_tri_above_fed_upper'</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
@@ -8421,7 +8525,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_above_fed_upper'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'SOFR'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">df</span><span class="p">[</span><span class="s1">'DFEDTARU'</span><span class="p">]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_above_fed_upper'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'SOFR'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">df</span><span class="p">[</span><span class="s1">'DFEDTARU'</span><span class="p">]</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_above_fed_upper'</span><span class="p">]])</span>
 </pre></div>
 </div>
@@ -8448,7 +8552,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_above_fed_upper'</span><span class="p">]]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_above_fed_upper'</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -8497,7 +8601,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">'SOFR-IORB'</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">'all'</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">'SOFR-IORB'</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">'all'</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8529,7 +8633,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_above_IORB'</span><span class="p">]</span> <span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">'SOFR-IORB'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_above_IORB'</span><span class="p">]</span> <span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">'SOFR-IORB'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_above_IORB'</span><span class="p">]])</span>
 </pre></div>
 </div>
@@ -8556,7 +8660,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_above_IORB'</span><span class="p">]]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_above_IORB'</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -8600,7 +8704,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'SOFR-IORB'</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'SOFR-IORB'</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8626,7 +8730,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_2std_above_IORB'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'SOFR-IORB'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s1">'SOFR-IORB'</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_2std_above_IORB'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'SOFR-IORB'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s1">'SOFR-IORB'</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_2std_above_IORB'</span><span class="p">]])</span>
 </pre></div>
 </div>
@@ -8653,7 +8757,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_2std_above_IORB'</span><span class="p">]]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_2std_above_IORB'</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -8682,7 +8786,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'SOFR-IORB'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'SOFR-IORB'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8708,7 +8812,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_2std_above_IORB'</span><span class="p">]]</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_above_fed_upper'</span><span class="p">]])</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_2std_above_IORB'</span><span class="p">]]</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_above_fed_upper'</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
@@ -8737,7 +8841,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_2std_above_IORB'</span><span class="p">]]</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_above_fed_upper'</span><span class="p">]]))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_2std_above_IORB'</span><span class="p">]]</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'is_SOFR_above_fed_upper'</span><span class="p">]]))</span>
 </pre></div>
 </div>
 </div>
@@ -8763,7 +8867,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1"># filedir = Path(OUTPUT_DIR)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># filedir = Path(OUTPUT_DIR)</span>
 <span class="c1"># df[</span>
 <span class="c1">#     ['is_SOFR_above_fed_upper', 'is_SOFR_2std_above_IORB', </span>
 <span class="c1">#     'is_SOFR_above_IORB', 'is_tri_above_fed_upper']</span>
@@ -8792,7 +8896,7 @@ preferred avenue for secure, short-term lending and borrowing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8882,7 +8986,7 @@ memory usage: 1.5 MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">'SOFR'</span><span class="p">,</span> <span class="s1">'REPO-TRI_AR_OO-P'</span><span class="p">,</span> <span class="s1">'REPO-DVP_AR_OO-P'</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">'SOFR'</span><span class="p">,</span> <span class="s1">'REPO-TRI_AR_OO-P'</span><span class="p">,</span> <span class="s1">'REPO-DVP_AR_OO-P'</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8993,7 +9097,7 @@ memory usage: 1.5 MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [40]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">'SOFR'</span><span class="p">,</span> <span class="s1">'REPO-TRI_AR_OO-P'</span><span class="p">,</span> <span class="s1">'REPO-DVP_AR_OO-P'</span><span class="p">,</span> <span class="s1">'REPO-GCF_AR_OO-P'</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">'SOFR'</span><span class="p">,</span> <span class="s1">'REPO-TRI_AR_OO-P'</span><span class="p">,</span> <span class="s1">'REPO-DVP_AR_OO-P'</span><span class="p">,</span> <span class="s1">'REPO-GCF_AR_OO-P'</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

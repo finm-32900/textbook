@@ -18,7 +18,8 @@ NOTEBOOK_BUILD_DIR = Path(config.OUTPUT_DIR)
 # fmt: off
 ## Helper functions for automatic execution of Jupyter notebooks
 def jupyter_execute_notebook(notebook):
-    return f"""jupyter nbconvert --execute --to notebook --inplace {notebook}.ipynb --ClearMetadataPreprocessor.enabled=True --ClearMetadataPreprocessor.preserve_cell_metadata_mask='[("tags")]' --log-level WARN"""
+    # return f"""jupyter nbconvert --execute --to notebook --inplace {notebook}.ipynb --ClearMetadataPreprocessor.enabled=True --ClearMetadataPreprocessor.preserve_cell_metadata_mask='[("tags")]' --log-level WARN"""
+    return f"""jupyter nbconvert --execute --to notebook --inplace {notebook}.ipynb --log-level WARN"""
 def jupyter_to_html(notebook, output_dir):
     return f"jupyter nbconvert --to html --output-dir='{output_dir}' {notebook}.ipynb --log-level WARN"
 def jupyter_to_md(notebook):
@@ -120,7 +121,7 @@ def task_run_notebooks():
         *[copy_notebook_to_folder(notebook, NOTEBOOK_BUILD_DIR) for notebook in stems],
         *[jupyter_to_html(notebook, OUTPUT_DIR) for notebook in stems],
         # *[jupyter_clear_input(notebook, NOTEBOOK_BUILD_DIR) for notebook in stems],
-        *[jupyter_clear_output(notebook) for notebook in stems],
+        # *[jupyter_clear_output(notebook) for notebook in stems],
         # *[jupyter_to_python(notebook, NOTEBOOK_BUILD_DIR) for notebook in notebooks_to_run],
     ]
     return {
