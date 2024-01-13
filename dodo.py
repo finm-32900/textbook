@@ -66,7 +66,9 @@ book_source_files = [
     ##
     "lectures/Week2/case_study_atlanta_fed_wage_growth_tracker.md",
     "lectures/Week2/HW2.md",
+    "lectures/Week2/project_structure.md",
     "lectures/Week2/README.md",
+    "lectures/Week2/virtual_environments.md",
     "lectures/Week2/what_is_a_build_system.md",
 ]
 
