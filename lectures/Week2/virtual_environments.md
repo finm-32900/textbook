@@ -23,7 +23,7 @@ Dependencies are external libraries or packages that your project needs to funct
 - Use `pip install -r requirements.txt` to install all dependencies at once.
 
 For example, these are the contents of the `requirements.txt` file used to generate this textbook:
-```{python}
+```
 altair==5.1.2
 beautifulsoup4==4.12.2
 doit==0.36.0
@@ -80,7 +80,7 @@ The description of the software environment is defined by the `environment.yml` 
 - `conda activate <env_name>` to activate the environment.
 
 The following is an example of an `environment.yml` file:
-```{yaml}
+```
 name: finm
 channels:
   - conda-forge
@@ -203,13 +203,13 @@ pip freeze > requirements.txt
  - Navigate the command line to the source directory. Or, open the cloned repo in VS Code and then open the VS Code terminal.
  - In the terminal, use the following commands to create and install the associated environment.
 
-```{cmd}
+```
 conda create -n streamlit python=3.12
 conda activate streamlit
 pip install -r requirements.txt
 ```
 You can then run the dashboard with
-```{cmd}
+```
 streamlit run app.py
 ```
 
@@ -223,7 +223,7 @@ TODO: Needs API keys for data service. Maybe don't use this example then.
  - Navigate the command line to the source directory. Or, open the cloned repo in VS Code and then open the VS Code terminal.
  - In the terminal, use the following commands to create and install the associated environment.
 
-```{cmd}
+```
 python -m venv venv 
 venv\Scripts\activate.bat
 pip install -r requirements.txt
@@ -231,6 +231,6 @@ pip install -r requirements.txt
 
 
 Afterwards, you can deactivate the `venv` with
-```{cmd}
+```
 venv\Scripts\deactivate.bat
 ``` -->

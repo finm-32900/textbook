@@ -114,7 +114,7 @@
 # 
 # We'll replicate Figure 1 from this paper. 
 
-# In[ ]:
+# In[1]:
 
 
 import pandas as pd
@@ -124,7 +124,7 @@ from matplotlib import pyplot as plt
 import load_repo_data
 
 
-# In[ ]:
+# In[2]:
 
 
 from pathlib import Path
@@ -137,13 +137,13 @@ DATA_DIR = Path(config.data_dir)
 # ## Repo Rates and Fed Funds Rates
 # Replicate Figure 1 from "Anatomy of the Repo Rate Spikes"
 
-# In[ ]:
+# In[3]:
 
 
 load_repo_data.series_descriptions
 
 
-# In[ ]:
+# In[4]:
 
 
 new_labels = {
@@ -155,7 +155,7 @@ new_labels = {
 }
 
 
-# In[ ]:
+# In[5]:
 
 
 df = load_repo_data.load_all(data_dir = DATA_DIR)
@@ -163,7 +163,7 @@ df = load_repo_data.load_all(data_dir = DATA_DIR)
 
 # The following plot show the effective fed funds rate (from FRED), the tri-party overnight average rate (from the OFR series `REPO-TRI_AR_OO-P`), and the shaded region shows the lower and upper limit of the federal funds target range (`DFEDTARL` and `DFEDTARU`).
 
-# In[ ]:
+# In[6]:
 
 
 fig, ax = plt.subplots()
@@ -173,7 +173,7 @@ df[['REPO-TRI_AR_OO-P', 'EFFR']].rename(columns=new_labels).plot(ax=ax)
 
 # In the following plot, we zoom in a little to see just how large these spikes were.
 
-# In[ ]:
+# In[7]:
 
 
 fig, ax = plt.subplots()
@@ -187,7 +187,7 @@ _df[['REPO-TRI_AR_OO-P', 'EFFR']].rename(columns=new_labels).plot(ax=ax)
 
 # Normalize rates to be centered at the fed funds target window midpoint.
 
-# In[ ]:
+# In[8]:
 
 
 df_norm = df.copy()
@@ -200,7 +200,7 @@ for s in ['DFEDTARU', 'DFEDTARL', 'REPO-TRI_AR_OO-P',
 
 # Now, plot the series that is normalized by the fed funds target midpoint.
 
-# In[ ]:
+# In[9]:
 
 
 fig, ax = plt.subplots()
@@ -222,7 +222,7 @@ ax.annotate('Sep. 17, 2019: 3.06%',
 
 # Now, let's consider interest on reserves as well as the ON-RRP rate, as these in theory put bounds on the repo rate.
 
-# In[ ]:
+# In[10]:
 
 
 fig, ax = plt.subplots()
@@ -243,7 +243,7 @@ ax.annotate('Sep. 17, 2019: 3.06%',
             arrowprops = arrowprops);
 
 
-# In[ ]:
+# In[11]:
 
 
 fig, ax = plt.subplots()
@@ -265,7 +265,7 @@ ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 #             arrowprops = arrowprops);
 
 
-# In[ ]:
+# In[12]:
 
 
 fig, ax = plt.subplots()
@@ -287,14 +287,14 @@ ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 #             arrowprops = arrowprops);
 
 
-# In[ ]:
+# In[13]:
 
 
 df['SOFR-IORB'] = df['SOFR'] - df['Gen_IORB']
 df.loc['2018':'2020', ['SOFR-IORB']].plot()
 
 
-# In[ ]:
+# In[14]:
 
 
 df.loc['2018':, ['SOFR-IORB']].plot()
@@ -307,7 +307,7 @@ df.loc['2018':, ['SOFR-IORB']].plot()
 # ## Reserve Levels vs Spikes
 # First of all, depository intitutions have a choice between keeping their reserves at the Fed and earning interest on reserve balances or lending the money into repo. When the repo rates were spiking in 2018 and 2019, I would imagine that total reserve levels would be low.
 
-# In[ ]:
+# In[15]:
 
 
 df['net_fed_repo'] = (df['RPONTSYD'] - df['RRPONTSYD']) / 1000
@@ -315,7 +315,7 @@ df['triparty_less_fed_onrrp_rate'] = (df['REPO-TRI_AR_OO-P'] - df['RRPONTSYAWARD
 df['total reserves / currency'] = df['TOTRESNS'] / df['CURRCIR']
 
 
-# In[ ]:
+# In[16]:
 
 
 fig, ax1 = plt.subplots()
@@ -334,7 +334,7 @@ ax2.legend(loc='center left', bbox_to_anchor=(1, 1));
 
 # Now, let's normalize by currency in circulation, so as to account for the normal growth in the economy or the financial system. This is done because total reserves is not stationary.
 
-# In[ ]:
+# In[17]:
 
 
 fig, ax1 = plt.subplots()
@@ -352,7 +352,7 @@ ax2.legend(loc='center left', bbox_to_anchor=(1, 1));
 
 # ## Fed Repo and Reverse Repo Facility Takeup
 
-# In[ ]:
+# In[18]:
 
 
 df[['RPONTSYD','RRPONTSYD']].rename(
@@ -360,7 +360,7 @@ df[['RPONTSYD','RRPONTSYD']].rename(
 ).plot(alpha=0.5)
 
 
-# In[ ]:
+# In[19]:
 
 
 # Net Fed Repo Lending (positive is net lending by the Fed.
@@ -369,7 +369,7 @@ df[['net_fed_repo']].plot()
 plt.ylabel('$ Trillions');
 
 
-# In[ ]:
+# In[20]:
 
 
 # TODO
@@ -379,7 +379,7 @@ plt.ylabel('$ Trillions');
 # plt.ylabel('$ Trillions');
 
 
-# In[ ]:
+# In[21]:
 
 
 df[['net_fed_repo', 'triparty_less_fed_onrrp_rate']].plot()
@@ -388,7 +388,7 @@ plt.ylim([-50,100])
 
 # The Fed is lending money when the repo rate is spiking. When the repo rate is low relative to the ON/RRP rate, usage of the ON/RRP facility goes up, as can be seen here.
 
-# In[ ]:
+# In[22]:
 
 
 fig, ax1 = plt.subplots()
@@ -407,19 +407,19 @@ df[['triparty_less_fed_onrrp_rate']].plot(ax=ax2)
 
 # **Tri-Party Ave vs Fed Upper Limit**
 
-# In[ ]:
+# In[23]:
 
 
 df['is_tri_above_fed_upper'] = df['REPO-TRI_AR_OO-P'] > df['DFEDTARU']
 
 
-# In[ ]:
+# In[24]:
 
 
 df.index[df['is_tri_above_fed_upper']]
 
 
-# In[ ]:
+# In[25]:
 
 
 len(df.index[df['is_tri_above_fed_upper']])
@@ -427,14 +427,14 @@ len(df.index[df['is_tri_above_fed_upper']])
 
 # **SOFR vs Fed Upper Limit**
 
-# In[ ]:
+# In[26]:
 
 
 df['is_SOFR_above_fed_upper'] = df['SOFR'] > df['DFEDTARU']
 len(df.index[df['is_SOFR_above_fed_upper']])
 
 
-# In[ ]:
+# In[27]:
 
 
 df.index[df['is_SOFR_above_fed_upper']]
@@ -444,20 +444,20 @@ df.index[df['is_SOFR_above_fed_upper']]
 # 
 # This measure is good because it represents a kind of arbitrage opportunity. Either leave money at Fed to earn interest, or put money into repo market. This is what the paper, "Reserves were not so amply after all" uses.
 
-# In[ ]:
+# In[28]:
 
 
 df[['SOFR-IORB']].dropna(how='all').plot()
 
 
-# In[ ]:
+# In[29]:
 
 
 df['is_SOFR_above_IORB'] =df['SOFR-IORB'] > 0
 len(df.index[df['is_SOFR_above_IORB']])
 
 
-# In[ ]:
+# In[30]:
 
 
 df.index[df['is_SOFR_above_IORB']]
@@ -465,44 +465,44 @@ df.index[df['is_SOFR_above_IORB']]
 
 # Now, let's ask if it's 2 standard deviations above IORB
 
-# In[ ]:
+# In[31]:
 
 
 df['SOFR-IORB'].std()
 
 
-# In[ ]:
+# In[32]:
 
 
 df['is_SOFR_2std_above_IORB'] = df['SOFR-IORB'] > 2 * df['SOFR-IORB'].std()
 len(df.index[df['is_SOFR_2std_above_IORB']])
 
 
-# In[ ]:
+# In[33]:
 
 
 df.index[df['is_SOFR_2std_above_IORB']]
 
 
-# In[ ]:
+# In[34]:
 
 
 df['SOFR-IORB'].mean()
 
 
-# In[ ]:
+# In[35]:
 
 
 df.index[df['is_SOFR_2std_above_IORB']].intersection(df.index[df['is_SOFR_above_fed_upper']])
 
 
-# In[ ]:
+# In[36]:
 
 
 len(df.index[df['is_SOFR_2std_above_IORB']].intersection(df.index[df['is_SOFR_above_fed_upper']]))
 
 
-# In[ ]:
+# In[37]:
 
 
 # filedir = Path(OUTPUT_DIR)
@@ -514,7 +514,7 @@ len(df.index[df['is_SOFR_2std_above_IORB']].intersection(df.index[df['is_SOFR_ab
 
 # # Summary Stats about Various Repo Rates
 
-# In[ ]:
+# In[38]:
 
 
 df.info()
@@ -526,7 +526,7 @@ df.info()
 # 
 # Notice, however, that this is different when comparing the 75% percentiles. SOFR is higher than triparty and DVP is even higher.
 
-# In[ ]:
+# In[39]:
 
 
 df[['SOFR', 'REPO-TRI_AR_OO-P', 'REPO-DVP_AR_OO-P']].dropna().describe()
@@ -534,7 +534,7 @@ df[['SOFR', 'REPO-TRI_AR_OO-P', 'REPO-DVP_AR_OO-P']].dropna().describe()
 
 # Now, I include GCF. It appears that GCF is the highest. Borrow low at tri-party, lend higher into SOFR (but lower to specials) and lend highest to GCF.
 
-# In[ ]:
+# In[40]:
 
 
 df[['SOFR', 'REPO-TRI_AR_OO-P', 'REPO-DVP_AR_OO-P', 'REPO-GCF_AR_OO-P']].dropna().describe()

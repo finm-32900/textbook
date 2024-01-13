@@ -1,0 +1,194 @@
+Description: Revision of (Revision of (HW3 ASEC))
+Samples selected:
+      IPUMS-CPS, ASEC 2000                              regular
+      IPUMS-CPS, ASEC 2001                              regular
+      IPUMS-CPS, ASEC 2002                              regular
+      IPUMS-CPS, ASEC 2003                              regular
+      IPUMS-CPS, ASEC 2004                              regular
+      IPUMS-CPS, ASEC 2005                              regular
+      IPUMS-CPS, ASEC 2006                              regular
+      IPUMS-CPS, ASEC 2007                              regular
+      IPUMS-CPS, ASEC 2008                              regular
+      IPUMS-CPS, ASEC 2009                              regular
+      IPUMS-CPS, ASEC 2010                              regular
+      IPUMS-CPS, ASEC 2011                              regular
+      IPUMS-CPS, ASEC 2012                              regular
+      IPUMS-CPS, ASEC 2013                              regular
+      IPUMS-CPS, ASEC 2014                              regular
+      IPUMS-CPS, ASEC 2015                              regular
+      IPUMS-CPS, ASEC 2016                              regular
+      IPUMS-CPS, ASEC 2017                              regular
+File Type:                    rectangular
+Case Selection:               No
+  Variable               Columns        Len    03/2000 03/2001 03/2002 03/2003 03/2004 03/2005 03/2006 03/2007 03/2008 03/2009 03/2010 03/2011 03/2012 03/2013 03/2014 03/2015 03/2016 03/2017
+  YEAR               H   1-4            4      X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X 
+  GQ                 H   5              1      X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X 
+  CPI99              H   6-9            4      X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X 
+  ASECWT             P  10-19          10      X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X 
+  AGE                P  20-21           2      X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X 
+  SEX                P  22              1      X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X 
+  LABFORCE           P  23              1      X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X 
+  EDUC               P  24-26           3      X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X 
+  WKSWORK1           P  27-28           2      X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X 
+  UHRSWORKLY         P  29-31           3      X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X 
+  INCWAGE            P  32-38           7      X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X 
+
+Variable Availability Key:
+All Years X - available in this sample
+All Years . - not available in this sample
+
+
+ GQ		Group Quarters status
+0		NIU (Vacant units)
+1		Households
+2		Group Quarters
+
+ AGE		Age
+00		Under 1 year
+01		1
+02		2
+03		3
+04		4
+05		5
+06		6
+07		7
+08		8
+09		9
+10		10
+11		11
+12		12
+13		13
+14		14
+15		15
+16		16
+17		17
+18		18
+19		19
+20		20
+21		21
+22		22
+23		23
+24		24
+25		25
+26		26
+27		27
+28		28
+29		29
+30		30
+31		31
+32		32
+33		33
+34		34
+35		35
+36		36
+37		37
+38		38
+39		39
+40		40
+41		41
+42		42
+43		43
+44		44
+45		45
+46		46
+47		47
+48		48
+49		49
+50		50
+51		51
+52		52
+53		53
+54		54
+55		55
+56		56
+57		57
+58		58
+59		59
+60		60
+61		61
+62		62
+63		63
+64		64
+65		65
+66		66
+67		67
+68		68
+69		69
+70		70
+71		71
+72		72
+73		73
+74		74
+75		75
+76		76
+77		77
+78		78
+79		79
+80		80
+81		81
+82		82
+83		83
+84		84
+85		85
+86		86
+87		87
+88		88
+89		89
+90		90 (90+, 1988-2002)
+91		91
+92		92
+93		93
+94		94
+95		95
+96		96
+97		97
+98		98
+99		99+
+
+ SEX		Sex
+1		Male
+2		Female
+9		NIU
+
+ LABFORCE		Labor force status
+0		NIU
+1		No, not in the labor force
+2		Yes, in the labor force
+
+ EDUC		Educational attainment recode
+000		NIU or no schooling
+001		NIU or blank
+002		None or preschool
+010		Grades 1, 2, 3, or 4
+011		Grade 1
+012		Grade 2
+013		Grade 3
+014		Grade 4
+020		Grades 5 or 6
+021		Grade 5
+022		Grade 6
+030		Grades 7 or 8
+031		Grade 7
+032		Grade 8
+040		Grade 9
+050		Grade 10
+060		Grade 11
+070		Grade 12
+071		12th grade, no diploma
+072		12th grade, diploma unclear
+073		High school diploma or equivalent
+080		1 year of college
+081		Some college but no degree
+090		2 years of college
+091		Associate's degree, occupational/vocational program
+092		Associate's degree, academic program
+100		3 years of college
+110		4 years of college
+111		Bachelor's degree
+120		5+ years of college
+121		5 years of college
+122		6+ years of college
+123		Master's degree
+124		Professional school degree
+125		Doctorate degree
+999		Missing/Unknown
