@@ -41,6 +41,16 @@ def remove_build_dir():
             print(f"Error removing directory: {BUILD_DIR}. {e}")
 
 
+def task_doit_repo_spikes():
+    """Run repo spikes dodo"""
+
+    return {
+        'actions': ["doit -f case_studies/repo_spikes/src/dodo.py"],
+        'targets': [OUTPUT_DIR / "_01_repo_spikes.ipynb"],
+        }
+
+
+
 book_source_files = [
     "intro.md",
     "README.md",
