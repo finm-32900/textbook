@@ -31,7 +31,7 @@ def jupyter_clear_input(notebook, output_dir):
     """
     return f"jupyter nbconvert --to notebook {notebook}.ipynb --output _{notebook}.ipynb --no-input --no-prompt  --output-dir='{output_dir}' --log-level WARN"
 def jupyter_clear_output(notebook):
-    return f"""jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace {notebook}.ipynb --ClearMetadataPreprocessor.enabled=True --ClearMetadataPreprocessor.preserve_cell_metadata_mask='[("tags")]' --log-level WARN"""
+    return f"""jupyter nbconvert --inplace {notebook}.ipynb --ClearMetadataPreprocessor.enabled=True --ClearMetadataPreprocessor.preserve_cell_metadata_mask='[("tags")]' --log-level WARN"""
 def copy_notebook_to_folder(notebook, destination_folder):
     destination_path = Path(destination_folder) / f"_{notebook}.ipynb"
     return f"cp  {notebook}.ipynb {destination_path}"
