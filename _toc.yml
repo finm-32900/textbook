@@ -14,7 +14,7 @@ chapters:
   - file: lectures/Week1/case_study_reproducibility_in_finance.md
 - file: lectures/Week1/HW1.md
   sections:
-  - file: lectures/Week1/_repo_spikes.ipynb
+  - file: output/_01_repo_spikes.ipynb
 - file: lectures/Week2/README.md
   sections:
   - file: lectures/Week2/what_is_a_build_system.md
