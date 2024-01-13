@@ -63,6 +63,8 @@ book_source_files = [
     "lectures/Week1/reproducible_analytical_pipelines.md",
     "lectures/Week1/what_is_this_course_about.md",
     ##
+    "output/_01_repo_spikes.ipynb",
+    ##
     "lectures/Week2/case_study_atlanta_fed_wage_growth_tracker.md",
     "lectures/Week2/HW2.md",
     "lectures/Week2/README.md",
