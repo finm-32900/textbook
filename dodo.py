@@ -40,25 +40,43 @@ def remove_build_dir():
         except Exception as e:
             print(f"Error removing directory: {BUILD_DIR}. {e}")
 
-book_files = [
-    "_config.yml",
-    "_toc.yml",
+
+book_source_files = [
     "intro.md",
     "README.md",
+    ##
+    "lectures/Week1/_repo_spikes.ipynb",
+    "lectures/Week1/case_study_reproducibility_in_finance.md",
     "lectures/Week1/HW0.md",
     "lectures/Week1/HW1.md",
     "lectures/Week1/README.md",
+    "lectures/Week1/reproducible_analytical_pipelines.md",
     "lectures/Week1/what_is_this_course_about.md",
-    "lectures/Week2/what_is_a_build_system.md",
-    "lectures/Week2/what_is_a_build_system.md",
+    ##
+    "lectures/Week2/case_study_atlanta_fed_wage_growth_tracker.md",
     "lectures/Week2/HW2.md",
+    "lectures/Week2/README.md",
+    "lectures/Week2/what_is_a_build_system.md",
+]
+
+_book_compiled = [page.split(".")[0] + ".html" for page in book_source_files]
+book_compiled = [
+    "genindex.html",
+    "search.html",
+    "index.html",
+    *_book_compiled,
 ]
 
 def task_compile_book():
     """Run jupyter-book build to compile the book."""
-    file_dep = book_files
-    pages = ["index.html", "intro.html"]
-    targets = [Path("_build") / "html" / page for page in pages]
+
+    file_dep = [
+        "_config.yml",
+        "_toc.yml",
+        *book_source_files,
+    ]
+
+    targets = [Path("_build") / "html" / page for page in book_compiled]
 
     return {
         "actions": [
@@ -93,12 +111,9 @@ def copy_build_files_to_github_page_repo():
 
 def task_copy_compiled_book_to_github_pages_repo():
     """copy_compiled_book_to_github_pages_repo"""
-    file_dep = [
-        BUILD_DIR / "html/index.html",
-        *book_files,
-    ]
-    pages = ["index.html", "intro.html"]
-    targets = [GITHUB_PAGES_REPO_DIR / page for page in pages]
+    file_dep = [Path('_build') / 'html' / page for page in book_compiled]
+    pages = book_compiled
+    targets = [Path(GITHUB_PAGES_REPO_DIR) / page for page in pages]
 
     return {
         "actions": [
