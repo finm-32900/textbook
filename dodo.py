@@ -45,10 +45,18 @@ def task_doit_repo_spikes():
     """Run repo spikes dodo"""
 
     return {
-        'actions': ["doit -f case_studies/repo_spikes/src/dodo.py"],
-        'targets': [OUTPUT_DIR / "_01_repo_spikes.ipynb"],
-        }
+        "actions": ["doit -f case_studies/repo_spikes/src/dodo.py"],
+        "targets": [OUTPUT_DIR / "_01_repo_spikes.ipynb"],
+    }
 
+
+def task_doit_atlanta_fed_wage_growth():
+    """Run atlanta fed wage growth tracker dodo"""
+
+    return {
+        "actions": ["doit -f case_studies/atlanta_fed_wage_growth_tracker/src/dodo.py"],
+        "targets": [OUTPUT_DIR / "_01_wage_growth_during_the_recession.ipynb"],
+    }
 
 
 book_source_files = [
@@ -70,6 +78,8 @@ book_source_files = [
     "lectures/Week2/README.md",
     "lectures/Week2/virtual_environments.md",
     "lectures/Week2/what_is_a_build_system.md",
+    ##
+    "output/_01_wage_growth_during_the_recession.ipynb",
 ]
 
 _book_compiled = [page.split(".")[0] + ".html" for page in book_source_files]
@@ -79,6 +89,7 @@ book_compiled = [
     "index.html",
     *_book_compiled,
 ]
+
 
 def task_compile_book():
     """Run jupyter-book build to compile the book."""
@@ -124,7 +135,7 @@ def copy_build_files_to_github_page_repo():
 
 def task_copy_compiled_book_to_github_pages_repo():
     """copy_compiled_book_to_github_pages_repo"""
-    file_dep = [Path('_build') / 'html' / page for page in book_compiled]
+    file_dep = [Path("_build") / "html" / page for page in book_compiled]
     pages = book_compiled
     targets = [Path(GITHUB_PAGES_REPO_DIR) / page for page in pages]
 

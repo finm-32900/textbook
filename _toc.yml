@@ -20,5 +20,7 @@ chapters:
   - file: lectures/Week2/virtual_environments.md
   - file: lectures/Week2/what_is_a_build_system.md
   - file: lectures/Week2/project_structure.md
+- file: lectures/Week2/HW2.md
+  sections:
   - file: lectures/Week2/case_study_atlanta_fed_wage_growth_tracker.md
-  - file: lectures/Week2/HW2.md
+  - file: output/_01_wage_growth_during_the_recession.ipynb

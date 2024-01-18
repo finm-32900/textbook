@@ -249,3 +249,5 @@ drafts/draft_bp.pdf
 *.vrb
 
 _build/
+
+data/manual/cps.csv
