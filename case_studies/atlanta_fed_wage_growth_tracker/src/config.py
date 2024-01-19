@@ -20,10 +20,10 @@ over to the other configuration, for example.
 from decouple import config
 from pathlib import Path
 
-BASE_DIR = Path(__file__).parent
+BASE_DIR = Path(__file__).parent.parent
 
-DATA_DIR = config('DATA_DIR', default='../data/', cast=Path)
-OUTPUT_DIR = config('OUTPUT_DIR', default='../output/', cast=Path)
+DATA_DIR = config('DATA_DIR', default=BASE_DIR / 'data/', cast=Path)
+OUTPUT_DIR = config('OUTPUT_DIR', default=BASE_DIR / 'output/', cast=Path)
 WRDS_USERNAME = config("WRDS_USERNAME", default="")
 
 if __name__ == "__main__":

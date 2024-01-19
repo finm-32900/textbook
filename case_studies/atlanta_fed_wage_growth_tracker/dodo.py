@@ -8,6 +8,8 @@ sys.path.insert(1, './src/')
 import config
 from pathlib import Path
 from doit.tools import run_once
+import os
+import shutil
 
 
 OUTPUT_DIR = Path(config.OUTPUT_DIR)
@@ -16,7 +18,7 @@ DATA_DIR = Path(config.DATA_DIR)
 # fmt: off
 ## Helper functions for automatic execution of Jupyter notebooks
 def jupyter_execute_notebook(notebook):
-    return f"jupyter nbconvert --execute --to notebook --ClearMetadataPreprocessor.enabled=True --inplace ./src/{notebook}.ipynb"
+    return f"jupyter nbconvert --execute --to notebook --inplace ./src/{notebook}.ipynb"
 def jupyter_to_html(notebook, output_dir=OUTPUT_DIR):
     return f"jupyter nbconvert --to html --output-dir={output_dir} ./src/{notebook}.ipynb"
 def jupyter_to_md(notebook, output_dir=OUTPUT_DIR):
@@ -28,6 +30,31 @@ def jupyter_to_python(notebook, build_dir):
 def jupyter_clear_output(notebook):
     return f"jupyter nbconvert --ClearOutputPreprocessor.enabled=True --ClearMetadataPreprocessor.enabled=True --inplace ./src/{notebook}.ipynb"
 # fmt: on
+
+
+
+# Check if .env file exists. If not, create it by copying from .env.example
+env_file = ".env"
+env_example_file = "example.env"
+
+if not os.path.exists(env_file):
+    shutil.copy(env_example_file, env_file)
+
+
+def task_pull_fred():
+    """ """
+    file_dep = ["./src/load_fred.py"]
+    file_output = ["fred_wages.parquet"]
+    targets = [DATA_DIR / "pulled" / file for file in file_output]
+
+    return {
+        "actions": [
+            "ipython ./src/load_fred.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+    }
 
 
 def task_pull_fred():
@@ -64,7 +91,7 @@ def task_convert_notebooks_to_scripts():
     actions = [
         # *[jupyter_execute_notebook(notebook) for notebook in notebooks_to_run],
         # *[jupyter_to_html(notebook) for notebook in notebooks_to_run],
-        *[jupyter_clear_output(notebook) for notebook in stems],
+        # *[jupyter_clear_output(notebook) for notebook in stems],
         *[jupyter_to_python(notebook, build_dir) for notebook in stems],
     ]
     return {
@@ -99,7 +126,7 @@ def task_run_notebooks():
     actions = [
         *[jupyter_execute_notebook(notebook) for notebook in stems],
         *[jupyter_to_html(notebook) for notebook in stems],
-        *[jupyter_clear_output(notebook) for notebook in stems],
+        # *[jupyter_clear_output(notebook) for notebook in stems],
         # *[jupyter_to_python(notebook, build_dir) for notebook in notebooks_to_run],
     ]
     return {
