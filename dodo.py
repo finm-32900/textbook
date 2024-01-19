@@ -54,7 +54,7 @@ def task_doit_atlanta_fed_wage_growth():
     """Run atlanta fed wage growth tracker dodo"""
 
     return {
-        "actions": ["doit -f case_studies/atlanta_fed_wage_growth_tracker/src/dodo.py"],
+        "actions": ["doit -f case_studies/atlanta_fed_wage_growth_tracker/dodo.py"],
         "targets": [OUTPUT_DIR / "_01_wage_growth_during_the_recession.ipynb"],
     }
 
