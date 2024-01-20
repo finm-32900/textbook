@@ -31,6 +31,12 @@ def jupyter_clear_output(notebook):
 # fmt: on
 
 
+def copy_notebook_to_folder(notebook_stem, origin_folder, destination_folder):
+    origin_path = Path(origin_folder) / f"{notebook_stem}.ipynb"
+    destination_path = Path(destination_folder) / f"_{notebook_stem}.ipynb"
+    return f"cp  {origin_path} {destination_path}"
+
+
 def remove_build_dir():
     """Recursively remove the build directory and its contents."""
 
@@ -49,12 +55,16 @@ def task_doit_repo_spikes():
         "targets": [OUTPUT_DIR / "_01_repo_spikes.ipynb"],
     }
 
-
 def task_doit_atlanta_fed_wage_growth():
     """Run atlanta fed wage growth tracker dodo"""
-
+    notebooks = ["01_wage_growth_during_the_recession.ipynb"]
+    stems = [notebook.split(".")[0] for notebook in notebooks]
+    src_dir = Path("case_studies/atlanta_fed_wage_growth_tracker/src")
     return {
-        "actions": ["doit -f case_studies/atlanta_fed_wage_growth_tracker/dodo.py"],
+        "actions": [
+            "doit -f case_studies/atlanta_fed_wage_growth_tracker/dodo.py",
+            *[copy_notebook_to_folder(notebook, src_dir, OUTPUT_DIR) for notebook in stems],
+            ],
         "targets": [OUTPUT_DIR / "_01_wage_growth_during_the_recession.ipynb"],
     }
 

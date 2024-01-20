@@ -7520,6 +7520,21 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">load_cps</span>
+<span class="kn">import</span> <span class="nn">wage_growth_analytics</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Change default pandas display options</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_columns</span> <span class="o">=</span> <span class="mi">25</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_rows</span> <span class="o">=</span> <span class="mi">500</span>
@@ -7571,7 +7586,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_fred</span> <span class="o">=</span> <span class="n">load_fred</span><span class="o">.</span><span class="n">pull_all</span><span class="p">()</span>
@@ -7586,7 +7601,7 @@ a.anchor-link {
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>{'LES1252881600Q': 'Employed full time: Median usual weekly real earnings: Wage and salary workers: 16 years and over',
  'LES1252881900Q': 'Employed full time: Median usual weekly real earnings: Wage and salary workers: 16 years and over: Men'}</pre>
@@ -7599,7 +7614,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_fred</span> <span class="o">=</span> <span class="n">df_fred</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'LES1252881600Q'</span><span class="p">:</span><span class="s1">'Median wages (all)'</span><span class="p">})</span>
@@ -7614,7 +7629,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_fred</span><span class="p">[</span><span class="s1">'2000'</span><span class="p">:</span><span class="s1">'2017'</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -7641,7 +7656,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_fred</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -7689,7 +7704,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Step-2.-Download-and-Read-the-CPS-Data-from-IPUMS">Step 2. Download and Read the CPS Data from IPUMS<a class="anchor-link" href="#Step-2.-Download-and-Read-the-CPS-Data-from-IPUMS">¶</a></h3><p>When you download the data from IPUMS, <em>only download the data that you need</em>. This is important, because the data gets very big very fast when you start adding other variables. IPUMS will automatically add certain variables to your "cart". Go ahead and remove the ones that you don't need. This will make things much easier. The list of variables that you need are listed below. Make sure to stick to just those variables. I have provided the code to read in the data.</p>
+<h3 id="Step-2.-Download-and-Read-the-CPS-Data-from-IPUMS">Step 2. Download and Read the CPS Data from IPUMS<a class="anchor-link" href="#Step-2.-Download-and-Read-the-CPS-Data-from-IPUMS">¶</a></h3><p>When you download the data from IPUMS, <em>only download the data that you need</em>. This is important, because the data gets very big very fast when you start adding other variables. IPUMS will automatically add certain variables to your "cart". Go ahead and remove the ones that you don't need. This will make things much easier. The list of variables that you need are listed below. Make sure to stick to just those variables. You will fill in the code in the file called <code>load_cps.py</code> that will clean the raw IPUMS CPS data. This fill assumes that you have downloaded the data manually from the IPUMS CPS website as described above and saved it in the directory <code>../data/manual</code> relative to the source file. Relative to the project home directory, this is <code>./data/manual</code>. Recall that we are putting it in the <code>manual</code> directory instead of the <code>pulled</code> directory, because the data was not automatically pulled from the source.</p>
 <p>The data should contain the following variables:</p>
 <ol>
 <li>YEAR (Survey year)</li>
@@ -7705,68 +7720,6 @@ a.anchor-link {
 <li>INCWAGE (Wage and salary income)</li>
 </ol>
 <p>When you're finished, run the following code to see how much memory your data set is using, the list of variables, and the data types each variable is saved as:</p>
-<div class="highlight"><pre><span></span><span class="c1"># Run this code to see how much memory your data set is using.</span>
-<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-<p>This results in</p>
-<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 4608387 entries, 0 to 4608386
-Data columns (total 12 columns):
- #   Column      Dtype         
----  ------      -----         
- 0   YEAR        datetime64[ns]
- 1   GQ          category      
- 2   CPI99       float64       
- 3   CPSIDV      int64         
- 4   ASECWT      float64       
- 5   AGE         int64         
- 6   SEX         category      
- 7   LABFORCE    category      
- 8   EDUC        category      
- 9   WKSWORK1    int64         
- 10  UHRSWORKLY  int64         
- 11  INCWAGE     int64         
-dtypes: category(4), datetime64[ns](1), float64(2), int64(5)
-memory usage: 298.9 MB
-</code></pre>
-<p>If you use restrict your data set to exactly these variables and follow the instructions precisely, you should be able to replicate the exact numbers that I get. (For example, don't drop missing data until the instructions tell you to.)</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">## Read and Prepare the Data</span>
-
-<span class="c1"># When you save the file, it must be named `cps.csv`</span>
-<span class="c1"># and saved in the directory `../data/manual`.</span>
-<span class="c1"># It is placed in the `manual` directory because it is not</span>
-<span class="c1"># automatically downloaded from the internet.</span>
-<span class="n">PATH_TO_CPS_FILE</span> <span class="o">=</span> <span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s1">'manual'</span> <span class="o">/</span> <span class="s1">'cps.csv'</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">PATH_TO_CPS_FILE</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">'YEAR'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'YEAR'</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'%Y'</span><span class="p">)</span> 
-
-<span class="n">categorical_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'GQ'</span><span class="p">,</span> <span class="s1">'SEX'</span><span class="p">,</span> <span class="s1">'EDUC'</span><span class="p">,</span> <span class="s1">'LABFORCE'</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_cols</span><span class="p">:</span>
-    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'category'</span><span class="p">)</span>
-
-<span class="c1"># In case these variales were included in the dataset,</span>
-<span class="c1"># Drop the variables that we will not need in this exercise.</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'MONTH'</span><span class="p">,</span> <span class="s1">'ASECFLAG'</span><span class="p">,</span> <span class="s1">'EMPSTAT'</span><span class="p">,</span> <span class="s1">'FTOTVAL'</span><span class="p">,</span> <span class="s1">'PERNUM'</span><span class="p">,</span> 
-          <span class="s1">'SERIAL'</span><span class="p">,</span> <span class="s1">'CPSIDP'</span><span class="p">,</span> <span class="s1">'ASECWTH'</span><span class="p">,</span> <span class="s1">'HFLAG'</span><span class="p">,</span> <span class="s1">'CPSID'</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="k">pass</span>
-</pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -7778,7 +7731,8 @@ memory usage: 298.9 MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Run this code to see how much memory your data set is using.</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">DATA_DIR</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">load_cps</span><span class="o">.</span><span class="n">load_raw</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -7812,6 +7766,183 @@ Data columns (total 12 columns):
 dtypes: category(4), datetime64[ns](1), float64(2), int64(5)
 memory usage: 298.9 MB
 </pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>As you can see, this results in</p>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 4608387 entries, 0 to 4608386
+Data columns (total 12 columns):
+ #   Column      Dtype         
+---  ------      -----         
+ 0   YEAR        datetime64[ns]
+ 1   GQ          category      
+ 2   CPI99       float64       
+ 3   CPSIDV      int64         
+ 4   ASECWT      float64       
+ 5   AGE         int64         
+ 6   SEX         category      
+ 7   LABFORCE    category      
+ 8   EDUC        category      
+ 9   WKSWORK1    int64         
+ 10  UHRSWORKLY  int64         
+ 11  INCWAGE     int64         
+dtypes: category(4), datetime64[ns](1), float64(2), int64(5)
+memory usage: 298.9 MB
+</code></pre>
+<p>If you use restrict your data set to exactly these variables and follow the instructions precisely, you should be able to replicate the exact numbers that I get. (For example, don't drop missing data until the instructions tell you to.)</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>YEAR</th>
+<th>CPI99</th>
+<th>CPSIDV</th>
+<th>ASECWT</th>
+<th>AGE</th>
+<th>WKSWORK1</th>
+<th>UHRSWORKLY</th>
+<th>INCWAGE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>count</th>
+<td>4608387</td>
+<td>4608387.000</td>
+<td>4608387.000</td>
+<td>4608387.000</td>
+<td>4608387.000</td>
+<td>4608387.000</td>
+<td>4608387.000</td>
+<td>4608387.000</td>
+</tr>
+<tr>
+<th>mean</th>
+<td>2011-01-03 04:15:05.989538816</td>
+<td>0.779</td>
+<td>130758231204187.125</td>
+<td>1663.893</td>
+<td>35.299</td>
+<td>23.545</td>
+<td>511.494</td>
+<td>23437302.472</td>
+</tr>
+<tr>
+<th>min</th>
+<td>2000-01-01 00:00:00</td>
+<td>0.569</td>
+<td>0.000</td>
+<td>21.090</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>1.000</td>
+<td>0.000</td>
+</tr>
+<tr>
+<th>25%</th>
+<td>2005-01-01 00:00:00</td>
+<td>0.694</td>
+<td>0.000</td>
+<td>809.490</td>
+<td>15.000</td>
+<td>0.000</td>
+<td>40.000</td>
+<td>0.000</td>
+</tr>
+<tr>
+<th>50%</th>
+<td>2011-01-01 00:00:00</td>
+<td>0.764</td>
+<td>200403026765031.000</td>
+<td>1493.780</td>
+<td>35.000</td>
+<td>6.000</td>
+<td>70.000</td>
+<td>28000.000</td>
+</tr>
+<tr>
+<th>75%</th>
+<td>2017-01-01 00:00:00</td>
+<td>0.882</td>
+<td>201301054209016.000</td>
+<td>2178.210</td>
+<td>52.000</td>
+<td>52.000</td>
+<td>999.000</td>
+<td>145000.000</td>
+</tr>
+<tr>
+<th>max</th>
+<td>2023-01-01 00:00:00</td>
+<td>1.000</td>
+<td>202303068702011.000</td>
+<td>44423.830</td>
+<td>90.000</td>
+<td>52.000</td>
+<td>999.000</td>
+<td>99999999.000</td>
+</tr>
+<tr>
+<th>std</th>
+<td>NaN</td>
+<td>0.112</td>
+<td>95860476618055.766</td>
+<td>1212.633</td>
+<td>22.322</td>
+<td>24.775</td>
+<td>480.187</td>
+<td>42335696.104</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -7883,50 +8014,148 @@ memory usage: 298.9 MB
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">## Fill in Missing Values or NIU</span>
-    
-<span class="c1"># UHRSWORKLY: Recode missing values</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'UHRSWORKLY'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">999</span><span class="p">,</span> <span class="s1">'UHRSWORKLY'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-
-<span class="c1"># INCWAGE: Missing values</span>
-<span class="c1"># 9999999 = N.I.U. (Not in Universe). </span>
-<span class="c1"># 9999998 = Missing.</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'INCWAGE'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">9999999</span><span class="p">,</span> <span class="s1">'INCWAGE'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'INCWAGE'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">9999998</span><span class="p">,</span> <span class="s1">'INCWAGE'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-
-<span class="c1"># LABFORCE missing values</span>
-<span class="c1"># 0 = NIU</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'LABFORCE'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'LABFORCE'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-
-<span class="c1"># EDUC Missing values</span>
-<span class="n">EDUC_missing_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">999</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">educ_code</span> <span class="ow">in</span> <span class="n">EDUC_missing_list</span><span class="p">:</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'EDUC'</span><span class="p">]</span> <span class="o">==</span> <span class="n">educ_code</span><span class="p">,</span> <span class="s1">'EDUC'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-
-<span class="c1"># GQ Missing values</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'GQ'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'GQ'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-    
-<span class="c1"># SEX Missing values</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'SEX'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">'SEX'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-
-
-<span class="c1"># TODO: Alternative way is currently NOT WORKING</span>
-<span class="c1"># missing_values = {</span>
-<span class="c1">#     'UHRSWORKLY': {999: np.nan},</span>
-<span class="c1">#     'INCWAGE': {9999998: np.nan, 9999999: np.nan},</span>
-<span class="c1">#     'LABFORCE': {0: np.nan},</span>
-<span class="c1">#     'EDUC': {0: np.nan, 1: np.nan, 999: np.nan}</span>
-<span class="c1"># }</span>
-<span class="c1"># df.replace(to_replace=missing_values, inplace=True)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">load_cps</span><span class="o">.</span><span class="n">load_clean</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>YEAR</th>
+<th>CPI99</th>
+<th>CPSIDV</th>
+<th>ASECWT</th>
+<th>AGE</th>
+<th>WKSWORK1</th>
+<th>UHRSWORKLY</th>
+<th>INCWAGE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>count</th>
+<td>4608387</td>
+<td>4608387.000</td>
+<td>4608387.000</td>
+<td>4608387.000</td>
+<td>4608387.000</td>
+<td>4608387.000</td>
+<td>2339421.000</td>
+<td>4608387.000</td>
+</tr>
+<tr>
+<th>mean</th>
+<td>2011-01-03 04:15:05.989538816</td>
+<td>0.779</td>
+<td>130758231204187.125</td>
+<td>1663.893</td>
+<td>35.299</td>
+<td>23.545</td>
+<td>38.670</td>
+<td>23437302.472</td>
+</tr>
+<tr>
+<th>min</th>
+<td>2000-01-01 00:00:00</td>
+<td>0.569</td>
+<td>0.000</td>
+<td>21.090</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>1.000</td>
+<td>0.000</td>
+</tr>
+<tr>
+<th>25%</th>
+<td>2005-01-01 00:00:00</td>
+<td>0.694</td>
+<td>0.000</td>
+<td>809.490</td>
+<td>15.000</td>
+<td>0.000</td>
+<td>36.000</td>
+<td>0.000</td>
+</tr>
+<tr>
+<th>50%</th>
+<td>2011-01-01 00:00:00</td>
+<td>0.764</td>
+<td>200403026765031.000</td>
+<td>1493.780</td>
+<td>35.000</td>
+<td>6.000</td>
+<td>40.000</td>
+<td>28000.000</td>
+</tr>
+<tr>
+<th>75%</th>
+<td>2017-01-01 00:00:00</td>
+<td>0.882</td>
+<td>201301054209016.000</td>
+<td>2178.210</td>
+<td>52.000</td>
+<td>52.000</td>
+<td>40.000</td>
+<td>145000.000</td>
+</tr>
+<tr>
+<th>max</th>
+<td>2023-01-01 00:00:00</td>
+<td>1.000</td>
+<td>202303068702011.000</td>
+<td>44423.830</td>
+<td>90.000</td>
+<td>52.000</td>
+<td>99.000</td>
+<td>99999999.000</td>
+</tr>
+<tr>
+<th>std</th>
+<td>NaN</td>
+<td>0.112</td>
+<td>95860476618055.766</td>
+<td>1212.633</td>
+<td>22.322</td>
+<td>24.775</td>
+<td>12.143</td>
+<td>42335696.104</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -7949,22 +8178,148 @@ memory usage: 298.9 MB
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">## Select desired subsample</span>
-<span class="c1"># GQ = 0 for vacant units, 1 for Households, 2 for group quarters</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'GQ'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
-<span class="c1">#  df['SEX'] = 1 for male</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'SEX'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">'AGE'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">25</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'AGE'</span><span class="p">]</span> <span class="o">&lt;=</span><span class="mi">54</span><span class="p">)</span> <span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'INCWAGE'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">wage_growth_analytics</span><span class="o">.</span><span class="n">s04_subsample</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>YEAR</th>
+<th>CPI99</th>
+<th>CPSIDV</th>
+<th>ASECWT</th>
+<th>AGE</th>
+<th>WKSWORK1</th>
+<th>UHRSWORKLY</th>
+<th>INCWAGE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>count</th>
+<td>769289</td>
+<td>769289.000</td>
+<td>769289.000</td>
+<td>769289.000</td>
+<td>769289.000</td>
+<td>769289.000</td>
+<td>769289.000</td>
+<td>769289.000</td>
+</tr>
+<tr>
+<th>mean</th>
+<td>2010-09-12 14:19:39.280088576</td>
+<td>0.784</td>
+<td>129017301880106.188</td>
+<td>1680.482</td>
+<td>39.524</td>
+<td>49.189</td>
+<td>43.372</td>
+<td>58904.663</td>
+</tr>
+<tr>
+<th>min</th>
+<td>2000-01-01 00:00:00</td>
+<td>0.569</td>
+<td>0.000</td>
+<td>25.330</td>
+<td>25.000</td>
+<td>1.000</td>
+<td>1.000</td>
+<td>1.000</td>
+</tr>
+<tr>
+<th>25%</th>
+<td>2005-01-01 00:00:00</td>
+<td>0.703</td>
+<td>0.000</td>
+<td>816.090</td>
+<td>33.000</td>
+<td>52.000</td>
+<td>40.000</td>
+<td>26000.000</td>
+</tr>
+<tr>
+<th>50%</th>
+<td>2010-01-01 00:00:00</td>
+<td>0.774</td>
+<td>200312067062011.000</td>
+<td>1503.350</td>
+<td>40.000</td>
+<td>52.000</td>
+<td>40.000</td>
+<td>44000.000</td>
+</tr>
+<tr>
+<th>75%</th>
+<td>2016-01-01 00:00:00</td>
+<td>0.882</td>
+<td>201203011452011.000</td>
+<td>2177.640</td>
+<td>47.000</td>
+<td>52.000</td>
+<td>48.000</td>
+<td>70000.000</td>
+</tr>
+<tr>
+<th>max</th>
+<td>2023-01-01 00:00:00</td>
+<td>1.000</td>
+<td>202303068387021.000</td>
+<td>44423.830</td>
+<td>54.000</td>
+<td>52.000</td>
+<td>99.000</td>
+<td>2099999.000</td>
+</tr>
+<tr>
+<th>std</th>
+<td>NaN</td>
+<td>0.113</td>
+<td>96368008905273.844</td>
+<td>1246.006</td>
+<td>8.324</td>
+<td>8.458</td>
+<td>9.639</td>
+<td>67907.862</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -7991,25 +8346,175 @@ memory usage: 298.9 MB
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">## Construct New Variables</span>
-
-<span class="n">df</span><span class="p">[</span><span class="s1">'real_incwage'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'CPI99'</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s1">'INCWAGE'</span><span class="p">]</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">'annual_hours'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'WKSWORK1'</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s1">'UHRSWORKLY'</span><span class="p">]</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">'real_wage'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'real_incwage'</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">'annual_hours'</span><span class="p">]</span>
-<span class="c1"># To prevent infinite wages</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'annual_hours'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'real_wage'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="c1"># Create</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">'in_labor_force'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'LABFORCE'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">wage_growth_analytics</span><span class="o">.</span><span class="n">s05_new_vars</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>YEAR</th>
+<th>CPI99</th>
+<th>CPSIDV</th>
+<th>ASECWT</th>
+<th>AGE</th>
+<th>WKSWORK1</th>
+<th>UHRSWORKLY</th>
+<th>INCWAGE</th>
+<th>real_incwage</th>
+<th>annual_hours</th>
+<th>real_wage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>count</th>
+<td>769289</td>
+<td>769289.000</td>
+<td>769289.000</td>
+<td>769289.000</td>
+<td>769289.000</td>
+<td>769289.000</td>
+<td>769289.000</td>
+<td>769289.000</td>
+<td>769289.000</td>
+<td>769289.000</td>
+<td>769289.000</td>
+</tr>
+<tr>
+<th>mean</th>
+<td>2010-09-12 14:19:39.280088576</td>
+<td>0.784</td>
+<td>129017301880106.188</td>
+<td>1680.482</td>
+<td>39.524</td>
+<td>49.189</td>
+<td>43.372</td>
+<td>58904.663</td>
+<td>45146.824</td>
+<td>2146.530</td>
+<td>21.946</td>
+</tr>
+<tr>
+<th>min</th>
+<td>2000-01-01 00:00:00</td>
+<td>0.569</td>
+<td>0.000</td>
+<td>25.330</td>
+<td>25.000</td>
+<td>1.000</td>
+<td>1.000</td>
+<td>1.000</td>
+<td>0.726</td>
+<td>1.000</td>
+<td>0.000</td>
+</tr>
+<tr>
+<th>25%</th>
+<td>2005-01-01 00:00:00</td>
+<td>0.703</td>
+<td>0.000</td>
+<td>816.090</td>
+<td>33.000</td>
+<td>52.000</td>
+<td>40.000</td>
+<td>26000.000</td>
+<td>20904.000</td>
+<td>2080.000</td>
+<td>10.385</td>
+</tr>
+<tr>
+<th>50%</th>
+<td>2010-01-01 00:00:00</td>
+<td>0.774</td>
+<td>200312067062011.000</td>
+<td>1503.350</td>
+<td>40.000</td>
+<td>52.000</td>
+<td>40.000</td>
+<td>44000.000</td>
+<td>34086.000</td>
+<td>2080.000</td>
+<td>15.772</td>
+</tr>
+<tr>
+<th>75%</th>
+<td>2016-01-01 00:00:00</td>
+<td>0.882</td>
+<td>201203011452011.000</td>
+<td>2177.640</td>
+<td>47.000</td>
+<td>52.000</td>
+<td>48.000</td>
+<td>70000.000</td>
+<td>53625.000</td>
+<td>2340.000</td>
+<td>24.188</td>
+</tr>
+<tr>
+<th>max</th>
+<td>2023-01-01 00:00:00</td>
+<td>1.000</td>
+<td>202303068387021.000</td>
+<td>44423.830</td>
+<td>54.000</td>
+<td>52.000</td>
+<td>99.000</td>
+<td>2099999.000</td>
+<td>1352399.356</td>
+<td>5148.000</td>
+<td>312342.282</td>
+</tr>
+<tr>
+<th>std</th>
+<td>NaN</td>
+<td>0.113</td>
+<td>96368008905273.844</td>
+<td>1246.006</td>
+<td>8.324</td>
+<td>8.458</td>
+<td>9.639</td>
+<td>67907.862</td>
+<td>50168.412</td>
+<td>607.767</td>
+<td>368.105</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -8044,30 +8549,10 @@ memory usage: 298.9 MB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Drop the variables that don't need anymore.</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'GQ'</span><span class="p">,</span> <span class="s1">'SEX'</span><span class="p">,</span> <span class="s1">'LABFORCE'</span><span class="p">,</span> <span class="s1">'CPI99'</span><span class="p">,</span> <span class="s1">'INCTOT'</span><span class="p">,</span><span class="s1">'WKSWORK1'</span><span class="p">,</span> <span class="p">]</span>
-<span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="k">pass</span>   
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">wage_growth_analytics</span><span class="o">.</span><span class="n">s06_drop</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8335,7 +8820,7 @@ memory usage: 298.9 MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">'UHRSWORKLY'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">'UHRSWORKLY'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -8345,12 +8830,6 @@ memory usage: 298.9 MB
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;Axes: ylabel='Frequency'&gt;</pre>
-</div>
-</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
@@ -8367,7 +8846,7 @@ memory usage: 298.9 MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'annual_hours'</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'annual_hours'</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -8377,12 +8856,6 @@ memory usage: 298.9 MB
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;Axes: ylabel='Frequency'&gt;</pre>
-</div>
-</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
@@ -8414,7 +8887,7 @@ memory usage: 298.9 MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'real_wage'</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'real_wage'</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -8424,12 +8897,6 @@ memory usage: 298.9 MB
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;Axes: &gt;</pre>
-</div>
-</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
@@ -8446,7 +8913,7 @@ memory usage: 298.9 MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'real_wage'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">200</span><span class="p">,</span><span class="s1">'real_wage'</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'real_wage'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">200</span><span class="p">,</span><span class="s1">'real_wage'</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -8456,12 +8923,6 @@ memory usage: 298.9 MB
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;Axes: &gt;</pre>
-</div>
-</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
@@ -8516,9 +8977,7 @@ memory usage: 298.9 MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">q99</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'real_wage'</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">0.99</span><span class="p">)</span>
-<span class="n">q01</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'real_wage'</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'@q01 &lt; real_wage &lt; @q99'</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">wage_growth_analytics</span><span class="o">.</span><span class="n">s10_drop_by_percentiles</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8532,7 +8991,7 @@ memory usage: 298.9 MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">q99</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8544,8 +9003,136 @@ memory usage: 298.9 MB
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>116.57958110769216</pre>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>YEAR</th>
+<th>CPSIDV</th>
+<th>ASECWT</th>
+<th>AGE</th>
+<th>UHRSWORKLY</th>
+<th>INCWAGE</th>
+<th>real_incwage</th>
+<th>annual_hours</th>
+<th>real_wage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>count</th>
+<td>753893</td>
+<td>753893.000</td>
+<td>753893.000</td>
+<td>753893.000</td>
+<td>753893.000</td>
+<td>753893.000</td>
+<td>753893.000</td>
+<td>753893.000</td>
+<td>753893.000</td>
+</tr>
+<tr>
+<th>mean</th>
+<td>2010-09-15 20:14:58.255853568</td>
+<td>129070305877238.188</td>
+<td>1680.891</td>
+<td>39.499</td>
+<td>43.397</td>
+<td>55359.313</td>
+<td>42445.377</td>
+<td>2150.577</td>
+<td>19.419</td>
+</tr>
+<tr>
+<th>min</th>
+<td>2000-01-01 00:00:00</td>
+<td>0.000</td>
+<td>25.330</td>
+<td>25.000</td>
+<td>1.000</td>
+<td>8.000</td>
+<td>6.432</td>
+<td>1.000</td>
+<td>2.375</td>
+</tr>
+<tr>
+<th>25%</th>
+<td>2005-01-01 00:00:00</td>
+<td>0.000</td>
+<td>816.240</td>
+<td>33.000</td>
+<td>40.000</td>
+<td>27000.000</td>
+<td>21168.000</td>
+<td>2080.000</td>
+<td>10.471</td>
+</tr>
+<tr>
+<th>50%</th>
+<td>2010-01-01 00:00:00</td>
+<td>200312068805051.000</td>
+<td>1503.170</td>
+<td>40.000</td>
+<td>40.000</td>
+<td>44000.000</td>
+<td>34120.000</td>
+<td>2080.000</td>
+<td>15.772</td>
+</tr>
+<tr>
+<th>75%</th>
+<td>2016-01-01 00:00:00</td>
+<td>201203018008021.000</td>
+<td>2178.200</td>
+<td>46.000</td>
+<td>47.000</td>
+<td>70000.000</td>
+<td>53040.000</td>
+<td>2340.000</td>
+<td>23.930</td>
+</tr>
+<tr>
+<th>max</th>
+<td>2023-01-01 00:00:00</td>
+<td>202303068387021.000</td>
+<td>44423.830</td>
+<td>54.000</td>
+<td>99.000</td>
+<td>850000.000</td>
+<td>554200.000</td>
+<td>5148.000</td>
+<td>116.576</td>
+</tr>
+<tr>
+<th>std</th>
+<td>NaN</td>
+<td>96352940439692.078</td>
+<td>1246.555</td>
+<td>8.321</td>
+<td>9.507</td>
+<td>46939.778</td>
+<td>35094.710</td>
+<td>598.662</td>
+<td>13.974</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -8556,32 +9143,6 @@ memory usage: 298.9 MB
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">q01</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>2.375</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'real_wage'</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
@@ -8595,7 +9156,7 @@ memory usage: 298.9 MB
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>&lt;Axes: &gt;</pre>
 </div>
@@ -8649,35 +9210,12 @@ memory usage: 298.9 MB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">col</span> <span class="o">=</span> <span class="s1">'real_wage'</span>
-<span class="n">weights</span><span class="o">=</span><span class="s1">'ASECWT'</span>
-
-<span class="n">median_wages</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">df</span>
-    <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">'any'</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'YEAR'</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">weightedstats</span><span class="o">.</span><span class="n">weighted_median</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="n">weights</span><span class="p">]))</span>
-    <span class="c1"># Shift time back since the series represents wages from the previous year</span>
-    <span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> 
-<span class="p">)</span>
-<span class="n">ave_wages</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">df</span>
-    <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">'any'</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'YEAR'</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="n">weights</span><span class="p">]))</span>
-    <span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="p">)</span>
-
-<span class="n">col</span> <span class="o">=</span> <span class="s1">'in_labor_force'</span>
-<span class="n">employment</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">df</span>
-    <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">'any'</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'YEAR'</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="n">weights</span><span class="p">]))</span>
-<span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">median_wages</span> <span class="o">=</span> <span class="n">wage_growth_analytics</span><span class="o">.</span><span class="n">s11_median_wages</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">ave_wages</span> <span class="o">=</span> <span class="n">wage_growth_analytics</span><span class="o">.</span><span class="n">s11_ave_wages</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">employment</span> <span class="o">=</span> <span class="n">wage_growth_analytics</span><span class="o">.</span><span class="n">s11_employment</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8701,15 +9239,10 @@ memory usage: 298.9 MB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">({</span>
-    <span class="s1">'ave_wages'</span><span class="p">:</span> <span class="n">ave_wages</span><span class="p">,</span>
-    <span class="s1">'median_wages'</span><span class="p">:</span>  <span class="n">median_wages</span><span class="p">,</span>
-    <span class="s1">'employment'</span><span class="p">:</span> <span class="n">employment</span><span class="p">},</span>
-    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">tdf</span> <span class="o">=</span> <span class="n">tdf</span><span class="p">[[</span><span class="s1">'ave_wages'</span><span class="p">,</span> <span class="s1">'median_wages'</span><span class="p">,</span> <span class="s1">'employment'</span><span class="p">]]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">wage_growth_analytics</span><span class="o">.</span><span class="n">s12_time_series</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8720,7 +9253,7 @@ memory usage: 298.9 MB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">tdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -8734,7 +9267,7 @@ memory usage: 298.9 MB
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[27]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8819,11 +9352,11 @@ memory usage: 298.9 MB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">tdf</span><span class="p">[[</span><span class="s1">'ave_wages'</span><span class="p">,</span> <span class="s1">'median_wages'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Wages over time'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'center left'</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'center left'</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">));</span>
 </pre></div>
 </div>
 </div>
@@ -8833,12 +9366,6 @@ memory usage: 298.9 MB
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[28]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;matplotlib.legend.Legend at 0x24fd9eeab40&gt;</pre>
-</div>
-</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
@@ -8852,7 +9379,7 @@ memory usage: 298.9 MB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">employment</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Employment'</span><span class="p">)</span>
@@ -8866,7 +9393,7 @@ memory usage: 298.9 MB
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[29]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[28]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>&lt;Axes: title={'center': 'Employment'}, xlabel='YEAR'&gt;</pre>
 </div>
@@ -8895,7 +9422,7 @@ memory usage: 298.9 MB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#autocorrelation</span>
@@ -8910,7 +9437,7 @@ memory usage: 298.9 MB
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[30]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[29]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>ave_wages      0.895
 median_wages   0.795
@@ -8936,7 +9463,7 @@ dtype: float64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">tdf</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
@@ -8950,7 +9477,7 @@ dtype: float64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[31]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[30]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -9009,15 +9536,18 @@ dtype: float64</pre>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Step-16.-Plot-median-wages-and-employment-on-the-same-graph">Step 16. Plot median wages and employment on the same graph<a class="anchor-link" href="#Step-16.-Plot-median-wages-and-employment-on-the-same-graph">¶</a></h3><p>Use the following starter code to plot these two series on the same graph, with separate y-axes (a left y-axis and a right y-axis).</p>
-<div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">YOUR_CODE_HERE</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Median Wages'</span><span class="p">)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Employment'</span><span class="p">)</span>
-<span class="n">tdf</span><span class="o">.</span><span class="n">employment</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-</pre></div>
+<!--
+```python
+ax = YOUR_CODE_HERE.plot(legend=False, color='red')
+ax.grid(False)
+ax.set_ylabel('Median Wages')
+ax2 = ax.twinx()
+ax2.grid(False)
+ax2.set_ylabel('Employment')
+tdf.employment.plot(ax=ax2)
+ax.figure.legend()
+```
+-->
 </div>
 </div>
 </div>
@@ -9026,7 +9556,7 @@ dtype: float64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">tdf</span><span class="p">[[</span><span class="s1">'median_wages'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Wght. Median Wages'</span><span class="p">)</span>
@@ -9047,9 +9577,9 @@ dtype: float64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[32]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[31]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;matplotlib.legend.Legend at 0x24fdb635010&gt;</pre>
+<pre>&lt;matplotlib.legend.Legend at 0x256981c0e00&gt;</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -9077,7 +9607,7 @@ dtype: float64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">tdf</span><span class="p">[</span><span class="s1">'ave_wage_growth'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tdf</span><span class="p">[</span><span class="s1">'ave_wages'</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">(</span><span class="n">fill_method</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
@@ -9092,7 +9622,7 @@ dtype: float64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">tdf</span><span class="p">[</span><span class="s1">'median_wage_growth'</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">)</span>
@@ -9125,7 +9655,7 @@ dtype: float64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">## Extra:</span>
@@ -9175,7 +9705,7 @@ Use the same code as from before. However, this time let's explore the relations
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">tdf</span><span class="p">[</span><span class="s1">'employment_growth'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tdf</span><span class="p">[</span><span class="s1">'employment'</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">(</span><span class="n">fill_method</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
@@ -9189,7 +9719,7 @@ Use the same code as from before. However, this time let's explore the relations
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">tdf</span><span class="p">[</span><span class="s1">'median_wage_growth'</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">)</span>
@@ -9210,9 +9740,9 @@ Use the same code as from before. However, this time let's explore the relations
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[37]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[36]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;matplotlib.legend.Legend at 0x24fdb7b0ef0&gt;</pre>
+<pre>&lt;matplotlib.legend.Legend at 0x2569acfc0b0&gt;</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -9239,7 +9769,7 @@ Use the same code as from before. However, this time let's explore the relations
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">tdf</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
@@ -9253,7 +9783,7 @@ Use the same code as from before. However, this time let's explore the relations
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[38]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[37]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -9394,18 +9924,10 @@ wages growth is slightly positively correlated with the level of employment. It'
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Add bins to `df` for the AGE and EDUC variables as described in</span>
-<span class="c1"># Question 1.B of the HW.</span>
-<span class="n">bins</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">55</span><span class="p">]</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">'age_binned'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'AGE'</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">include_lowest</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="n">educ_bins</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">900</span><span class="p">]</span>
-<span class="n">educ_bin_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Some_High_School'</span><span class="p">,</span> <span class="s1">'High_School_Diploma'</span><span class="p">,</span> <span class="s1">'Some_College'</span><span class="p">,</span>
-                   <span class="s1">'Bachelors_Degree'</span><span class="p">,</span> <span class="s1">'Beyond_Bachelors'</span><span class="p">]</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">'educ_binned'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'EDUC'</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">educ_bins</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">educ_bin_labels</span><span class="p">,</span> <span class="n">include_lowest</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">wage_growth_analytics</span><span class="o">.</span><span class="n">s20_bin_vars</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9419,15 +9941,21 @@ wages growth is slightly positively correlated with the level of employment. It'
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Step-21.-Compute-the-average-wages-within-each-education-and-age-group-as-defined-above.">Step 21. Compute the average wages within each education and age group as defined above.<a class="anchor-link" href="#Step-21.-Compute-the-average-wages-within-each-education-and-age-group-as-defined-above.">¶</a></h3><p>Within in "cell", compute the average wage. You will need to use the survey weights to compute each mean within each cell. The result will be average real wages (deflated with CPI 99) computed over the cross-section and over time.</p>
-<p>To do this, use the following starter code:</p>
-<div class="highlight"><pre><span></span><span class="c1"># Note that the averages are created using the appropriate weights</span>
-<span class="n">group_means</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-               <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">YOUR_CODE_HERE</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-               <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">YOUR_CODE_HERE</span><span class="p">))</span>
-              <span class="p">)</span>
-<span class="n">group_means</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'average_wage'</span>
-</pre></div>
 <p>For a nicer display at the end, run a code cell with the code <code>pd.DataFrame(group_means)</code>.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">group_means</span> <span class="o">=</span> <span class="n">wage_growth_analytics</span><span class="o">.</span><span class="n">s21_within_group_averages</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -9439,13 +9967,7 @@ wages growth is slightly positively correlated with the level of employment. It'
 <div class="jp-InputPrompt jp-InputArea-prompt">In [40]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Note that the averages are created using the appropriate weights</span>
-<span class="n">group_means</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span>
-               <span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'age_binned'</span><span class="p">,</span> <span class="s1">'educ_binned'</span><span class="p">],</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span>
-               <span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">real_wage</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">ASECWT</span><span class="p">))</span>
-              <span class="p">)</span>
-<span class="n">group_means</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'average_wage'</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">group_means</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">group_means</span>
 </pre></div>
 </div>
 </div>
@@ -9457,6 +9979,63 @@ wages growth is slightly positively correlated with the level of employment. It'
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[40]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>age_binned  educ_binned        
+[25, 30)    Some_High_School       9.827
+            High_School_Diploma   12.161
+            Some_College          13.493
+            Bachelors_Degree      18.297
+            Beyond_Bachelors      21.492
+[30, 35)    Some_High_School      10.574
+            High_School_Diploma   13.539
+            Some_College          15.705
+            Bachelors_Degree      22.004
+            Beyond_Bachelors      26.648
+[35, 40)    Some_High_School      11.109
+            High_School_Diploma   14.907
+            Some_College          17.823
+            Bachelors_Degree      25.529
+            Beyond_Bachelors      31.476
+[40, 45)    Some_High_School      11.696
+            High_School_Diploma   15.616
+            Some_College          18.792
+            Bachelors_Degree      26.957
+            Beyond_Bachelors      33.666
+[45, 50)    Some_High_School      12.049
+            High_School_Diploma   16.020
+            Some_College          19.561
+            Bachelors_Degree      27.783
+            Beyond_Bachelors      34.611
+[50, 55)    Some_High_School      12.237
+            High_School_Diploma   16.587
+            Some_College          19.932
+            Bachelors_Degree      27.758
+            Beyond_Bachelors      34.839
+Name: average_wage, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [41]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">group_means</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[41]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -9637,7 +10216,7 @@ wages growth is slightly positively correlated with the level of employment. It'
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [41]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [42]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">group_means</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
@@ -9655,7 +10234,7 @@ wages growth is slightly positively correlated with the level of employment. It'
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[41]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[42]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -9762,7 +10341,7 @@ wages growth is slightly positively correlated with the level of employment. It'
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [42]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [43]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
@@ -9791,30 +10370,33 @@ wages growth is slightly positively correlated with the level of employment. It'
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Step-24.-Create-the-demographically-adjusted-series">Step 24. Create the demographically adjusted series<a class="anchor-link" href="#Step-24.-Create-the-demographically-adjusted-series">¶</a></h3><p>Now we will compute a demographically adjusted average wage series. To do this, average real wages within demographic groups. These groups will be grouped by year, age bin, and education level. These <code>inner_means</code> will be weighted using survey weights. Recall that the survey weights are given in the CPS data to tell us how to weight the data so that it is a statisitcally representative sample. We will then sum these survey weights within each group, or "cell". We will then use these summed survey weights from the age and education groups, and freeze them at year 2000. We will use these frozen weights to compute an adjusted time series for average wagesfor the rest of the years. Specifically, we will compute an average of the average group wages. (Note that an average of an average has a mathematically reasonable meaning.)</p>
+<h3 id="Step-24.-Create-the-demographically-adjusted-series">Step 24. Create the demographically adjusted series<a class="anchor-link" href="#Step-24.-Create-the-demographically-adjusted-series">¶</a></h3><p>Now we will compute a demographically adjusted average wage series. To do this, average real wages within demographic groups. These groups will be grouped by year, age bin, and education level. These <code>inner_means</code> will be weighted using survey weights. Recall that the survey weights are given in the CPS data to tell us how to weight the data so that it is a statisitcally representative sample. We will then sum these survey weights within each group, or "cell". We will then use these summed survey weights from the age and education groups, and freeze them at year 2000. We will use these frozen weights to compute an adjusted time series for average wages for the rest of the years. Specifically, we will compute an average of the average group wages. (Note that an average of an average has a mathematically reasonable meaning.)</p>
 <p>Use the following started code to complete this:</p>
-<div class="highlight"><pre><span></span><span class="n">shift</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">inner_means</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span>
-               <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'YEAR'</span><span class="p">,</span> <span class="s1">'age_binned'</span><span class="p">,</span> <span class="n">YOUR_CODE_HERE</span><span class="p">],</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-               <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">YOUR_CODE_HERE</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="s1">'ASECWT'</span><span class="p">]))</span>
-              <span class="p">)</span>
+<!--
+```python
+shift = -1
+inner_means = (df
+               .groupby(by=['YEAR', 'age_binned', YOUR_CODE_HERE], observed=False)
+               .apply(lambda x: np.average(YOUR_CODE_HERE, weights=x['ASECWT']))
+              )
 
 
-<span class="c1"># Create Bin Weight Sums</span>
-<span class="n">weights_2000</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">YEAR</span> <span class="o">==</span> <span class="n">YOUR_CODE_HERE</span><span class="p">]</span>
-                <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-                <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="n">YOUR_CODE_HERE</span><span class="p">,</span> <span class="s1">'educ_binned'</span><span class="p">],</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-                <span class="p">[</span><span class="s1">'ASECWT'</span><span class="p">]</span>
-                <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-               <span class="p">)</span>
+# Create Bin Weight Sums
+weights_2000 = (df[df.YEAR == YOUR_CODE_HERE]
+                .dropna()
+                .groupby(by=[YOUR_CODE_HERE, 'educ_binned'], observed=False)
+                ['ASECWT']
+                .sum()
+               )
 
-<span class="n">adj_series</span> <span class="o">=</span> <span class="p">(</span><span class="n">inner_means</span>
-              <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">'YEAR'</span><span class="p">)</span>
-              <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights_2000</span><span class="p">)))</span>
-<span class="c1"># Lag, since the we use "last years weeks worked", etc.</span>
-<span class="n">adj_series</span> <span class="o">=</span> <span class="n">adj_series</span><span class="o">.</span><span class="n">tshift</span><span class="p">(</span><span class="n">shift</span><span class="p">)</span>
-<span class="n">tdf</span><span class="p">[</span><span class="s1">'adj_ave_wages'</span><span class="p">]</span> <span class="o">=</span> <span class="n">adj_series</span>
-</pre></div>
+adj_series = (inner_means
+              .groupby(level='YEAR')
+              .apply(lambda x: np.average(x, weights=weights_2000)))
+# Lag, since the we use "last years weeks worked", etc.
+adj_series = adj_series.shift(shift)
+tdf['adj_ave_wages'] = adj_series
+```
+-->
 <p>After doing this, construct the variable <code>adj_ave_wage_growth</code> using <code>.pct_change</code> as before.</p>
 </div>
 </div>
@@ -9824,33 +10406,134 @@ wages growth is slightly positively correlated with the level of employment. It'
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [43]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [44]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">shift</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">inner_means</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span>
-               <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'YEAR'</span><span class="p">,</span> <span class="s1">'age_binned'</span><span class="p">,</span> <span class="s1">'educ_binned'</span><span class="p">],</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-               <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">'real_wage'</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="s1">'ASECWT'</span><span class="p">]))</span>
-              <span class="p">)</span>
-
-
-<span class="c1"># Create Bin Weight Sums</span>
-<span class="n">weights_2000</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">YEAR</span> <span class="o">==</span> <span class="s1">'2000'</span><span class="p">]</span>
-                <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-                <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'age_binned'</span><span class="p">,</span> <span class="s1">'educ_binned'</span><span class="p">],</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-                <span class="p">[</span><span class="s1">'ASECWT'</span><span class="p">]</span>
-                <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-               <span class="p">)</span>
-
-<span class="n">adj_series</span> <span class="o">=</span> <span class="p">(</span><span class="n">inner_means</span>
-              <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">'YEAR'</span><span class="p">)</span>
-              <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights_2000</span><span class="p">)))</span>
-<span class="c1"># Lag, since the we use "last years weeks worked", etc.</span>
-<span class="n">adj_series</span> <span class="o">=</span> <span class="n">adj_series</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">shift</span><span class="p">)</span>
-<span class="n">tdf</span><span class="p">[</span><span class="s1">'adj_ave_wages'</span><span class="p">]</span> <span class="o">=</span> <span class="n">adj_series</span>
-
-<span class="n">tdf</span><span class="p">[</span><span class="s1">'adj_ave_wage_growth'</span><span class="p">]</span> <span class="o">=</span> <span class="n">adj_series</span><span class="o">.</span><span class="n">pct_change</span><span class="p">(</span><span class="n">fill_method</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">wage_growth_analytics</span><span class="o">.</span><span class="n">s24_demographically_adj_series</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">tdf</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [45]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">tdf</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[45]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>ave_wages</th>
+<th>median_wages</th>
+<th>employment</th>
+<th>ave_wage_growth</th>
+<th>median_wage_growth</th>
+<th>employment_growth</th>
+<th>adj_ave_wages</th>
+<th>adj_ave_wage_growth</th>
+</tr>
+<tr>
+<th>YEAR</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>2019-01-01</th>
+<td>20.416</td>
+<td>15.980</td>
+<td>0.967</td>
+<td>0.034</td>
+<td>0.003</td>
+<td>-0.001</td>
+<td>19.369</td>
+<td>0.022</td>
+</tr>
+<tr>
+<th>2020-01-01</th>
+<td>21.311</td>
+<td>16.843</td>
+<td>0.960</td>
+<td>0.044</td>
+<td>0.054</td>
+<td>-0.007</td>
+<td>20.127</td>
+<td>0.039</td>
+</tr>
+<tr>
+<th>2021-01-01</th>
+<td>20.763</td>
+<td>16.262</td>
+<td>0.956</td>
+<td>-0.026</td>
+<td>-0.034</td>
+<td>-0.004</td>
+<td>19.554</td>
+<td>-0.028</td>
+</tr>
+<tr>
+<th>2022-01-01</th>
+<td>20.464</td>
+<td>16.003</td>
+<td>0.967</td>
+<td>-0.014</td>
+<td>-0.016</td>
+<td>0.012</td>
+<td>19.121</td>
+<td>-0.022</td>
+</tr>
+<tr>
+<th>2023-01-01</th>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.968</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.000</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -9871,7 +10554,7 @@ wages growth is slightly positively correlated with the level of employment. It'
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [44]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [46]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># The difference is that one groups by columns and the other groups by a level in a multi-index.</span>
@@ -9908,7 +10591,7 @@ wages growth is slightly positively correlated with the level of employment. It'
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [45]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [47]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># In the plot immediately below, we see that the demographically </span>
@@ -9966,7 +10649,7 @@ wages growth is slightly positively correlated with the level of employment. It'
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [46]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [48]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">tdf</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
@@ -9980,7 +10663,7 @@ wages growth is slightly positively correlated with the level of employment. It'
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[46]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[48]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -10130,8 +10813,13 @@ wages growth is slightly positively correlated with the level of employment. It'
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Appendix:-Other-Methods-of-Creating-Adjusted-Series">Appendix: Other Methods of Creating Adjusted Series<a class="anchor-link" href="#Appendix:-Other-Methods-of-Creating-Adjusted-Series">¶</a></h2><p>For fun, below is an attempt at creating something similar to a demographically adjusted median wage series</p>
-</div>
+&lt;!--
+## Appendix: Other Methods of Creating Adjusted Series
+
+For fun, below is an attempt at creating something similar to a demographically adjusted median wage series
+
+
+&lt;/div&gt;
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
@@ -10139,60 +10827,10 @@ wages growth is slightly positively correlated with the level of employment. It'
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [47]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [51]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Take Medians within Cells and then average the medians</span>
-<span class="c1"># This doesn't work too well. Adjusted series is uniformly higher</span>
-<span class="n">inner_medians</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span>
-               <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'YEAR'</span><span class="p">,</span> <span class="s1">'age_binned'</span><span class="p">,</span> <span class="s1">'educ_binned'</span><span class="p">],</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-               <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">weightedstats</span><span class="o">.</span><span class="n">weighted_median</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">'real_wage'</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="s1">'ASECWT'</span><span class="p">]))</span>
-              <span class="p">)</span>
-
-<span class="n">adj_series</span> <span class="o">=</span> <span class="p">(</span><span class="n">inner_medians</span>
-              <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">'YEAR'</span><span class="p">)</span>
-              <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights_2000</span><span class="p">)))</span>
-<span class="c1"># Lag, since the we use "last years weeks worked", etc.</span>
-<span class="n">adj_series</span> <span class="o">=</span> <span class="n">adj_series</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">shift</span><span class="p">)</span>
-<span class="n">tdf</span><span class="p">[</span><span class="s1">'adj2_median_wages'</span><span class="p">]</span> <span class="o">=</span> <span class="n">adj_series</span>
-
-<span class="c1"># Sum weights within cell. Force all individuals in that cell to have</span>
-<span class="c1"># the same weight---their weight is proportional to the cell weight</span>
-<span class="c1"># Fix these cell weights and apply them to each cell in each year forward</span>
-<span class="c1"># This works decently well. But, the year 2000 median is not the same</span>
-<span class="c1"># as the year 200 adjusted median.</span>
-
-<span class="c1"># Create new Weights column using the year 2000 weights</span>
-<span class="k">def</span> <span class="nf">new_weights</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="n">w</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s1">'YEAR'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'2000'</span><span class="p">,</span> <span class="s1">'ASECWT'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="n">x</span><span class="p">[</span><span class="s1">'w2000'</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span>
-    <span class="k">return</span> <span class="n">x</span>
-    
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'age_binned'</span><span class="p">,</span> <span class="s1">'educ_binned'</span><span class="p">],</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">new_weights</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">'w2000'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'YEAR'</span><span class="p">)[</span><span class="s1">'w2000'</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">/</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-
-<span class="n">adj_series</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span>
-              <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'YEAR'</span><span class="p">)</span>
-              <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> 
-                <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">'real_wage'</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="s1">'w2000'</span><span class="p">]))</span>
-             <span class="p">)</span>
-<span class="c1"># Lag, since the we use "last years weeks worked", etc.</span>
-<span class="n">adj_series</span> <span class="o">=</span> <span class="n">adj_series</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">shift</span><span class="p">)</span>
-<span class="n">tdf</span><span class="p">[</span><span class="s1">'adj2_ave_wages'</span><span class="p">]</span> <span class="o">=</span> <span class="n">adj_series</span>
-
-
-<span class="n">adj_series</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span>
-              <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'YEAR'</span><span class="p">)</span>
-              <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> 
-                <span class="n">weightedstats</span><span class="o">.</span><span class="n">weighted_median</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">'real_wage'</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="s1">'w2000'</span><span class="p">]))</span>
-             <span class="p">)</span>
-<span class="c1"># Lag, since the we use "last years weeks worked", etc.</span>
-<span class="n">adj_series</span> <span class="o">=</span> <span class="n">adj_series</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">shift</span><span class="p">)</span>
-<span class="n">tdf</span><span class="p">[</span><span class="s1">'adj_median_wages'</span><span class="p">]</span> <span class="o">=</span> <span class="n">adj_series</span>
-
-<span class="c1"># Plot</span>
-<span class="n">tdf</span><span class="p">[[</span><span class="s1">'ave_wages'</span><span class="p">,</span> <span class="s1">'adj_ave_wages'</span><span class="p">,</span> <span class="s1">'adj2_ave_wages'</span><span class="p">,</span> <span class="s1">'adj2_median_wages'</span><span class="p">,</span> <span class="s1">'median_wages'</span><span class="p">,</span> <span class="s1">'adj_median_wages'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Demographically Adjusted Average Wages"</span><span class="p">);</span>
+<div class="highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 </div>
 </div>
@@ -10225,6 +10863,6 @@ wages growth is slightly positively correlated with the level of employment. It'
 </div>
 </div>
 </div>
-</main>
+</div></main>
 </body>
 </html>

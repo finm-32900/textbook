@@ -27,6 +27,13 @@ DATA_DIR = Path(config.DATA_DIR)
 # In[2]:
 
 
+import load_cps
+import wage_growth_analytics
+
+
+# In[3]:
+
+
 # Change default pandas display options
 pd.options.display.max_columns = 25
 pd.options.display.max_rows = 500
@@ -59,28 +66,28 @@ plt.rcParams['figure.figsize'] = 6, 5
 #  - Make a simple plot of both of these data series using Pandas' built-in plot methods. Restrict the time period to show from 2000 to 2017.
 #  - No need to make the shaded recession bars in your plot. I'm just looking for the simplest, easiest plot possible. Just be sure it's labelled (e.q, use `plt.title('Median ...')`).
 
-# In[3]:
+# In[4]:
 
 
 df_fred = load_fred.pull_all()
 load_fred.series_descriptions
 
 
-# In[4]:
+# In[5]:
 
 
 df_fred = df_fred.rename(columns={'LES1252881600Q':'Median wages (all)'})
 df_fred = df_fred.rename(columns={'LES1252881900Q':'Median wages (men)'})
 
 
-# In[5]:
+# In[6]:
 
 
 df_fred['2000':'2017'].plot()
 plt.title('Median usual weekly real earnings');
 
 
-# In[6]:
+# In[7]:
 
 
 df_fred.plot()
@@ -109,7 +116,7 @@ plt.title('Median usual weekly real earnings');
 
 # ### Step 2. Download and Read the CPS Data from IPUMS
 # 
-# When you download the data from IPUMS, *only download the data that you need*. This is important, because the data gets very big very fast when you start adding other variables. IPUMS will automatically add certain variables to your "cart". Go ahead and remove the ones that you don't need. This will make things much easier. The list of variables that you need are listed below. Make sure to stick to just those variables. I have provided the code to read in the data.
+# When you download the data from IPUMS, *only download the data that you need*. This is important, because the data gets very big very fast when you start adding other variables. IPUMS will automatically add certain variables to your "cart". Go ahead and remove the ones that you don't need. This will make things much easier. The list of variables that you need are listed below. Make sure to stick to just those variables. You will fill in the code in the file called `load_cps.py` that will clean the raw IPUMS CPS data. This fill assumes that you have downloaded the data manually from the IPUMS CPS website as described above and saved it in the directory `../data/manual` relative to the source file. Relative to the project home directory, this is `./data/manual`. Recall that we are putting it in the `manual` directory instead of the `pulled` directory, because the data was not automatically pulled from the source.
 # 
 # The data should contain the following variables:
 # 
@@ -126,11 +133,17 @@ plt.title('Median usual weekly real earnings');
 # 11. INCWAGE (Wage and salary income)
 # 
 # When you're finished, run the following code to see how much memory your data set is using, the list of variables, and the data types each variable is saved as:
-# ```python
-# # Run this code to see how much memory your data set is using.
-# df.info()
-# ```
-# This results in
+# 
+
+# In[8]:
+
+
+DATA_DIR = config.DATA_DIR
+df = load_cps.load_raw(DATA_DIR)
+df.info()
+
+
+# As you can see, this results in
 # ```
 # <class 'pandas.core.frame.DataFrame'>
 # RangeIndex: 4608387 entries, 0 to 4608386
@@ -154,40 +167,10 @@ plt.title('Median usual weekly real earnings');
 # ```
 # If you use restrict your data set to exactly these variables and follow the instructions precisely, you should be able to replicate the exact numbers that I get. (For example, don't drop missing data until the instructions tell you to.)
 
-# In[7]:
+# In[9]:
 
 
-## Read and Prepare the Data
-
-# When you save the file, it must be named `cps.csv`
-# and saved in the directory `../data/manual`.
-# It is placed in the `manual` directory because it is not
-# automatically downloaded from the internet.
-PATH_TO_CPS_FILE = DATA_DIR / 'manual' / 'cps.csv'
-
-df = pd.read_csv(PATH_TO_CPS_FILE)
-df['YEAR'] = pd.to_datetime(df['YEAR'], format='%Y') 
-
-categorical_cols = ['GQ', 'SEX', 'EDUC', 'LABFORCE']
-for col in categorical_cols:
-    df[col] = df[col].astype('category')
-
-# In case these variales were included in the dataset,
-# Drop the variables that we will not need in this exercise.
-labels = ['MONTH', 'ASECFLAG', 'EMPSTAT', 'FTOTVAL', 'PERNUM', 
-          'SERIAL', 'CPSIDP', 'ASECWTH', 'HFLAG', 'CPSID']
-for label in labels:
-    try:
-        df.drop(labels=label, inplace=True, axis=1)
-    except:
-        pass
-
-
-# In[8]:
-
-
-# Run this code to see how much memory your data set is using.
-df.info()
+df.describe()
 
 
 # When filling in the missing values, keep in mind the codings for each variable. Consult the associated codebook and IPUMS documentation for complete information. (I've included the codebook from my data extract in the file named: `cps_00007_codebook.pdf`) 
@@ -254,44 +237,11 @@ df.info()
 # 
 # *Be sure to look at the encodings on IPUMS to make sure you're properly coding all variables in your dataset---not just the ones that I listed above (not necessarily comprehensive).*
 
-# In[9]:
+# In[10]:
 
 
-## Fill in Missing Values or NIU
-    
-# UHRSWORKLY: Recode missing values
-df.loc[df['UHRSWORKLY'] == 999, 'UHRSWORKLY'] = np.nan
-
-# INCWAGE: Missing values
-# 9999999 = N.I.U. (Not in Universe). 
-# 9999998 = Missing.
-df.loc[df['INCWAGE'] == 9999999, 'INCWAGE'] = np.nan
-df.loc[df['INCWAGE'] == 9999998, 'INCWAGE'] = np.nan
-
-# LABFORCE missing values
-# 0 = NIU
-df.loc[df['LABFORCE'] == 0, 'LABFORCE'] = np.nan
-
-# EDUC Missing values
-EDUC_missing_list = [999, 1, 0]
-for educ_code in EDUC_missing_list:
-    df.loc[df['EDUC'] == educ_code, 'EDUC'] = np.nan
-
-# GQ Missing values
-df.loc[df['GQ'] == 0, 'GQ'] = np.nan
-    
-# SEX Missing values
-df.loc[df['SEX'] == 9, 'SEX'] = np.nan
-
-
-# TODO: Alternative way is currently NOT WORKING
-# missing_values = {
-#     'UHRSWORKLY': {999: np.nan},
-#     'INCWAGE': {9999998: np.nan, 9999999: np.nan},
-#     'LABFORCE': {0: np.nan},
-#     'EDUC': {0: np.nan, 1: np.nan, 999: np.nan}
-# }
-# df.replace(to_replace=missing_values, inplace=True)
+df = load_cps.load_clean(DATA_DIR)
+df.describe()
 
 
 # ### Step 4. Select the desired subsample of the data
@@ -307,16 +257,11 @@ df.loc[df['SEX'] == 9, 'SEX'] = np.nan
 # df = df[df['GQ'] == 1]
 # ```
 
-# In[10]:
+# In[11]:
 
 
-## Select desired subsample
-# GQ = 0 for vacant units, 1 for Households, 2 for group quarters
-df = df[df['GQ'] == 1]
-#  df['SEX'] = 1 for male
-df = df[df['SEX'] == 1]
-df = df[(df['AGE'] >= 25) & (df['AGE'] <=54) ]
-df = df[df['INCWAGE'] > 0]
+df = wage_growth_analytics.s04_subsample(df)
+df.describe()
 
 
 # ### Step 5. Construct new  variables
@@ -334,19 +279,11 @@ df = df[df['INCWAGE'] > 0]
 # 
 # 
 
-# In[11]:
+# In[12]:
 
 
-## Construct New Variables
-
-df['real_incwage'] = df['CPI99'] * df['INCWAGE']
-df['annual_hours'] = df['WKSWORK1'] * df['UHRSWORKLY']
-df['real_wage'] = df['real_incwage'] / df['annual_hours']
-# To prevent infinite wages
-df.loc[df['annual_hours'] <= 0, 'real_wage'] = 0
-
-# Create
-df['in_labor_force'] = df['LABFORCE'] == 2
+df = wage_growth_analytics.s05_new_vars(df)
+df.describe()
 
 
 # ### Step 6. Drop data that we no longer need.
@@ -365,22 +302,10 @@ df['in_labor_force'] = df['LABFORCE'] == 2
 # ```
 #  - Also, after you do this, you should drop all rows that contain a missing value.
 
-# In[12]:
-
-
-# Drop the variables that don't need anymore.
-labels = ['GQ', 'SEX', 'LABFORCE', 'CPI99', 'INCTOT','WKSWORK1', ]
-for label in labels:
-    try:
-        df.drop(labels=label, inplace=True, axis=1)
-    except:
-        pass   
-
-
 # In[13]:
 
 
-df = df.dropna()
+df = wage_growth_analytics.s06_drop(df)
 
 
 # ### Step 7. Generate summary statistics
@@ -411,13 +336,13 @@ df.query('real_wage > 300000')
 # In[16]:
 
 
-df[['UHRSWORKLY']].plot.hist()
+df[['UHRSWORKLY']].plot.hist();
 
 
 # In[17]:
 
 
-df['annual_hours'].plot.hist()
+df['annual_hours'].plot.hist();
 
 
 # ### Step 9. Plot a histogram of real wages.
@@ -429,13 +354,13 @@ df['annual_hours'].plot.hist()
 # In[18]:
 
 
-df['real_wage'].hist()
+df['real_wage'].hist();
 
 
 # In[19]:
 
 
-df.loc[df['real_wage'] < 200,'real_wage'].hist()
+df.loc[df['real_wage'] < 200,'real_wage'].hist();
 
 
 # In[20]:
@@ -452,24 +377,16 @@ plt.title('Wages in sample');
 # In[21]:
 
 
-q99 = df['real_wage'].quantile(q=0.99)
-q01 = df['real_wage'].quantile(q=0.01)
-df = df.query('@q01 < real_wage < @q99')
+df = wage_growth_analytics.s10_drop_by_percentiles(df)
 
 
 # In[22]:
 
 
-q99
+df.describe()
 
 
 # In[23]:
-
-
-q01
-
-
-# In[24]:
 
 
 df['real_wage'].hist(bins=50)
@@ -499,36 +416,12 @@ df['real_wage'].hist(bins=50)
 # 
 # NOTE: Wage data needs to be shifted backwards, but employment data does not need to be.
 
-# In[25]:
+# In[24]:
 
 
-col = 'real_wage'
-weights='ASECWT'
-
-median_wages = (
-    df
-    .dropna(subset=[col], how='any')
-    .groupby('YEAR')
-    .apply(lambda row: weightedstats.weighted_median(row[col], weights=row[weights]))
-    # Shift time back since the series represents wages from the previous year
-    .shift(-1) 
-)
-ave_wages = (
-    df
-    .dropna(subset=[col], how='any')
-    .groupby('YEAR')
-    .apply(lambda row: np.average(row[col], weights=row[weights]))
-    .shift(-1)
-)
-
-col = 'in_labor_force'
-employment = (
-    df
-    .dropna(subset=[col], how='any')
-    .groupby('YEAR')
-    .apply(lambda row: np.average(row[col], weights=row[weights]))
-)
-
+median_wages = wage_growth_analytics.s11_median_wages(df)
+ave_wages = wage_growth_analytics.s11_ave_wages(df)
+employment = wage_growth_analytics.s11_employment(df)
 
 
 # ### Step 12. Concatenate these time series variables together.
@@ -539,18 +432,13 @@ employment = (
 # 
 # ![`tdf.head()`](./assets/time_series.png)
 
+# In[25]:
+
+
+tdf = wage_growth_analytics.s12_time_series(df)
+
+
 # In[26]:
-
-
-tdf = pd.concat({
-    'ave_wages': ave_wages,
-    'median_wages':  median_wages,
-    'employment': employment},
-    axis=1)
-tdf = tdf[['ave_wages', 'median_wages', 'employment']]
-
-
-# In[27]:
 
 
 tdf.head()
@@ -560,14 +448,14 @@ tdf.head()
 # 
 # Plot `ave_wages` and `median_wages` on the same plot. Make another plot for `employment`.
 
-# In[28]:
+# In[27]:
 
 
 tdf[['ave_wages', 'median_wages']].plot(title='Wages over time')
-plt.legend(loc='center left', bbox_to_anchor=(1.0, 0.5))
+plt.legend(loc='center left', bbox_to_anchor=(1.0, 0.5));
 
 
-# In[29]:
+# In[28]:
 
 
 employment.plot(title='Employment')
@@ -577,7 +465,7 @@ employment.plot(title='Employment')
 # 
 # HINT: You can compute the autocorrelation of a single series using, e.g., `tdf.ave_wages.autocorr()`. You can do this for each series in `tdf` in one go by using `tdf.apply(lambda x: YOUR_CODE_HERE)`.
 
-# In[30]:
+# In[29]:
 
 
 #autocorrelation
@@ -588,7 +476,7 @@ tdf.apply(lambda x: x.autocorr())
 # 
 # This amounts to simply calculating the correlation matrix.
 
-# In[31]:
+# In[30]:
 
 
 tdf.corr()
@@ -598,6 +486,7 @@ tdf.corr()
 # 
 # Use the following starter code to plot these two series on the same graph, with separate y-axes (a left y-axis and a right y-axis).
 # 
+# <!--
 # ```python
 # ax = YOUR_CODE_HERE.plot(legend=False, color='red')
 # ax.grid(False)
@@ -608,8 +497,9 @@ tdf.corr()
 # tdf.employment.plot(ax=ax2)
 # ax.figure.legend()
 # ```
+# -->
 
-# In[32]:
+# In[31]:
 
 
 ax = tdf[['median_wages']].plot(legend=False, color='red', label='Wght. Median Wages')
@@ -628,14 +518,14 @@ ax.figure.legend()
 # 
 # Note: When computing various statistics, for example correlations, we want to beware of variables that are steadily growing or shrinking over time. Variables like this are said to be *non-stationary.* Usage of such variables without care can often lead to [spurious correlations.](https://en.wikipedia.org/wiki/Spurious_relationship#Examples) In time series econometrics, there are various ways of transforming these variables into stationary variables. One method, which we'll use here, is to compute percentage differences. Since we believe wages tend to increase over time, we want to difference (in our case, compute percentage differences) the wage variable. Our employment variable, however, is a ratio between zero and one that is not steadily growing or shrinking. So it's ok.
 
-# In[33]:
+# In[32]:
 
 
 tdf['ave_wage_growth'] = tdf['ave_wages'].pct_change(fill_method=None)
 tdf['median_wage_growth'] = tdf['median_wages'].pct_change(fill_method=None)
 
 
-# In[34]:
+# In[33]:
 
 
 ax = tdf['median_wage_growth'].plot(legend=False, color='red')
@@ -648,7 +538,7 @@ tdf['employment'].plot(ax=ax2)
 ax.figure.legend();
 
 
-# In[35]:
+# In[34]:
 
 
 ## Extra:
@@ -667,13 +557,13 @@ print(tdf[['median_wage_growth']].shift(1).corrwith(tdf.employment))
 # Create a new variable in `tdf` called `employment_growth`. Again use `.pct_change()` to create it.
 # Use the same code as from before. However, this time let's explore the relationship of wages with employment *growth* rather than the employment *level*. Be sure to update the labels of the axes so that we know what we're looking at.
 
-# In[36]:
+# In[35]:
 
 
 tdf['employment_growth'] = tdf['employment'].pct_change(fill_method=None)
 
 
-# In[37]:
+# In[36]:
 
 
 ax = tdf['median_wage_growth'].plot(legend=False, color='red')
@@ -690,7 +580,7 @@ ax.figure.legend()
 # 
 # Use `.corr()` to compute the correlations between the various wage growth series and the measures of employment in `tdf`. Give a summary of what you're seeing in the data. How does it match up with your intution and with your understanding of supply and demand in labor markets?
 
-# In[38]:
+# In[37]:
 
 
 tdf.corr()
@@ -723,45 +613,33 @@ tdf.corr()
 # df['educ_binned'] = pd.cut(df['EDUC'], bins=educ_bins, labels=YOUR_CODE_HERE, include_lowest=True)
 # ```
 
-# In[39]:
+# In[38]:
 
 
-# Add bins to `df` for the AGE and EDUC variables as described in
-# Question 1.B of the HW.
-bins = [25, 30, 35, 40, 45, 50, 55]
-df['age_binned'] = pd.cut(df['AGE'], bins=bins, include_lowest=True, right=False)
-
-educ_bins = [0, 72, 73, 110, 111, 900]
-educ_bin_labels = ['Some_High_School', 'High_School_Diploma', 'Some_College',
-                   'Bachelors_Degree', 'Beyond_Bachelors']
-df['educ_binned'] = pd.cut(df['EDUC'], bins=educ_bins, labels=educ_bin_labels, include_lowest=True)
+df = wage_growth_analytics.s20_bin_vars(df)
 
 
 # ### Step 21. Compute the average wages within each education and age group as defined above.
 # 
 # Within in "cell", compute the average wage. You will need to use the survey weights to compute each mean within each cell. The result will be average real wages (deflated with CPI 99) computed over the cross-section and over time.
 # 
-# To do this, use the following starter code:
-# 
-# ```python
-# # Note that the averages are created using the appropriate weights
-# group_means = (df.dropna()
-#                .groupby(YOUR_CODE_HERE, observed=False)
-#                .apply(lambda x: np.average(YOUR_CODE_HERE))
-#               )
-# group_means.name = 'average_wage'
-# ```
 # For a nicer display at the end, run a code cell with the code `pd.DataFrame(group_means)`.
+
+# In[39]:
+
+
+group_means = wage_growth_analytics.s21_within_group_averages(df)
+
 
 # In[40]:
 
 
-# Note that the averages are created using the appropriate weights
-group_means = (df.dropna().
-               groupby(by=['age_binned', 'educ_binned'], observed=False).
-               apply(lambda x: np.average(x.real_wage, weights=x.ASECWT))
-              )
-group_means.name = 'average_wage'
+group_means
+
+
+# In[41]:
+
+
 pd.DataFrame(group_means)
 
 
@@ -773,7 +651,7 @@ pd.DataFrame(group_means)
 # 
 # ![Means within each group](./assets/table_groups.png)
 
-# In[41]:
+# In[42]:
 
 
 a = group_means.unstack()
@@ -787,7 +665,7 @@ a
 # 
 # Use seaborn's `heatmap` function. Just input the table from before into `sns.heatmap`. Be sure to use `plt.title` to give the plot an appropriate title.
 
-# In[42]:
+# In[43]:
 
 
 sns.heatmap(a)
@@ -796,10 +674,10 @@ plt.title('Average Wages, by group');
 
 # ### Step 24. Create the demographically adjusted series
 # 
-# Now we will compute a demographically adjusted average wage series. To do this, average real wages within demographic groups. These groups will be grouped by year, age bin, and education level. These `inner_means` will be weighted using survey weights. Recall that the survey weights are given in the CPS data to tell us how to weight the data so that it is a statisitcally representative sample. We will then sum these survey weights within each group, or "cell". We will then use these summed survey weights from the age and education groups, and freeze them at year 2000. We will use these frozen weights to compute an adjusted time series for average wagesfor the rest of the years. Specifically, we will compute an average of the average group wages. (Note that an average of an average has a mathematically reasonable meaning.) 
+# Now we will compute a demographically adjusted average wage series. To do this, average real wages within demographic groups. These groups will be grouped by year, age bin, and education level. These `inner_means` will be weighted using survey weights. Recall that the survey weights are given in the CPS data to tell us how to weight the data so that it is a statisitcally representative sample. We will then sum these survey weights within each group, or "cell". We will then use these summed survey weights from the age and education groups, and freeze them at year 2000. We will use these frozen weights to compute an adjusted time series for average wages for the rest of the years. Specifically, we will compute an average of the average group wages. (Note that an average of an average has a mathematically reasonable meaning.) 
 # 
 # Use the following started code to complete this:
-# 
+# <!--
 # ```python
 # shift = -1
 # inner_means = (df
@@ -820,45 +698,29 @@ plt.title('Average Wages, by group');
 #               .groupby(level='YEAR')
 #               .apply(lambda x: np.average(x, weights=weights_2000)))
 # # Lag, since the we use "last years weeks worked", etc.
-# adj_series = adj_series.tshift(shift)
+# adj_series = adj_series.shift(shift)
 # tdf['adj_ave_wages'] = adj_series
 # ```
-# 
+# -->
 # After doing this, construct the variable `adj_ave_wage_growth` using `.pct_change` as before.
 
-# In[43]:
+# In[44]:
 
 
-shift = -1
-inner_means = (df
-               .groupby(by=['YEAR', 'age_binned', 'educ_binned'], observed=False)
-               .apply(lambda x: np.average(x['real_wage'], weights=x['ASECWT']))
-              )
+tdf = wage_growth_analytics.s24_demographically_adj_series(df, tdf)
 
 
-# Create Bin Weight Sums
-weights_2000 = (df[df.YEAR == '2000']
-                .dropna()
-                .groupby(by=['age_binned', 'educ_binned'], observed=False)
-                ['ASECWT']
-                .sum()
-               )
+# In[45]:
 
-adj_series = (inner_means
-              .groupby(level='YEAR')
-              .apply(lambda x: np.average(x, weights=weights_2000)))
-# Lag, since the we use "last years weeks worked", etc.
-adj_series = adj_series.shift(shift)
-tdf['adj_ave_wages'] = adj_series
 
-tdf['adj_ave_wage_growth'] = adj_series.pct_change(fill_method=None)
+tdf.tail()
 
 
 # ### Step 25. Check understanding of usage of `groupby` above.
 # 
 # Explain the following. Why did I use `groupby(by=[])` in one place and `groupby(level=...)` in another place? Explain the difference between the `by` keyword and the `level` keyword in the `groupby` function. (HINT: Check the documentation and run the code line by line if it's unclear.)
 
-# In[44]:
+# In[46]:
 
 
 # The difference is that one groups by columns and the other groups by a level in a multi-index.
@@ -872,7 +734,7 @@ tdf['adj_ave_wage_growth'] = adj_series.pct_change(fill_method=None)
 # 
 # In the plot immediately below, we see that the demographically adjusted wage series (`adj_ave_age`) coincides with the unadjusted series in the year 1999 (data from 2000). They diverge as time goes on. This is as expected, and serves as a check that we have performed our calculations correctly. The adjusted wage series is lower than the unadjusted. This suggests that the composition of the labor force was tilting towards higher earning demographics.
 
-# In[45]:
+# In[47]:
 
 
 # In the plot immediately below, we see that the demographically 
@@ -895,7 +757,7 @@ plt.title("Demographically Adjusted Average Wages");
 # 
 # Now, if we repeat our calculations with regards to the time series correlation between wage growth and employment, we see that demographically adjusting wage growth lowers the correlation. The correlation of wage growth and employment growth become more negative. This is also a little puzzling.
 
-# In[46]:
+# In[48]:
 
 
 tdf.corr()
@@ -913,64 +775,15 @@ tdf.corr()
 # 
 # All of these things could help us to better understand this puzzling fact that we see in the data.
 
+# <!--
 # ## Appendix: Other Methods of Creating Adjusted Series
 # 
 # For fun, below is an attempt at creating something similar to a demographically adjusted median wage series
 
-# In[47]:
+# In[51]:
 
 
-# Take Medians within Cells and then average the medians
-# This doesn't work too well. Adjusted series is uniformly higher
-inner_medians = (df
-               .groupby(by=['YEAR', 'age_binned', 'educ_binned'], observed=False)
-               .apply(lambda x: weightedstats.weighted_median(x['real_wage'], weights=x['ASECWT']))
-              )
 
-adj_series = (inner_medians
-              .groupby(level='YEAR')
-              .apply(lambda x: np.average(x, weights=weights_2000)))
-# Lag, since the we use "last years weeks worked", etc.
-adj_series = adj_series.shift(shift)
-tdf['adj2_median_wages'] = adj_series
-
-# Sum weights within cell. Force all individuals in that cell to have
-# the same weight---their weight is proportional to the cell weight
-# Fix these cell weights and apply them to each cell in each year forward
-# This works decently well. But, the year 2000 median is not the same
-# as the year 200 adjusted median.
-
-# Create new Weights column using the year 2000 weights
-def new_weights(x):
-    w = x.loc[x['YEAR'] == '2000', 'ASECWT'].sum()
-    x['w2000'] = w
-    return x
-    
-df = df.groupby(by=['age_binned', 'educ_binned'], observed=False).apply(new_weights)
-df['w2000'] = df.groupby('YEAR')['w2000'].transform(lambda x: x/x.sum())
-
-adj_series = (df
-              .groupby('YEAR')
-              .apply(lambda x: 
-                np.average(x['real_wage'], weights=x['w2000']))
-             )
-# Lag, since the we use "last years weeks worked", etc.
-adj_series = adj_series.shift(shift)
-tdf['adj2_ave_wages'] = adj_series
-
-
-adj_series = (df
-              .groupby('YEAR')
-              .apply(lambda x: 
-                weightedstats.weighted_median(x['real_wage'], weights=x['w2000']))
-             )
-# Lag, since the we use "last years weeks worked", etc.
-adj_series = adj_series.shift(shift)
-tdf['adj_median_wages'] = adj_series
-
-# Plot
-tdf[['ave_wages', 'adj_ave_wages', 'adj2_ave_wages', 'adj2_median_wages', 'median_wages', 'adj_median_wages']].plot()
-plt.title("Demographically Adjusted Average Wages");
 
 
 # In[ ]:

@@ -115,6 +115,8 @@ def task_run_notebooks():
     file_dep = [
         ## 01_wage_growth_during_the_recession.ipynb
         "./src/load_fred.py",
+        "./src/load_cps.py",
+        "./src/wage_growth_analytics.py",
         *[Path(OUTPUT_DIR) / f"_{stem}.py" for stem in stems],
     ]
 
