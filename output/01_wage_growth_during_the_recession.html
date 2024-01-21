@@ -7705,6 +7705,49 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Step-2.-Download-and-Read-the-CPS-Data-from-IPUMS">Step 2. Download and Read the CPS Data from IPUMS<a class="anchor-link" href="#Step-2.-Download-and-Read-the-CPS-Data-from-IPUMS">¶</a></h3><p>When you download the data from IPUMS, <em>only download the data that you need</em>. This is important, because the data gets very big very fast when you start adding other variables. IPUMS will automatically add certain variables to your "cart". Go ahead and remove the ones that you don't need. This will make things much easier. The list of variables that you need are listed below. Make sure to stick to just those variables. You will fill in the code in the file called <code>load_cps.py</code> that will clean the raw IPUMS CPS data. This fill assumes that you have downloaded the data manually from the IPUMS CPS website as described above and saved it in the directory <code>../data/manual</code> relative to the source file. Relative to the project home directory, this is <code>./data/manual</code>. Recall that we are putting it in the <code>manual</code> directory instead of the <code>pulled</code> directory, because the data was not automatically pulled from the source.</p>
+<p>Also, note that the to pass the unit tests used by the autograder, you must put the data in a file called <code>cps.csv</code> in the directory <code>./data/manual</code>. Also, please do NOT commit the data to your Git repository, because the data is very large. Here is a hint of what the file <code>load_cps.py</code> should look like:</p>
+<pre><code>import pandas as pd
+import numpy as np
+
+import config
+DATA_DIR = config.DATA_DIR
+
+def load_raw(data_dir=DATA_DIR, start_date='2000-01-01', end_date='2024-01-01'):
+    
+    ## Read and Prepare the Data
+
+    # When you save the file, it must be named `cps.csv`
+    # and saved in the directory `../data/manual`.
+    # It is placed in the `manual` directory because it is not
+    # automatically downloaded from the internet.
+    path = data_dir / 'manual' / 'cps.csv'
+
+    # YOUR CODE HERE
+
+    return df
+
+def load_clean(data_dir=DATA_DIR, start_date='2000-01-01', end_date='2024-01-01'):
+    df = load_raw(data_dir, start_date, end_date)
+    ## Fill in Missing Values or NIU
+    
+    # YOUR CODE HERE
+
+    return df
+
+
+if __name__ == "__main__":
+    pass
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>The data should contain the following variables:</p>
 <ol>
 <li>YEAR (Survey year)</li>
@@ -9579,7 +9622,7 @@ ax.figure.legend()
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[31]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;matplotlib.legend.Legend at 0x256981c0e00&gt;</pre>
+<pre>&lt;matplotlib.legend.Legend at 0x1a86eafbfe0&gt;</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -9742,7 +9785,7 @@ Use the same code as from before. However, this time let's explore the relations
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[36]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;matplotlib.legend.Legend at 0x2569acfc0b0&gt;</pre>
+<pre>&lt;matplotlib.legend.Legend at 0x1a86eca72f0&gt;</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">

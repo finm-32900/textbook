@@ -118,6 +118,44 @@ plt.title('Median usual weekly real earnings');
 # 
 # When you download the data from IPUMS, *only download the data that you need*. This is important, because the data gets very big very fast when you start adding other variables. IPUMS will automatically add certain variables to your "cart". Go ahead and remove the ones that you don't need. This will make things much easier. The list of variables that you need are listed below. Make sure to stick to just those variables. You will fill in the code in the file called `load_cps.py` that will clean the raw IPUMS CPS data. This fill assumes that you have downloaded the data manually from the IPUMS CPS website as described above and saved it in the directory `../data/manual` relative to the source file. Relative to the project home directory, this is `./data/manual`. Recall that we are putting it in the `manual` directory instead of the `pulled` directory, because the data was not automatically pulled from the source.
 # 
+# Also, note that the to pass the unit tests used by the autograder, you must put the data in a file called `cps.csv` in the directory `./data/manual`. Also, please do NOT commit the data to your Git repository, because the data is very large. Here is a hint of what the file `load_cps.py` should look like:
+# 
+# ```
+# import pandas as pd
+# import numpy as np
+# 
+# import config
+# DATA_DIR = config.DATA_DIR
+# 
+# def load_raw(data_dir=DATA_DIR, start_date='2000-01-01', end_date='2024-01-01'):
+#     
+#     ## Read and Prepare the Data
+# 
+#     # When you save the file, it must be named `cps.csv`
+#     # and saved in the directory `../data/manual`.
+#     # It is placed in the `manual` directory because it is not
+#     # automatically downloaded from the internet.
+#     path = data_dir / 'manual' / 'cps.csv'
+# 
+#     # YOUR CODE HERE
+# 
+#     return df
+# 
+# def load_clean(data_dir=DATA_DIR, start_date='2000-01-01', end_date='2024-01-01'):
+#     df = load_raw(data_dir, start_date, end_date)
+#     ## Fill in Missing Values or NIU
+#     
+#     # YOUR CODE HERE
+# 
+#     return df
+# 
+# 
+# if __name__ == "__main__":
+#     pass
+# ```
+# 
+
+# 
 # The data should contain the following variables:
 # 
 # 1. YEAR (Survey year)
