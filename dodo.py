@@ -90,6 +90,11 @@ book_source_files = [
     "lectures/Week2/what_is_a_build_system.md",
     ##
     "output/_01_wage_growth_during_the_recession.ipynb",
+    ##
+    "lectures/Week3/README.md",
+    "lectures/Week3/WRDS_intro_and_web_queries.md",
+    "lectures/Week3/env_files.md",
+    "lectures/Week3/HW3.md",
 ]
 
 _book_compiled = [page.split(".")[0] + ".html" for page in book_source_files]
