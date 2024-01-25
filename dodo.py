@@ -55,6 +55,7 @@ def task_doit_repo_spikes():
         "targets": [OUTPUT_DIR / "_01_repo_spikes.ipynb"],
     }
 
+
 def task_doit_atlanta_fed_wage_growth():
     """Run atlanta fed wage growth tracker dodo"""
     notebooks = ["01_wage_growth_during_the_recession.ipynb"]
@@ -63,9 +64,29 @@ def task_doit_atlanta_fed_wage_growth():
     return {
         "actions": [
             "doit -f case_studies/atlanta_fed_wage_growth_tracker/dodo.py",
-            *[copy_notebook_to_folder(notebook, src_dir, OUTPUT_DIR) for notebook in stems],
+            *[
+                copy_notebook_to_folder(notebook, src_dir, OUTPUT_DIR)
+                for notebook in stems
             ],
+        ],
         "targets": [OUTPUT_DIR / "_01_wage_growth_during_the_recession.ipynb"],
+    }
+
+
+def task_doit_fama_french():
+    """Run fama french dodo"""
+    notebooks = ["01_wrds_python_package.ipynb"]
+    stems = [notebook.split(".")[0] for notebook in notebooks]
+    src_dir = Path("case_studies/fama_french/src")
+    return {
+        "actions": [
+            "doit -f case_studies/fama_french/dodo.py",
+            *[
+                copy_notebook_to_folder(notebook, src_dir, OUTPUT_DIR)
+                for notebook in stems
+            ],
+        ],
+        "targets": [OUTPUT_DIR / "_01_wrds_python_package.ipynb"],
     }
 
 

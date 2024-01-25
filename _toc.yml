@@ -27,5 +27,6 @@ chapters:
 - file: lectures/Week3/README.md
   sections:
   - file: lectures/Week3/WRDS_intro_and_web_queries.md
+  - file: output/_01_wrds_python_package.ipynb
   - file: lectures/Week3/env_files.md
 - file: lectures/Week3/HW3.md
