@@ -40,6 +40,37 @@ def jupyter_clear_output(notebook):
 #     shutil.copy(env_example_file, env_file)
 
 
+def task_pull_CRSP_Compustat():
+    """Pull CRSP/Compustat data from WRDS and save to disk
+    """
+    file_dep = ["./src/config.py", "./src/load_CRSP_stock.py"]
+    targets = [
+        Path(DATA_DIR) / "pulled" / file for file in 
+        [
+            ## src/load_CRSP_stock.py
+            "CRSP_MSF_INDEX_INPUTS.parquet", 
+            "CRSP_MSIX.parquet", 
+            "FF_93_INPUTS.parquet",
+            # ## src/load_CRSP_Compustat.py
+            "Compustat.parquet",
+            "CRSP_FF.parquet",
+            "CRSP_Comp_Merged.parquet",
+        ]
+    ]
+
+    return {
+        "actions": [
+            "ipython src/config.py",
+            "ipython src/load_CRSP_stock.py",
+            "ipython src/load_CRSP_Compustat.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+        "verbosity": 2, # Print everything immediately. This is important in
+        # case WRDS asks for credentials.
+    }
+
 
 def task_convert_notebooks_to_scripts():
     """Preps the notebooks for presentation format.
