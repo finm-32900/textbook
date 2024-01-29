@@ -73,7 +73,7 @@ def pull_CRSP_monthly_file(start_date='2019-01-01', end_date='2022-12-31', wrds_
         ret, retx, dlret, dlretx, dlstcd,
         prc, altprc, vol, shrout, cfacshr, cfacpr,
         naics, siccd,
-        date_trunc('month', msf.date)::date as month
+        date_trunc('month', msf.date)::date as month_start
     FROM crsp.msf AS msf
     LEFT JOIN 
         crsp.msenames as msenames
@@ -91,10 +91,16 @@ def pull_CRSP_monthly_file(start_date='2019-01-01', end_date='2022-12-31', wrds_
         msf.date BETWEEN '{start_date}' AND '{end_date}' AND 
         msenames.shrcd IN (10, 11, 20, 21, 40, 41, 70, 71, 73)
     """
-    with wrds.Connection(wrds_username=wrds_username) as db:
-        df = db.raw_sql(
-            query, date_cols=["month", "date", "namedt", "nameendt", "dlstdt"]
-        )
+    # with wrds.Connection(wrds_username=wrds_username) as db:
+    #     df = db.raw_sql(
+    #         query, date_cols=["month_start", "date", "namedt", "nameendt", "dlstdt"]
+    #     )
+    db = wrds.Connection(wrds_username=wrds_username)
+    df = db.raw_sql(
+        query, date_cols=["month_start", "date", "namedt", "nameendt", "dlstdt"]
+    )
+    db.close()
+
     df = df.loc[:, ~df.columns.duplicated()]
     # df = fix_crsp_dtypes(df)
     df["shrout"] = df["shrout"] * 1000
@@ -128,8 +134,11 @@ def pull_fama_french_data(start_date='2019-01-01', end_date='2022-12-31', wrds_u
     WHERE 
         a.date BETWEEN '{start_date}' AND '{end_date}';
     """
-    with wrds.Connection(wrds_username=wrds_username) as db:
-        df = db.raw_sql(query, date_cols=["date"])
+    # with wrds.Connection(wrds_username=wrds_username) as db:
+    #     df = db.raw_sql(query, date_cols=["date"])
+    db = wrds.Connection(wrds_username=wrds_username)
+    df = db.raw_sql(query, date_cols=["date"])
+    db.close()
 
     df = df.loc[:, ~df.columns.duplicated()]
     # df = fix_crsp_dtypes(df)
@@ -193,12 +202,15 @@ def apply_delisting_returns_alt(df):
 def pull_CRSP_index_files(start_date='2019-01-01', end_date='2022-12-31', wrds_username=WRDS_USERNAME):
     # Pull index files
     query = f"""
-        SELECT date_trunc('month', msix.caldt)::date as month, * 
+        SELECT date_trunc('month', msix.caldt)::date as month_start, * 
         FROM crsp_a_indexes.msix as msix
         WHERE msix.caldt BETWEEN '{start_date}' AND '{end_date}'
     """
-    with wrds.Connection(wrds_username=wrds_username) as db:
-        df = db.raw_sql(query, date_cols=["month", "caldt"])
+    # with wrds.Connection(wrds_username=wrds_username) as db:
+    #     df = db.raw_sql(query, date_cols=["month", "caldt"])
+    db = wrds.Connection(wrds_username=wrds_username)
+    df = db.raw_sql(query, date_cols=["month", "caldt"])
+    db.close()
     return df
 
 
@@ -217,19 +229,24 @@ def load_fama_french_data(data_dir=DATA_DIR):
     df = pd.read_parquet(path)
     return df
 
+def _demo():
+    df_msf = load_CRSP_monthly_file(data_dir=DATA_DIR)
+    df_msix = load_CRSP_index_files(data_dir=DATA_DIR)
+    df_ff = load_fama_french_data(data_dir=DATA_DIR)
+
 
 if __name__ == "__main__":
 
     start_date = '2019-01-01'
     end_date = '2022-12-31'
-    df = pull_CRSP_monthly_file(start_date=start_date, end_date=end_date)
+    df_msf = pull_CRSP_monthly_file(start_date=start_date, end_date=end_date)
     path = Path(DATA_DIR) / "pulled" / "CRSP_MSF_INDEX_INPUTS.parquet"
-    df.to_parquet(path)
+    df_msf.to_parquet(path)
 
-    df = pull_CRSP_index_files(start_date=start_date, end_date=end_date)    
+    df_msix = pull_CRSP_index_files(start_date=start_date, end_date=end_date)    
     path = Path(DATA_DIR) / "pulled" / f"CRSP_MSIX.parquet"
-    df.to_parquet(path)
+    df_msix.to_parquet(path)
 
-    df = pull_fama_french_data(start_date=start_date, end_date=end_date)
+    df_ff = pull_fama_french_data(start_date=start_date, end_date=end_date)
     path = Path(DATA_DIR) / "pulled" / f"FF_93_INPUTS.parquet"
-    df.to_parquet(path)
+    df_ff.to_parquet(path)
