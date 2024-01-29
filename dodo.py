@@ -53,6 +53,8 @@ def task_doit_repo_spikes():
     return {
         "actions": ["doit -f case_studies/repo_spikes/src/dodo.py"],
         "targets": [OUTPUT_DIR / "_01_repo_spikes.ipynb"],
+        "verbosity": 2, # Print everything immediately. This is important in
+        # case WRDS asks for credentials.
     }
 
 
@@ -70,6 +72,8 @@ def task_doit_atlanta_fed_wage_growth():
             ],
         ],
         "targets": [OUTPUT_DIR / "_01_wage_growth_during_the_recession.ipynb"],
+        "verbosity": 2, # Print everything immediately. This is important in
+        # case WRDS asks for credentials.
     }
 
 
@@ -87,6 +91,8 @@ def task_doit_fama_french():
             ],
         ],
         "targets": [OUTPUT_DIR / "_01_wrds_python_package.ipynb"],
+        "verbosity": 2, # Print everything immediately. This is important in
+        # case WRDS asks for credentials.
     }
 
 
