@@ -30,3 +30,7 @@ chapters:
   - file: output/_01_wrds_python_package.ipynb
   - file: lectures/Week3/env_files.md
 - file: lectures/Week3/HW3.md
+- file: lectures/Week4/README.md
+  sections:
+  - file: lectures/Week4/reports_with_jupyter_notebooks.md
+  - file: lectures/Week4/intro_to_LaTeX.md

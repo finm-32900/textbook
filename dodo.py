@@ -122,6 +122,12 @@ book_source_files = [
     "lectures/Week3/WRDS_intro_and_web_queries.md",
     "lectures/Week3/env_files.md",
     "lectures/Week3/HW3.md",
+    ##
+    "output/_01_wrds_python_package.ipynb",
+    ##
+    "lectures/Week4/README.md",
+    "lectures/Week4/intro_to_LaTeX.md",
+    "lectures/Week4/reports_with_jupyter_notebooks.md",
 ]
 
 _book_compiled = [page.split(".")[0] + ".html" for page in book_source_files]
