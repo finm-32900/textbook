@@ -20,7 +20,8 @@ from pathlib import Path
 OUTPUT_DIR = Path(config.OUTPUT_DIR)
 DATA_DIR = Path(config.DATA_DIR)
 WRDS_USERNAME = config.WRDS_USERNAME
-
+START_DATE = config.START_DATE
+END_DATE = config.END_DATE
 
 def pull_compustat(wrds_username=WRDS_USERNAME):
     sql_query = """
@@ -49,9 +50,12 @@ def pull_compustat(wrds_username=WRDS_USERNAME):
             a.indfmt = 'INDL' AND 
             datadate >= '01/01/1959'
     """
-    with wrds.Connection(wrds_username=wrds_username) as db:
-        comp = db.raw_sql(sql_query, date_cols=["datadate"])
-        
+    # with wrds.Connection(wrds_username=wrds_username) as db:
+    #     comp = db.raw_sql(sql_query, date_cols=["datadate"])
+    db = wrds.Connection(wrds_username=wrds_username)
+    comp = db.raw_sql(sql_query, date_cols=["datadate"])
+    db.close()
+
     comp["year"] = comp["datadate"].dt.year
 
     # create preferrerd stock
@@ -73,7 +77,7 @@ def pull_compustat(wrds_username=WRDS_USERNAME):
 
 
 def pull_CRSP_ff_inputs(
-    start_date="2019-01-01", end_date="2022-12-31", wrds_username=WRDS_USERNAME
+    start_date=START_DATE, end_date=END_DATE, wrds_username=WRDS_USERNAME
 ):
     raw_sql = f"""
         SELECT 
@@ -91,22 +95,39 @@ def pull_CRSP_ff_inputs(
             a.date BETWEEN '{start_date}' AND '{end_date}' AND 
             b.exchcd BETWEEN 0 AND 3
     """
-    with wrds.Connection(wrds_username=wrds_username) as db:
-        crsp_m = db.raw_sql(
-            raw_sql,
-            date_cols=["date"],
-        )
+    # with wrds.Connection(wrds_username=wrds_username) as db:
+    #     crsp_m = db.raw_sql(
+    #         raw_sql,
+    #         date_cols=["date"],
+    #     )
 
-        # add delisting return
-        dlret = db.raw_sql(
-            """
-        SELECT 
-            permno, dlret, dlstdt 
-        FROM 
-            crsp.msedelist
-        """,
-            date_cols=["dlstdt"],
-        )
+    #     # add delisting return
+    #     dlret = db.raw_sql(
+    #         """
+    #     SELECT
+    #         permno, dlret, dlstdt
+    #     FROM
+    #         crsp.msedelist
+    #     """,
+    #         date_cols=["dlstdt"],
+    #     )
+    db = wrds.Connection(wrds_username=wrds_username)
+    crsp_m = db.raw_sql(
+        raw_sql,
+        date_cols=["date"],
+    )
+
+    # add delisting return
+    dlret = db.raw_sql(
+        """
+    SELECT 
+        permno, dlret, dlstdt 
+    FROM 
+        crsp.msedelist
+    """,
+        date_cols=["dlstdt"],
+    )
+    db.close()
 
     # change variable format to int
     crsp_m[["permco", "permno", "shrcd", "exchcd"]] = crsp_m[
@@ -135,22 +156,37 @@ def pull_CRSP_ff_inputs(
     return crsp
 
 
-def pull_CRSP_Comp_Merged(data_dir=DATA_DIR, wrds_username=WRDS_USERNAME):
-    with wrds.Connection(wrds_username=wrds_username) as db:
-        ccm = db.raw_sql(
-            """
-            SELECT 
-                gvkey, lpermno AS permno, linktype, linkprim, 
-                linkdt, linkenddt
-            FROM 
-                crsp.ccmxpf_linktable
-            WHERE 
-                substr(linktype,1,1)='L' AND 
-                (linkprim ='C' OR linkprim='P')
-            """,
-            date_cols=["linkdt", "linkenddt"],
-        )
-        
+def pull_CRSP_Comp_Link_Table(data_dir=DATA_DIR, wrds_username=WRDS_USERNAME):
+    # with wrds.Connection(wrds_username=wrds_username) as db:
+    #     ccm = db.raw_sql(
+    #         """
+    #         SELECT
+    #             gvkey, lpermno AS permno, linktype, linkprim,
+    #             linkdt, linkenddt
+    #         FROM
+    #             crsp.ccmxpf_linktable
+    #         WHERE
+    #             substr(linktype,1,1)='L' AND
+    #             (linkprim ='C' OR linkprim='P')
+    #         """,
+    #         date_cols=["linkdt", "linkenddt"],
+    #     )
+    db = wrds.Connection(wrds_username=wrds_username)
+    ccm = db.raw_sql(
+        """
+        SELECT 
+            gvkey, lpermno AS permno, linktype, linkprim, 
+            linkdt, linkenddt
+        FROM 
+            crsp.ccmxpf_linktable
+        WHERE 
+            substr(linktype,1,1)='L' AND 
+            (linkprim ='C' OR linkprim='P')
+        """,
+        date_cols=["linkdt", "linkenddt"],
+    )
+    db.close()
+
     ccm["linkenddt"] = ccm["linkenddt"].fillna(pd.to_datetime("today"))
     return ccm
 
@@ -169,11 +205,17 @@ def load_CRSP_ff_inputs(data_dir=DATA_DIR):
     return df
 
 
-def load_CRSP_Comp_Merged(data_dir=DATA_DIR):
+def load_CRSP_Comp_Link_Table(data_dir=DATA_DIR):
     """Load CRSP/Compustat merged data from disk"""
-    path = Path(data_dir) / "pulled" / "CRSP_Comp_Merged.parquet"
+    path = Path(data_dir) / "pulled" / "CRSP_Comp_Link_Table.parquet"
     df = pd.read_parquet(path)
     return df
+
+
+def _demo():
+    comp = load_compustat(data_dir=DATA_DIR)
+    crsp = load_CRSP_ff_inputs(data_dir=DATA_DIR)
+    ccm = load_CRSP_Comp_Link_Table(data_dir=DATA_DIR)
 
 
 if __name__ == "__main__":
@@ -183,5 +225,5 @@ if __name__ == "__main__":
     crsp = pull_CRSP_ff_inputs(wrds_username=WRDS_USERNAME)
     crsp.to_parquet(DATA_DIR / "pulled" / "CRSP_FF.parquet")
 
-    ccm = pull_CRSP_Comp_Merged(wrds_username=WRDS_USERNAME)
-    ccm.to_parquet(DATA_DIR / "pulled" / "CRSP_Comp_Merged.parquet")
+    ccm = pull_CRSP_Comp_Link_Table(wrds_username=WRDS_USERNAME)
+    ccm.to_parquet(DATA_DIR / "pulled" / "CRSP_Comp_Link_Table.parquet")

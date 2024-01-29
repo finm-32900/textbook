@@ -20,15 +20,25 @@ import pandas as pd
 import wrds
 
 import config
+
 DATA_DIR = Path(config.DATA_DIR)
 WRDS_USERNAME = config.WRDS_USERNAME
+START_DATE = config.START_DATE
+END_DATE = config.END_DATE
 
 def fix_crsp_dtypes(df):
     # cast the following columns as integers
     cols = [
-        "issuno", "permno", "permco", "hexcd", "hsiccd", 
+        "issuno",
+        "permno",
+        "permco",
+        "hexcd",
+        "hsiccd",
         # "shrcd", # Some share codes are missing
-        "exchcd", "primexch", "trdstat", "secstat", 
+        "exchcd",
+        "primexch",
+        "trdstat",
+        "secstat",
     ]
     for col in cols:
         try:
@@ -38,9 +48,24 @@ def fix_crsp_dtypes(df):
 
     # cast the following columns as strings
     cols = [
-        "issuno", "permno", "cusip", "permco", "hexcd", "hsiccd", "shrcd", 
-        "exchcd", "siccd", "ncusip", "ticker", "comnam", "shrcls", "tsymbol", 
-        "naics", "primexch", "trdstat", "secstat", 
+        "issuno",
+        "permno",
+        "cusip",
+        "permco",
+        "hexcd",
+        "hsiccd",
+        "shrcd",
+        "exchcd",
+        "siccd",
+        "ncusip",
+        "ticker",
+        "comnam",
+        "shrcls",
+        "tsymbol",
+        "naics",
+        "primexch",
+        "trdstat",
+        "secstat",
     ]
     for col in cols:
         try:
@@ -51,7 +76,9 @@ def fix_crsp_dtypes(df):
     return df
 
 
-def pull_CRSP_monthly_file(start_date='2019-01-01', end_date='2022-12-31', wrds_username=WRDS_USERNAME):
+def pull_CRSP_monthly_file(
+    start_date=START_DATE, end_date=END_DATE, wrds_username=WRDS_USERNAME
+):
     """
     Pulls monthly CRSP stock data from a specified start date to end date.
 
@@ -106,12 +133,13 @@ def pull_CRSP_monthly_file(start_date='2019-01-01', end_date='2022-12-31', wrds_
     df["shrout"] = df["shrout"] * 1000
     # Deal with delisting returns
     df = apply_delisting_returns(df)
-    
-    
+
     return df
 
 
-def pull_fama_french_data(start_date='2019-01-01', end_date='2022-12-31', wrds_username=WRDS_USERNAME):
+def pull_fama_french_data(
+    start_date=START_DATE, end_date=END_DATE, wrds_username=WRDS_USERNAME
+):
     query = f"""
     SELECT 
         a.permno, a.permco, a.date, a.ret, a.retx, a.vol, a.shrout, 
@@ -151,7 +179,7 @@ def apply_delisting_returns(df):
     # First change dlret column. If dlret is NA and dlstcd is not NA, then:
     # if dlstcd is 500, 520, 551-574, 580, or 584, then dlret = -0.3
     # if dlret is NA but dlstcd is not one of the above, then dlret = -1
-    # From: Chapter 7 of: Bali, Engle, Murray -- 
+    # From: Chapter 7 of: Bali, Engle, Murray --
     # Empirical asset pricing-the cross section of stock returns (2016)
 
     df["dlret"] = np.select(
@@ -161,11 +189,7 @@ def apply_delisting_returns(df):
             df["dlret"].isna() & df["dlstcd"].notna() & df["dlstcd"] >= 200,
             True,
         ],
-        [
-            -0.3, 
-            -1, 
-            df["dlret"]
-        ],
+        [-0.3, -1, df["dlret"]],
         default=df["dlret"],
     )
 
@@ -176,18 +200,13 @@ def apply_delisting_returns(df):
             df["dlretx"].isna() & df["dlstcd"].notna() & df["dlstcd"] >= 200,
             True,
         ],
-        [
-            -0.3, 
-            -1, 
-            df["dlretx"]
-        ],
+        [-0.3, -1, df["dlretx"]],
         default=df["dlretx"],
     )
 
     df.loc[df["dlret"].notna(), "ret"] = df["dlret"]
     df.loc[df["dlretx"].notna(), "retx"] = df["dlretx"]
     return df
-
 
 
 def apply_delisting_returns_alt(df):
@@ -199,7 +218,9 @@ def apply_delisting_returns_alt(df):
     return df
 
 
-def pull_CRSP_index_files(start_date='2019-01-01', end_date='2022-12-31', wrds_username=WRDS_USERNAME):
+def pull_CRSP_index_files(
+    start_date=START_DATE, end_date=END_DATE, wrds_username=WRDS_USERNAME
+):
     # Pull index files
     query = f"""
         SELECT date_trunc('month', msix.caldt)::date as month_start, * 
@@ -219,15 +240,18 @@ def load_CRSP_monthly_file(data_dir=DATA_DIR):
     df = pd.read_parquet(path)
     return df
 
+
 def load_CRSP_index_files(data_dir=DATA_DIR):
     path = Path(data_dir) / "pulled" / f"CRSP_MSIX.parquet"
     df = pd.read_parquet(path)
     return df
 
+
 def load_fama_french_data(data_dir=DATA_DIR):
-    path = Path(data_dir) / "pulled" / f"FF_93_INPUTS.parquet"
+    path = Path(data_dir) / "pulled" / f"CRSP_FF_93_INPUTS.parquet"
     df = pd.read_parquet(path)
     return df
+
 
 def _demo():
     df_msf = load_CRSP_monthly_file(data_dir=DATA_DIR)
@@ -236,17 +260,16 @@ def _demo():
 
 
 if __name__ == "__main__":
-
-    start_date = '2019-01-01'
-    end_date = '2022-12-31'
+    start_date = "2019-01-01"
+    end_date = "2022-12-31"
     df_msf = pull_CRSP_monthly_file(start_date=start_date, end_date=end_date)
     path = Path(DATA_DIR) / "pulled" / "CRSP_MSF_INDEX_INPUTS.parquet"
     df_msf.to_parquet(path)
 
-    df_msix = pull_CRSP_index_files(start_date=start_date, end_date=end_date)    
+    df_msix = pull_CRSP_index_files(start_date=start_date, end_date=end_date)
     path = Path(DATA_DIR) / "pulled" / f"CRSP_MSIX.parquet"
     df_msix.to_parquet(path)
 
     df_ff = pull_fama_french_data(start_date=start_date, end_date=end_date)
-    path = Path(DATA_DIR) / "pulled" / f"FF_93_INPUTS.parquet"
+    path = Path(DATA_DIR) / "pulled" / f"CRSP_FF_93_INPUTS.parquet"
     df_ff.to_parquet(path)

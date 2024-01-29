@@ -50,11 +50,13 @@ def task_pull_CRSP_Compustat():
             ## src/load_CRSP_stock.py
             "CRSP_MSF_INDEX_INPUTS.parquet", 
             "CRSP_MSIX.parquet", 
-            "FF_93_INPUTS.parquet",
-            # ## src/load_CRSP_Compustat.py
+            "CRSP_FF_93_INPUTS.parquet",
+            ## src/load_CRSP_Compustat.py
             "Compustat.parquet",
             "CRSP_FF.parquet",
-            "CRSP_Comp_Merged.parquet",
+            "CRSP_Comp_Link_Table.parquet",
+            ## src/load_Fama_French.py
+            "FF_FACTORS.parquet",
         ]
     ]
 
@@ -63,6 +65,7 @@ def task_pull_CRSP_Compustat():
             "ipython src/config.py",
             "ipython src/load_CRSP_stock.py",
             "ipython src/load_CRSP_Compustat.py",
+            "ipython src/load_Fama_French.py",
         ],
         "targets": targets,
         "file_dep": file_dep,

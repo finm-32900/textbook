@@ -1,6 +1,4 @@
 """
-This code was adapted from from: https://www.fredasongdrechsler.com/data-crunching/fama-french
-# Citation: Drechsler, Qingyi (Freda) S., 2023, Python Programs for Empirical Finance, https://www.fredasongdrechsler.com
 Thank you to Tobias Rodriguez del Pozo for his assistance in writing this code.
 """
 import pandas as pd
