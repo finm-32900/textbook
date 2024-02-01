@@ -10,6 +10,12 @@ Functions to pull and calculate the value and equal weighted CRSP indices.
 Thank you to Tobias Rodriguez del Pozo for his assistance in writing this
 code.
 
+Note: This code is based on the old CRSP SIZ format. Information
+about the new CIZ format can be found here:
+
+ - Transition FAQ: https://wrds-www.wharton.upenn.edu/pages/support/manuals-and-overviews/crsp/stocks-and-indices/crsp-stock-and-indexes-version-2/crsp-ciz-faq/
+ - CRSP Metadata Guide: https://wrds-www.wharton.upenn.edu/documents/1941/CRSP_METADATA_GUIDE_STOCK_INDEXES_FLAT_FILE_FORMAT_2_0_CIZ_09232022v.pdf
+
 """
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
@@ -25,6 +31,7 @@ DATA_DIR = Path(config.DATA_DIR)
 WRDS_USERNAME = config.WRDS_USERNAME
 START_DATE = config.START_DATE
 END_DATE = config.END_DATE
+
 
 def fix_crsp_dtypes(df):
     # cast the following columns as integers
@@ -137,44 +144,6 @@ def pull_CRSP_monthly_file(
     return df
 
 
-def pull_fama_french_data(
-    start_date=START_DATE, end_date=END_DATE, wrds_username=WRDS_USERNAME
-):
-    query = f"""
-    SELECT 
-        a.permno, a.permco, a.date, a.ret, a.retx, a.vol, a.shrout, 
-        a.prc, a.cfacshr, a.bidlo, a.askhi,
-        b.shrcd, b.exchcd, b.siccd, b.ticker, b.shrcls,  -- from identifying info table
-        c.dlstcd, c.dlret                                -- from delistings table
-    FROM 
-        crsp.msf AS a
-    LEFT JOIN 
-        crsp.msenames AS b
-    ON 
-        a.permno = b.permno AND 
-        b.namedt <= a.date AND 
-        a.date <= b.nameendt
-    LEFT JOIN 
-        crsp.msedelist AS c
-    ON 
-        a.permno = c.permno AND 
-        date_trunc('month', a.date) = date_trunc('month', c.dlstdt)
-    WHERE 
-        a.date BETWEEN '{start_date}' AND '{end_date}';
-    """
-    # with wrds.Connection(wrds_username=wrds_username) as db:
-    #     df = db.raw_sql(query, date_cols=["date"])
-    db = wrds.Connection(wrds_username=wrds_username)
-    df = db.raw_sql(query, date_cols=["date"])
-    db.close()
-
-    df = df.loc[:, ~df.columns.duplicated()]
-    # df = fix_crsp_dtypes(df)
-    df["shrout"] = df["shrout"] * 1000
-
-    return df
-
-
 def apply_delisting_returns(df):
     # First change dlret column. If dlret is NA and dlstcd is not NA, then:
     # if dlstcd is 500, 520, 551-574, 580, or 584, then dlret = -0.3
@@ -247,29 +216,17 @@ def load_CRSP_index_files(data_dir=DATA_DIR):
     return df
 
 
-def load_fama_french_data(data_dir=DATA_DIR):
-    path = Path(data_dir) / "pulled" / f"CRSP_FF_93_INPUTS.parquet"
-    df = pd.read_parquet(path)
-    return df
-
-
 def _demo():
     df_msf = load_CRSP_monthly_file(data_dir=DATA_DIR)
     df_msix = load_CRSP_index_files(data_dir=DATA_DIR)
-    df_ff = load_fama_french_data(data_dir=DATA_DIR)
 
 
 if __name__ == "__main__":
-    start_date = "2019-01-01"
-    end_date = "2022-12-31"
-    df_msf = pull_CRSP_monthly_file(start_date=start_date, end_date=end_date)
+
+    df_msf = pull_CRSP_monthly_file(start_date=START_DATE, end_date=END_DATE)
     path = Path(DATA_DIR) / "pulled" / "CRSP_MSF_INDEX_INPUTS.parquet"
     df_msf.to_parquet(path)
 
-    df_msix = pull_CRSP_index_files(start_date=start_date, end_date=end_date)
+    df_msix = pull_CRSP_index_files(start_date=START_DATE, end_date=END_DATE)
     path = Path(DATA_DIR) / "pulled" / f"CRSP_MSIX.parquet"
     df_msix.to_parquet(path)
-
-    df_ff = pull_fama_french_data(start_date=start_date, end_date=end_date)
-    path = Path(DATA_DIR) / "pulled" / f"CRSP_FF_93_INPUTS.parquet"
-    df_ff.to_parquet(path)
