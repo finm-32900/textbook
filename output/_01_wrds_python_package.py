@@ -25,9 +25,10 @@
 # 
 # Here are some helpful links to learn how to use the `wrds` Python package:
 # 
-#  - https://pypi.org/project/wrds/
-#  - https://wrds-www.wharton.upenn.edu/pages/support/programming-wrds/programming-python/querying-wrds-data-python/
-#  - https://wrds-www.wharton.upenn.edu/documents/1443/wrds_connection.html
+#  - [Video: Using Python on the WRDS Platform](https://wrds-www.wharton.upenn.edu/pages/grid-items/using-python-wrds-platform/)
+#  - [PyPI Homepage for WRDS Python Package](https://pypi.org/project/wrds/)
+#  - [WRDS Guide: Querying WRDS Data using Python](https://wrds-www.wharton.upenn.edu/pages/support/programming-wrds/programming-python/querying-wrds-data-python/)
+#  - [WRDS Python Package Demo Walkthrough](https://wrds-www.wharton.upenn.edu/documents/1443/wrds_connection.html)
 # 
 # 
 # ### Import and Establish Connection
