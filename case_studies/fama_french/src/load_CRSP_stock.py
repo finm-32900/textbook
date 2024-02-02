@@ -33,56 +33,6 @@ START_DATE = config.START_DATE
 END_DATE = config.END_DATE
 
 
-def fix_crsp_dtypes(df):
-    # cast the following columns as integers
-    cols = [
-        "issuno",
-        "permno",
-        "permco",
-        "hexcd",
-        "hsiccd",
-        # "shrcd", # Some share codes are missing
-        "exchcd",
-        "primexch",
-        "trdstat",
-        "secstat",
-    ]
-    for col in cols:
-        try:
-            df[col] = df[col].astype(int)
-        except KeyError:
-            pass
-
-    # cast the following columns as strings
-    cols = [
-        "issuno",
-        "permno",
-        "cusip",
-        "permco",
-        "hexcd",
-        "hsiccd",
-        "shrcd",
-        "exchcd",
-        "siccd",
-        "ncusip",
-        "ticker",
-        "comnam",
-        "shrcls",
-        "tsymbol",
-        "naics",
-        "primexch",
-        "trdstat",
-        "secstat",
-    ]
-    for col in cols:
-        try:
-            df[col] = df[col].astype(str)
-        except KeyError:
-            pass
-
-    return df
-
-
 def pull_CRSP_monthly_file(
     start_date=START_DATE, end_date=END_DATE, wrds_username=WRDS_USERNAME
 ):
@@ -106,8 +56,7 @@ def pull_CRSP_monthly_file(
         msf.permno, msf.permco, shrcd, exchcd, comnam, shrcls, 
         ret, retx, dlret, dlretx, dlstcd,
         prc, altprc, vol, shrout, cfacshr, cfacpr,
-        naics, siccd,
-        date_trunc('month', msf.date)::date as month_start
+        naics, siccd
     FROM crsp.msf AS msf
     LEFT JOIN 
         crsp.msenames as msenames
@@ -127,16 +76,15 @@ def pull_CRSP_monthly_file(
     """
     # with wrds.Connection(wrds_username=wrds_username) as db:
     #     df = db.raw_sql(
-    #         query, date_cols=["month_start", "date", "namedt", "nameendt", "dlstdt"]
+    #         query, date_cols=["date", "namedt", "nameendt", "dlstdt"]
     #     )
     db = wrds.Connection(wrds_username=wrds_username)
     df = db.raw_sql(
-        query, date_cols=["month_start", "date", "namedt", "nameendt", "dlstdt"]
+        query, date_cols=["date", "namedt", "nameendt", "dlstdt"]
     )
     db.close()
 
     df = df.loc[:, ~df.columns.duplicated()]
-    # df = fix_crsp_dtypes(df)
     df["shrout"] = df["shrout"] * 1000
     # Deal with delisting returns
     df = apply_delisting_returns(df)
@@ -145,11 +93,17 @@ def pull_CRSP_monthly_file(
 
 
 def apply_delisting_returns(df):
-    # First change dlret column. If dlret is NA and dlstcd is not NA, then:
-    # if dlstcd is 500, 520, 551-574, 580, or 584, then dlret = -0.3
-    # if dlret is NA but dlstcd is not one of the above, then dlret = -1
-    # From: Chapter 7 of: Bali, Engle, Murray --
-    # Empirical asset pricing-the cross section of stock returns (2016)
+    """
+    Use instructions for handling delisting returns from: Chapter 7 of 
+    Bali, Engle, Murray --
+    Empirical asset pricing-the cross section of stock returns (2016)
+    
+    First change dlret column. 
+    If dlret is NA and dlstcd is not NA, then:
+    if dlstcd is 500, 520, 551-574, 580, or 584, then dlret = -0.3
+    if dlret is NA but dlstcd is not one of the above, then dlret = -1
+    """
+
 
     df["dlret"] = np.select(
         [
@@ -192,14 +146,14 @@ def pull_CRSP_index_files(
 ):
     # Pull index files
     query = f"""
-        SELECT date_trunc('month', msix.caldt)::date as month_start, * 
-        FROM crsp_a_indexes.msix as msix
-        WHERE msix.caldt BETWEEN '{start_date}' AND '{end_date}'
+        SELECT * 
+        FROM crsp_a_indexes.msix
+        WHERE caldt BETWEEN '{start_date}' AND '{end_date}'
     """
     # with wrds.Connection(wrds_username=wrds_username) as db:
     #     df = db.raw_sql(query, date_cols=["month", "caldt"])
     db = wrds.Connection(wrds_username=wrds_username)
-    df = db.raw_sql(query, date_cols=["month", "caldt"])
+    df = db.raw_sql(query, date_cols=["caldt"])
     db.close()
     return df
 

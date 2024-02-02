@@ -79,7 +79,11 @@ def task_doit_atlanta_fed_wage_growth():
 
 def task_doit_fama_french():
     """Run fama french dodo"""
-    notebooks = ["01_wrds_python_package.ipynb"]
+    notebooks = [
+        "01_wrds_python_package.ipynb",
+        "02_CRSP_market_index.ipynb",
+        "03_Fama_French_1993.ipynb",
+        ]
     stems = [notebook.split(".")[0] for notebook in notebooks]
     src_dir = Path("case_studies/fama_french/src")
     return {
@@ -90,7 +94,10 @@ def task_doit_fama_french():
                 for notebook in stems
             ],
         ],
-        "targets": [OUTPUT_DIR / "_01_wrds_python_package.ipynb"],
+        "targets": [
+            OUTPUT_DIR / "_01_wrds_python_package.ipynb",
+            OUTPUT_DIR / "_03_Fama_French_1993.ipynb",
+            ],
         "verbosity": 2, # Print everything immediately. This is important in
         # case WRDS asks for credentials.
     }

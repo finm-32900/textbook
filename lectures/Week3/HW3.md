@@ -21,7 +21,14 @@ Again, we continue on our journey mastering the many features of Github. Please 
 
 ## Part 2 (graded)
 
-In this second part, you'll complete an exercise related to the seminal papers [Fama and French (1992)](https://home.cerge-ei.cz/petrz/gdn/Fama_French_92_tables.pdf) and [Fama and French (1993)](https://www.jufinance.com/mag/fin534_16/Common_risk_factors_Fama_French_JFE1993.pdf). We will download the data using the WRDS Python package. This data download step will be fully automated. 
+In this second part, you'll complete an exercise in which we create a value-weighted
+index of market returns and an exercise related to the seminal paper [Fama and French (1993)](https://www.jufinance.com/mag/fin534_16/Common_risk_factors_Fama_French_JFE1993.pdf). These will comprise parts 2A and 2B.
+You can find guides here:
+
+ - [Part A: CRSP Market Returns Indices](./../../output/_02_CRSP_market_index.ipynb)
+ - [Part B: Replicate Fama-French 1993](./../../output/_03_Fama_French_1993.ipynb)
+
+The data will be downloaded using the WRDS Python package. The code for this is included in the HW. This data download step will be fully automated. 
 
 The link to accept the HW is here: Link TBD
 

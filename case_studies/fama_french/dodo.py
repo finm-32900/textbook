@@ -43,19 +43,21 @@ def jupyter_clear_output(notebook):
 def task_pull_CRSP_Compustat():
     """Pull CRSP/Compustat data from WRDS and save to disk
     """
-    file_dep = ["./src/config.py", "./src/load_CRSP_stock.py"]
+    file_dep = [
+        "./src/config.py", 
+        "./src/load_CRSP_stock.py",
+        "./src/load_CRSP_Compustat.py",
+        ]
     targets = [
         Path(DATA_DIR) / "pulled" / file for file in 
         [
             ## src/load_CRSP_stock.py
             "CRSP_MSF_INDEX_INPUTS.parquet", 
             "CRSP_MSIX.parquet", 
-            "CRSP_FF_93_INPUTS.parquet",
             ## src/load_CRSP_Compustat.py
             "Compustat.parquet",
-            "CRSP_FF.parquet",
+            "CRSP_stock_ciz.parquet",
             "CRSP_Comp_Link_Table.parquet",
-            ## src/load_Fama_French.py
             "FF_FACTORS.parquet",
         ]
     ]
@@ -65,13 +67,41 @@ def task_pull_CRSP_Compustat():
             "ipython src/config.py",
             "ipython src/load_CRSP_stock.py",
             "ipython src/load_CRSP_Compustat.py",
-            "ipython src/load_Fama_French.py",
         ],
         "targets": targets,
         "file_dep": file_dep,
         "clean": True,
         "verbosity": 2, # Print everything immediately. This is important in
         # case WRDS asks for credentials.
+    }
+
+
+def task_calc_Fama_French_1993_factors():
+    """Calculate Factors for Fama-French 1993 model
+    """
+    file_dep = [
+        "./src/calc_Fama_French_1993_factors.py",
+        "./src/misc_tools.py",
+        ]
+    targets = [
+        *[Path(DATA_DIR) / "pulled" / file for file in 
+        [
+            ## src/calc_Fama_French_1993_factors.py
+            "FF_1993_vwret.parquet",
+            "FF_1993_vwret_n.parquet",
+            "FF_1993_factors.parquet",
+            "FF_1993_nfirms.parquet",
+        ]],
+        OUTPUT_DIR / "FF_1993_Comparison.png",
+    ]
+
+    return {
+        "actions": [
+            "ipython src/calc_Fama_French_1993_factors.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
     }
 
 
@@ -84,6 +114,8 @@ def task_convert_notebooks_to_scripts():
 
     notebooks = [
         "01_wrds_python_package.ipynb",
+        "02_CRSP_market_index.ipynb",
+        "03_Fama_French_1993.ipynb",
     ]
     file_dep = [Path("./src") / file for file in notebooks]
     stems = [notebook.split(".")[0] for notebook in notebooks]
@@ -110,6 +142,8 @@ def task_run_notebooks():
     """
     notebooks_to_run_as_md = [
         "01_wrds_python_package.ipynb",
+        "02_CRSP_market_index.ipynb",
+        "03_Fama_French_1993.ipynb",
     ]
     stems = [notebook.split(".")[0] for notebook in notebooks_to_run_as_md]
 

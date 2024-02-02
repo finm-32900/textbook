@@ -30,6 +30,9 @@ chapters:
   - file: output/_01_wrds_python_package.ipynb
   - file: lectures/Week3/env_files.md
 - file: lectures/Week3/HW3.md
+  sections:
+  - file: output/_02_CRSP_market_index.ipynb
+  - file: output/_03_Fama_French_1993.ipynb
 - file: lectures/Week4/README.md
   sections:
   - file: lectures/Week4/reports_with_jupyter_notebooks.md
