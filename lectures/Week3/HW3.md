@@ -30,7 +30,7 @@ You can find guides here:
 
 The data will be downloaded using the WRDS Python package. The code for this is included in the HW. This data download step will be fully automated. 
 
-The link to accept the HW is here: Link TBD
+The link to accept the HW is here: https://classroom.github.com/a/LPXKkmHU
 
 <!-- 
 The following is a guide that will help you complete the homework: [HW Guide: Wage Growth During the Recession](../../output/_01_wage_growth_during_the_recession.ipynb)
