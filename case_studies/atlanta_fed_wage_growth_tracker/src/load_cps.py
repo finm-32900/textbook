@@ -42,10 +42,10 @@ def load_clean(data_dir=DATA_DIR, start_date='2000-01-01', end_date='2024-01-01'
     df.loc[df['UHRSWORKLY'] == 999, 'UHRSWORKLY'] = np.nan
 
     # INCWAGE: Missing values
-    # 9999999 = N.I.U. (Not in Universe). 
-    # 9999998 = Missing.
-    df.loc[df['INCWAGE'] == 9999999, 'INCWAGE'] = np.nan
-    df.loc[df['INCWAGE'] == 9999998, 'INCWAGE'] = np.nan
+    # 99999999 = N.I.U. (Not in Universe). 
+    # 99999998 = Missing.
+    df.loc[df['INCWAGE'] == 99999999, 'INCWAGE'] = np.nan
+    df.loc[df['INCWAGE'] == 99999998, 'INCWAGE'] = np.nan
 
     # LABFORCE missing values
     # 0 = NIU
