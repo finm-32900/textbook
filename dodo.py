@@ -135,6 +135,11 @@ book_source_files = [
     "lectures/Week4/README.md",
     "lectures/Week4/intro_to_LaTeX.md",
     "lectures/Week4/reports_with_jupyter_notebooks.md",
+    "lectures/Week4/latex_essentials.md",
+    ##
+    "lectures/Week5/README.md",
+    "lectures/Week5/sphinx.md",
+    "lectures/Week5/unit_tests.md",
     ##
     "lectures/Misc/appendix.md",
     "lectures/Misc/final_project.md",

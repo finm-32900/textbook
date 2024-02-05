@@ -37,6 +37,11 @@ chapters:
   sections:
   - file: lectures/Week4/reports_with_jupyter_notebooks.md
   - file: lectures/Week4/intro_to_LaTeX.md
+  - file: lectures/Week4/latex_essentials.md
+- file: lectures/Week5/README.md
+  sections:
+  - file: lectures/Week5/sphinx.md
+  - file: lectures/Week5/unit_tests.md
 - file: lectures/Misc/final_project.md
   sections:
   - file: lectures/Misc/potential_final_projects.md
