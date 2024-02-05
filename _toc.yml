@@ -37,3 +37,7 @@ chapters:
   sections:
   - file: lectures/Week4/reports_with_jupyter_notebooks.md
   - file: lectures/Week4/intro_to_LaTeX.md
+- file: lectures/Misc/final_project.md
+  sections:
+  - file: lectures/Misc/potential_final_projects.md
+- file: lectures/Misc/appendix.md

@@ -135,6 +135,10 @@ book_source_files = [
     "lectures/Week4/README.md",
     "lectures/Week4/intro_to_LaTeX.md",
     "lectures/Week4/reports_with_jupyter_notebooks.md",
+    ##
+    "lectures/Misc/appendix.md",
+    "lectures/Misc/final_project.md",
+    "lectures/Misc/potential_final_projects.md",
 ]
 
 _book_compiled = [page.split(".")[0] + ".html" for page in book_source_files]
