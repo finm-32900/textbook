@@ -34,7 +34,7 @@ def jupyter_clear_output(notebook):
 def copy_notebook_to_folder(notebook_stem, origin_folder, destination_folder):
     origin_path = Path(origin_folder) / f"{notebook_stem}.ipynb"
     destination_path = Path(destination_folder) / f"_{notebook_stem}.ipynb"
-    return f"cp  {origin_path} {destination_path}"
+    return f"copy  {origin_path} {destination_path}"
 
 
 def remove_build_dir():
