@@ -140,6 +140,9 @@ book_source_files = [
     "lectures/Week5/README.md",
     "lectures/Week5/sphinx.md",
     "lectures/Week5/unit_tests.md",
+    ## 
+    "lectures/Week6/overview_w6.md",
+    "lectures/Week6/bloomberg_terminal.md",
     ##
     "lectures/Misc/appendix.md",
     "lectures/Misc/final_project.md",
