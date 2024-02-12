@@ -110,7 +110,7 @@ book_source_files = [
     "lectures/Week1/case_study_reproducibility_in_finance.md",
     "lectures/Week1/HW0.md",
     "lectures/Week1/HW1.md",
-    "lectures/Week1/README.md",
+    "lectures/Week1/overview_w1.md",
     "lectures/Week1/reproducible_analytical_pipelines.md",
     "lectures/Week1/what_is_this_course_about.md",
     ##
@@ -119,25 +119,25 @@ book_source_files = [
     "lectures/Week2/case_study_atlanta_fed_wage_growth_tracker.md",
     "lectures/Week2/HW2.md",
     "lectures/Week2/project_structure.md",
-    "lectures/Week2/README.md",
+    "lectures/Week2/overview_w2.md",
     "lectures/Week2/virtual_environments.md",
     "lectures/Week2/what_is_a_build_system.md",
     ##
     "output/_01_wage_growth_during_the_recession.ipynb",
     ##
-    "lectures/Week3/README.md",
+    "lectures/Week3/overview_w3.md",
     "lectures/Week3/WRDS_intro_and_web_queries.md",
     "lectures/Week3/env_files.md",
     "lectures/Week3/HW3.md",
     ##
     "output/_01_wrds_python_package.ipynb",
     ##
-    "lectures/Week4/README.md",
+    "lectures/Week4/overview_w4.md",
     "lectures/Week4/intro_to_LaTeX.md",
     "lectures/Week4/reports_with_jupyter_notebooks.md",
     "lectures/Week4/latex_essentials.md",
     ##
-    "lectures/Week5/README.md",
+    "lectures/Week5/overview_w5.md",
     "lectures/Week5/sphinx.md",
     "lectures/Week5/unit_tests.md",
     ## 

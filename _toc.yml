@@ -7,7 +7,7 @@ chapters:
 - file: README.md # This is the syllabus. It is designed this way 
 # so that it can be viewed on GitHub as well.
 - file: lectures/Week1/HW0.md
-- file: lectures/Week1/README.md
+- file: lectures/Week1/overview_w1.md
   sections:
   - file: lectures/Week1/what_is_this_course_about.md
   - file: lectures/Week1/reproducible_analytical_pipelines.md
@@ -15,7 +15,7 @@ chapters:
 - file: lectures/Week1/HW1.md
   sections:
   - file: output/_01_repo_spikes.ipynb
-- file: lectures/Week2/README.md
+- file: lectures/Week2/overview_w2.md
   sections:
   - file: lectures/Week2/virtual_environments.md
   - file: lectures/Week2/what_is_a_build_system.md
@@ -24,7 +24,7 @@ chapters:
   sections:
   - file: lectures/Week2/case_study_atlanta_fed_wage_growth_tracker.md
   - file: output/_01_wage_growth_during_the_recession.ipynb
-- file: lectures/Week3/README.md
+- file: lectures/Week3/overview_w3.md
   sections:
   - file: lectures/Week3/WRDS_intro_and_web_queries.md
   - file: output/_01_wrds_python_package.ipynb
@@ -33,12 +33,12 @@ chapters:
   sections:
   - file: output/_02_CRSP_market_index.ipynb
   - file: output/_03_Fama_French_1993.ipynb
-- file: lectures/Week4/README.md
+- file: lectures/Week4/overview_w4.md
   sections:
   - file: lectures/Week4/reports_with_jupyter_notebooks.md
   - file: lectures/Week4/intro_to_LaTeX.md
   - file: lectures/Week4/latex_essentials.md
-- file: lectures/Week5/README.md
+- file: lectures/Week5/overview_w5.md
   sections:
   - file: lectures/Week5/sphinx.md
   - file: lectures/Week5/unit_tests.md
