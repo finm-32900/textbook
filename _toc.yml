@@ -45,6 +45,7 @@ chapters:
 - file: lectures/Week6/overview_w6.md
   sections:
   - file: lectures/Week6/bloomberg_terminal.md
+  - file: lectures/Week6/GitHub_pull_requests.md
 - file: lectures/Misc/final_project.md
   sections:
   - file: lectures/Misc/potential_final_projects.md
