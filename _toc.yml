@@ -46,6 +46,10 @@ chapters:
   sections:
   - file: lectures/Week6/bloomberg_terminal.md
   - file: lectures/Week6/GitHub_pull_requests.md
+- file: lectures/Week7/overview_w7.md
+- file: lectures/Week8/overview_w8.md
+  sections:
+  - file: lectures/Week8/github_actions_interactive_dashboard.md
 - file: lectures/Misc/final_project.md
   sections:
   - file: lectures/Misc/potential_final_projects.md

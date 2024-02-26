@@ -144,6 +144,11 @@ book_source_files = [
     "lectures/Week6/overview_w6.md",
     "lectures/Week6/bloomberg_terminal.md",
     "lectures/Week6/GitHub_pull_requests.md",
+    ## 
+    "lectures/Week7/overview_w7.md",
+    ## 
+    "lectures/Week8/overview_w8.md",
+    "lectures/Week8/github_actions_interactive_dashboard.md",
     ##
     "lectures/Misc/appendix.md",
     "lectures/Misc/final_project.md",
