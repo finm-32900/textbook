@@ -150,6 +150,8 @@ book_source_files = [
     "lectures/Week8/overview_w8.md",
     "lectures/Week8/github_actions_interactive_dashboard.md",
     ##
+    "lectures/Week8/HW4.md",
+    ##
     "lectures/Misc/appendix.md",
     "lectures/Misc/final_project.md",
     "lectures/Misc/potential_final_projects.md",
