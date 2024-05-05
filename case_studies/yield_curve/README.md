@@ -7,9 +7,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 # Quick Start
 
-To quickest way to run code in this repo is to use the following steps. First, note that you must have TexLive installed on your computer and available in your path.
-You can do this by downloading and installing it from here ([windows](https://tug.org/texlive/windows.html#install) and [mac](https://tug.org/mactex/mactex-download.html) installers).
-Having installed LaTeX, open a terminal and navigate to the root directory of the project and create a conda environment using the following command:
+To quickest way to run code in this repo is to use the following steps. First, you must have the `conda`  
+package manager installed (e.g., via Anaconda). However, I recommend using `mamba`, via [miniforge]
+(https://github.com/conda-forge/miniforge) as it is faster and more lightweight than `conda`. Second, you 
+must have TexLive (or another LaTeX distribution) installed on your computer and available in your path.
+You can do this by downloading and 
+installing it from here ([windows](https://tug.org/texlive/windows.html#install) 
+and [mac](https://tug.org/mactex/mactex-download.html) installers).
+Having done these things, open a terminal and navigate to the root directory of the project and create a 
+conda environment using the following command:
 ```
 conda create -n blank python=3.12
 conda activate blank
@@ -18,10 +24,37 @@ and then install the dependencies with pip
 ```
 pip install -r requirements.txt
 ```
-You can then navigate to the `src` directory and then run 
+Finally, you can then run 
 ```
 doit
 ```
+And that's it!
+
+If you would also like to run the R code included in this project, you can either install
+R and the required packages manually, or you can use the included `environment.yml` file.
+To do this, run
+```
+mamba env create -f environment.yml
+```
+I'm using `mamba` here because `conda` is too slow. Activate the environment. 
+Then, make sure to uncomment
+out the RMarkdown task from the `dodo.py` file. Then,
+run `doit` as before.
+
+## Other commands
+
+You can run the unit test, including doctests, with the following command:
+```
+pytest --doctest-modules
+```
+You can build the documentation with:
+```
+rm ./src/.pytest_cache/README.md 
+jupyter-book build -W ./
+```
+Use `del` instead of rm on Windows
+
+
 # General Directory Structure
 
  - The `assets` folder is used for things like hand-drawn figures or other pictures that were not generated from code. These things cannot be easily recreated if they are deleted.
@@ -85,33 +118,15 @@ Also, these dependencies are also saved in `requirements.txt` for those that wou
 pip freeze > requirements.txt
 ```
 
-### Alternative Quickstart using Conda
-Another way to  run code in this repo is to use the following steps.
-First, open a terminal and navigate to the root directory of the project and create a conda environment using the following command:
-```
-conda env create -f environment.yml
-```
-Now, load the environment with
-```
-conda activate blank
-```
-Now, navigate to the directory called `src`
-and run
-```
-doit
-```
-That should be it!
-
-
-
 **Other helpful `conda` commands**
 
 - Create conda environment from file: `conda env create -f environment.yml`
 - Activate environment for this project: `conda activate blank`
-- Remove conda environment: `conda remove --name myenv --all`
+- Remove conda environment: `conda remove --name blank --all`
 - Create blank conda environment: `conda create --name myenv --no-default-packages`
 - Create blank conda environment with different version of Python: `conda create --name myenv --no-default-packages python` Note that the addition of "python" will install the most up-to-date version of Python. Without this, it may use the system version of Python, which will likely have some packages installed already.
 
 ## `mamba` and `conda` performance issues
 
 Since `conda` has so many performance issues, it's recommended to use `mamba` instead. I recommend installing the `miniforge` distribution. See here: https://github.com/conda-forge/miniforge
+

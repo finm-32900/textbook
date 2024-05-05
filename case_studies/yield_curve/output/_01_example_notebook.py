@@ -15,30 +15,26 @@
 # In[ ]:
 
 
+import numpy as np
+from matplotlib import pyplot as plt
+
 import config
 from pathlib import Path
 OUTPUT_DIR = Path(config.OUTPUT_DIR)
 
-
-# In[ ]:
-
-
-import numpy as np
-from matplotlib import pyplot as plt
+import load_fred
 
 
 # In[ ]:
 
 
-x = np.linspace(0, 8 * np.pi, 1000)
-y = np.sin(x)
-plt.plot(x, y)
-filepath = Path(OUTPUT_DIR) / 'sine_graph.png'
+df = load_fred.load_fred()
+
+
+# In[ ]:
+
+
+df[["GDP"]].dropna().plot()
+filepath = Path(OUTPUT_DIR) / 'GDP_graph.png'
 plt.savefig(filepath)
-
-
-# In[ ]:
-
-
-
 
