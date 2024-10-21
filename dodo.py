@@ -34,7 +34,7 @@ def jupyter_clear_output(notebook):
 def copy_notebook_to_folder(notebook_stem, origin_folder, destination_folder):
     origin_path = Path(origin_folder) / f"{notebook_stem}.ipynb"
     destination_path = Path(destination_folder) / f"_{notebook_stem}.ipynb"
-    return f"copy  {origin_path} {destination_path}"
+    shutil.copy2(origin_path, destination_path)
 
 
 def remove_build_dir():
@@ -67,7 +67,7 @@ def task_doit_atlanta_fed_wage_growth():
         "actions": [
             "doit -f case_studies/atlanta_fed_wage_growth_tracker/dodo.py",
             *[
-                copy_notebook_to_folder(notebook, src_dir, OUTPUT_DIR)
+                (copy_notebook_to_folder, (notebook, src_dir, OUTPUT_DIR))
                 for notebook in stems
             ],
         ],
@@ -90,7 +90,7 @@ def task_doit_fama_french():
         "actions": [
             "doit -f case_studies/fama_french/dodo.py",
             *[
-                copy_notebook_to_folder(notebook, src_dir, OUTPUT_DIR)
+                (copy_notebook_to_folder, (notebook, src_dir, OUTPUT_DIR))
                 for notebook in stems
             ],
         ],
