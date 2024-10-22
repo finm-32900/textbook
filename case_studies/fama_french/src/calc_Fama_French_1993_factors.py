@@ -15,7 +15,7 @@ Citation: Drechsler, Qingyi (Freda) S., 2023, Python Programs for Empirical
 Finance, https://www.fredasongdrechsler.com
 
 This file was lightly modified from the original by Tobias Rodriguez
-del Pozo for use in the course "Data Science Tools for Finance" by
+del Pozo for use in the course "Full Stack Quantitative Finance" by
 Jeremy Bejarano.
 
 """

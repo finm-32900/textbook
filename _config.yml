@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Data Science Tools for Finance
+title: Full Stack Quantitative Finance
 author: Jeremy Bejarano
 logo: ./assets/logo.png
 copyright: "2024"

@@ -1,6 +1,7 @@
 """Run or update the project. This file uses the `doit` Python package. It works
 like a Makefile, but is Python-based
 """
+
 from pathlib import Path
 
 from doit.tools import run_once
@@ -53,7 +54,7 @@ def task_doit_repo_spikes():
     return {
         "actions": ["doit -f case_studies/repo_spikes/src/dodo.py"],
         "targets": [OUTPUT_DIR / "_01_repo_spikes.ipynb"],
-        "verbosity": 2, # Print everything immediately. This is important in
+        "verbosity": 2,  # Print everything immediately. This is important in
         # case WRDS asks for credentials.
     }
 
@@ -72,7 +73,7 @@ def task_doit_atlanta_fed_wage_growth():
             ],
         ],
         "targets": [OUTPUT_DIR / "_01_wage_growth_during_the_recession.ipynb"],
-        "verbosity": 2, # Print everything immediately. This is important in
+        "verbosity": 2,  # Print everything immediately. This is important in
         # case WRDS asks for credentials.
     }
 
@@ -83,7 +84,7 @@ def task_doit_fama_french():
         "01_wrds_python_package.ipynb",
         "02_CRSP_market_index.ipynb",
         "03_Fama_French_1993.ipynb",
-        ]
+    ]
     stems = [notebook.split(".")[0] for notebook in notebooks]
     src_dir = Path("case_studies/fama_french/src")
     return {
@@ -97,8 +98,8 @@ def task_doit_fama_french():
         "targets": [
             OUTPUT_DIR / "_01_wrds_python_package.ipynb",
             OUTPUT_DIR / "_03_Fama_French_1993.ipynb",
-            ],
-        "verbosity": 2, # Print everything immediately. This is important in
+        ],
+        "verbosity": 2,  # Print everything immediately. This is important in
         # case WRDS asks for credentials.
     }
 
@@ -140,13 +141,13 @@ book_source_files = [
     "lectures/Week5/overview_w5.md",
     "lectures/Week5/sphinx.md",
     "lectures/Week5/unit_tests.md",
-    ## 
+    ##
     "lectures/Week6/overview_w6.md",
     "lectures/Week6/bloomberg_terminal.md",
     "lectures/Week6/GitHub_pull_requests.md",
-    ## 
+    ##
     "lectures/Week7/overview_w7.md",
-    ## 
+    ##
     "lectures/Week8/overview_w8.md",
     "lectures/Week8/github_actions_interactive_dashboard.md",
     ##
