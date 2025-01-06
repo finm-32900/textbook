@@ -63,7 +63,6 @@ def task_doit_atlanta_fed_wage_growth():
     """Run atlanta fed wage growth tracker dodo"""
     notebooks = ["01_wage_growth_during_the_recession.ipynb"]
     stems = [notebook.split(".")[0] for notebook in notebooks]
-    src_dir = Path("case_studies/atlanta_fed_wage_growth_tracker/src")
     return {
         "actions": [
             "doit -f ../case_study_wage_growth/dodo.py",
@@ -86,17 +85,18 @@ def task_doit_fama_french():
         "03_Fama_French_1993.ipynb",
     ]
     stems = [notebook.split(".")[0] for notebook in notebooks]
-    src_dir = Path("case_studies/fama_french/src")
+
     return {
         "actions": [
-            "doit -f case_studies/fama_french/dodo.py",
+            "doit -f ../case_study_wrds_fama_french/dodo.py",
             *[
-                (copy_notebook_to_folder, (notebook, src_dir, OUTPUT_DIR))
+                (copy_notebook_to_folder, (notebook, "../case_study_wrds_fama_french/_output", OUTPUT_DIR))
                 for notebook in stems
             ],
         ],
         "targets": [
             OUTPUT_DIR / "_01_wrds_python_package.ipynb",
+            OUTPUT_DIR / "_02_CRSP_market_index.ipynb",
             OUTPUT_DIR / "_03_Fama_French_1993.ipynb",
         ],
         "verbosity": 2,  # Print everything immediately. This is important in
