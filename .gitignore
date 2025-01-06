@@ -251,3 +251,5 @@ drafts/draft_bp.pdf
 _build/
 
 data/manual/cps.csv
+
+.doit.db.db

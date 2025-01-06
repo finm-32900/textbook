@@ -66,9 +66,9 @@ def task_doit_atlanta_fed_wage_growth():
     src_dir = Path("case_studies/atlanta_fed_wage_growth_tracker/src")
     return {
         "actions": [
-            "doit -f case_studies/atlanta_fed_wage_growth_tracker/dodo.py",
+            "doit -f ../case_study_wage_growth/dodo.py",
             *[
-                (copy_notebook_to_folder, (notebook, src_dir, OUTPUT_DIR))
+                (copy_notebook_to_folder, (notebook, Path("../case_study_wage_growth/_output"), OUTPUT_DIR))
                 for notebook in stems
             ],
         ],
