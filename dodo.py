@@ -2,18 +2,19 @@
 like a Makefile, but is Python-based
 """
 
+import shutil
 from pathlib import Path
 
-from doit.tools import run_once
 from doit.task import clean_targets
+from doit.tools import run_once
 
 import config
-import shutil
 
 OUTPUT_DIR = Path(config.OUTPUT_DIR)
 BUILD_DIR = Path(config.BUILD_DIR)
 NOTEBOOK_BUILD_DIR = Path(config.NOTEBOOK_BUILD_DIR)
 GITHUB_PAGES_REPO_DIR = Path(config.GITHUB_PAGES_REPO_DIR)
+
 
 # fmt: off
 ## Helper functions for automatic execution of Jupyter notebooks
@@ -48,14 +49,46 @@ def remove_build_dir():
             print(f"Error removing directory: {BUILD_DIR}. {e}")
 
 
+def copy_directory(source_dir: Path, dest_dir: Path) -> bool:
+    """Copy a directory and its contents to a destination path.
+
+    Args:
+        source_dir: Path to the source directory
+        dest_dir: Path to the destination directory
+
+    Returns:
+        bool: True if copy was successful
+    """
+    shutil.copytree(source_dir, dest_dir, dirs_exist_ok=True)
+    return True
+
+
+##################################
+## Begin rest of PyDoit tasks here
+##################################
+
+
 def task_doit_repo_spikes():
     """Run repo spikes dodo"""
-
+    notebooks = ["01_repo_spikes.ipynb"]
+    stems = [notebook.split(".")[0] for notebook in notebooks]
     return {
-        "actions": ["doit -f case_studies/repo_spikes/src/dodo.py"],
-        "targets": [OUTPUT_DIR / "_01_repo_spikes.ipynb"],
-        "verbosity": 2,  # Print everything immediately. This is important in
-        # case WRDS asks for credentials.
+        "actions": [
+            "doit -f ../case_study_repo_spikes/dodo.py",
+            *[
+                (
+                    copy_notebook_to_folder,
+                    (notebook, Path("../case_study_repo_spikes/_output"), OUTPUT_DIR),
+                )
+                for notebook in stems
+            ],
+            (
+                copy_directory,
+                (Path("../case_study_repo_spikes/src/assets"), OUTPUT_DIR / "assets"),
+            ),
+        ],
+        "targets": [OUTPUT_DIR / "_01_repo_spikes.ipynb", OUTPUT_DIR / "assets"],
+        "verbosity": 2,
     }
 
 
@@ -67,7 +100,10 @@ def task_doit_atlanta_fed_wage_growth():
         "actions": [
             "doit -f ../case_study_wage_growth/dodo.py",
             *[
-                (copy_notebook_to_folder, (notebook, Path("../case_study_wage_growth/_output"), OUTPUT_DIR))
+                (
+                    copy_notebook_to_folder,
+                    (notebook, Path("../case_study_wage_growth/_output"), OUTPUT_DIR),
+                )
                 for notebook in stems
             ],
         ],
@@ -90,7 +126,10 @@ def task_doit_fama_french():
         "actions": [
             "doit -f ../case_study_wrds_fama_french/dodo.py",
             *[
-                (copy_notebook_to_folder, (notebook, "../case_study_wrds_fama_french/_output", OUTPUT_DIR))
+                (
+                    copy_notebook_to_folder,
+                    (notebook, "../case_study_wrds_fama_french/_output", OUTPUT_DIR),
+                )
                 for notebook in stems
             ],
         ],
