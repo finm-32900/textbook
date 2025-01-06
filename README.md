@@ -1,4 +1,4 @@
-Course Syllabus: FINM 32900, Winter 2024
+Course Syllabus: FINM 32900, Winter 2025
 ========================================
 
 **FINM 32900, Full Stack Quantitative Finance**
@@ -26,16 +26,16 @@ assumed.
 - **Class:** Mondays, 6 - 9 PM, in-person at the Stevanovich Center building,
   Room #112. (5727 S. University Ave.)
 - **Lecturer:** Jeremy Bejarano, jbejarano@uchicago.edu
-- **Instructor Office Hours:** Fridays, 3 - 4 pm, on Zoom only. Link: Zoom link
-  is available in the calendar on Canvas.
+- **Instructor Office Hours:** Monday, 5 - 6 pm, in the FinMath library (first floor of the Stevanovich Center, 5727 S. University Ave.)
 - **Teaching Assistants:**
-  - Tobias Rodriguez del Pozo, tobiasdelpozo@uchicago.edu
-  - Younghun Lee, hun@uchicago.edu
+  - Viren Desai, vdd@uchicago.edu
+  - Nick Lewis, nicklewis16@uchicago.edu
   - Note: Please include both TAs on all emails. However, students are strongly
     encouraged to post questions on the discussion page of the class GitHub
-    repository here: Zoom link is available in the calendar on Canvas.
-- **TA Office Hours:** Saturdays, 10-11 am ET, on Zoom only. Zoom link is
-  available in the calendar on Canvas.
+    repository here.
+
+- **TA Session/TA Office Hours:** TBD
+
 - **Website:** Canvas will be used for grades and for publishing Zoom links
   only. Homework and notes will be posted on the course GitHub repo:
   https://github.com/finm-32900/finm-32900-data-science. Questions and other
@@ -43,28 +43,29 @@ assumed.
 - **Textbook:** The text for the course will be published incrementally here:
   https://finm-32900.github.io/
 
-**NOTE:** Due to the holiday on January 15, a makeup class on Zoom with be held
-on Saturday, Jan 13.
+**NOTE:** Due to the holiday on January 20, a makeup class will be scheduled. This is also TBD.
 
 
 ### Assignments
 
-- Assignments must be submitted via GitHub before 3 pm on Mondays. Each
-  assignment will be distributed on a Monday, and will be due the following
-  Monday. Assignments are automatically graded via the autograder on GitHub
-  Classroom and solutions will be released shortly after. This means that the
-  due date is strict. Late assignments will not be accepted.
+- Assignments must be submitted via GitHub before 6 pm on Fridays. Each
+  assignment will be distributed on a Monday, and will be due the on the Friday
+  of the following week (11 days later).
+- Assignments are automatically graded via the autograder on GitHub Classroom
+  and solutions will be released shortly after. This means that the due date is
+  strict. Late assignments will not be accepted.
 - Each student is to individually submit their assignment (unless otherwise
-  specified). Students may work in groups, but students are not allowed to copy
-  each other's code. Each student must write their own solutions individually.
+  specified). Students are encouraged to work in groups, but students are not
+  allowed to copy each other's code. Each student must write their own solutions
+  individually.
 - After assignments are graded, solutions will be posted in separate GitHub
   repos, found here: https://github.com/finm-32900
 
 ### Final Project
 
-In lieu of a final exam, students will be organized into groups of 4 and will
-each complete a course project. Each group will present their completed project
-to the instructor at the end of the course. These presentations will be
+In lieu of a final exam, students will be organized into groups of 2 (pairs) and
+will each complete a course project. Each group will present their completed
+project to the instructor at the end of the course. These presentations will be
 scheduled individually. 
 
 ## Assessment
@@ -98,16 +99,18 @@ agenda is listed in the first sub-section of the chapter.
 
 ### HW Due Dates
 
-- [HW 0: Ungraded. Due ASAP, preferably before the first
-  class](lectures/Week1/HW0.md)
-- [HW 1: Due Thursday, Jan 18 at 11:59 pm](lectures/Week1/HW1.md)
-- [HW 2: Due Saturday, Jan 27 at 11:59 pm](lectures/Week2/HW2.md)
-- [HW 3: Due Saturday, Feb 9 at 11:59 pm](lectures/Week3/HW3.md)
-    
+- [HW 0: Ungraded. Due ASAP](lectures/Week1/HW0.md)
+- [HW 1: Due Friday, Jan 17 at 6 pm](lectures/Week1/HW1.md)
+- HW 2: TBD
+- HW 3: TBD
+- HW 4: TBD
+- HW 5: TBD
+- HW 6: TBD
+
 ## References
 
 I will provide the lecture notes that we will use in class here:
-https://finm-32900.github.io/. As a prerequiste, you should have some prior
+https://finm-32900.github.io/. As a prerequisite, you should have some prior
 familiarity with Python and the PyData stack (e.g., Numpy, Scipy, Pandas,
 Matplotlib). The following references may serve as useful refreshers:
 
@@ -158,81 +161,28 @@ use free versions of each of these services:
    Mathematics department, John Zekos, zekos@math.uchicago.edu. 
 
 
-## Instructions to Run Code in this Repository
+## Quick Start
 
-- To compile the book, run this from the repository's root directory
-
+To quickest way to run code in this repo is to use the following steps. First, you must have the `conda`  
+package manager installed (e.g., via Anaconda). However, I recommend using `mamba`, via [miniforge]
+(https://github.com/conda-forge/miniforge) as it is faster and more lightweight than `conda`. Second, you 
+must have TexLive (or another LaTeX distribution) installed on your computer and available in your path.
+You can do this by downloading and 
+installing it from here ([windows](https://tug.org/texlive/windows.html#install) 
+and [mac](https://tug.org/mactex/mactex-download.html) installers).
+Having done these things, open a terminal and navigate to the root directory of the project and create a 
+conda environment using the following command:
 ```
-jupyter-book build -W ./
+conda create -n finm python=3.12
+conda activate finm
 ```
-The option `-W` will treat warnings as errors.
-
-### Dependencies and Virtual Environments
-
-The following is additional helpful information to run the code used in the
-lectures.
-
-### Working with `pip` requirements
-
-`conda` allows for a lot of flexibility, but can often be slow. `pip`, however,
-is fast for what it does.  You can install the requirements for this project
-using the `requirements.txt` file specified here. Do this with the following
-command:
+and then install the dependencies with pip
 ```
 pip install -r requirements.txt
 ```
-
-### Working with `conda` environments
-
-The dependencies used in this environment (along with many other environments
-commonly used in data science) are stored in the conda environment called
-`blank` which is saved in the file called `environment.yml`. To create the
-environment from the file (as a prerequisite to loading the environment), use
-the following command:
-
+Finally, you can then run 
 ```
-conda env create -f environment.yml
+doit
 ```
+And that's it! The landing page of the textbook website will be available at `./_build/html/index.html`.
 
-Now, to load the environment, use
-
-```
-conda activate blank
-```
-
-Note that an environment file can be created with the following command:
-
-```
-conda env export > environment.yml
-```
-
-However, it's often preferable to create an environment file manually, as was
-done with the file in this project.
-
-Also, these dependencies are also saved in `requirements.txt` for those that
-would rather use pip. Also, GitHub actions work better with pip, so it's nice to
-also have the dependencies listed here. This file is created with the following
-command:
-
-```
-pip freeze > requirements.txt
-```
-
-**Other helpful `conda` commands**
-
-- Create conda environment from file: `mamba env create -f environment.yml`
-- Activate environment for this project: `mamba activate blank`
-- Remove conda environment: `mamba remove --name finm --all`
-- Create blank conda environment: `mamba create --name myenv
-  --no-default-packages`
-- Create blank conda environment with different version of Python: `mamba create
-  --name myenv --no-default-packages python` Note that the addition of "python"
-  will install the most up-to-date version of Python. Without this, it may use
-  the system version of Python, which will likely have some packages installed
-  already.
-
-### `mamba` and `conda` performance issues
-
-Since `conda` has so many performance issues, it's recommended to use `mamba`
-instead. I recommend installing the `miniforge` distribution. See here:
-https://github.com/conda-forge/miniforge

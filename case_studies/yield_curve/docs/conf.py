@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath("../src/"))
 # -- Project information -----------------------------------------------------
 
 project = "Blank Project"
-copyright = "2024, John Doe"
+copyright = "2025, John Doe"
 author = "John Doe"
 
 # The full version, including alpha/beta/rc tags
