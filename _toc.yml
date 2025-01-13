@@ -19,7 +19,7 @@ chapters:
   - file: lectures/Week1/case_study_reproducibility_in_finance.md
 - file: lectures/Week1/HW1.md
   sections:
-  - file: lectures/Week2/case_study_atlanta_fed_wage_growth_tracker.md
+  - file: lectures/Week1/case_study_atlanta_fed_wage_growth_tracker.md
   - file: output/_01_wage_growth_during_the_recession.ipynb
 # ----------------------------
 # Week 2: Task Runners, Env Files, and Secrets
