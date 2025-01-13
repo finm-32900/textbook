@@ -7,6 +7,11 @@ chapters:
 - file: README.md # This is the syllabus. It is designed this way 
 # so that it can be viewed on GitHub as well.
 - file: lectures/Week1/HW0.md
+# ----------------------------
+# Week 1: Getting Started with GitHub and GitHub Classroom
+# Data:IPUMS CPS
+# HW: Wage growth during the recession
+# TA Session: Setting up VS Code for HW
 - file: lectures/Week1/overview_w1.md
   sections:
   - file: lectures/Week1/what_is_this_course_about.md
@@ -16,7 +21,14 @@ chapters:
   sections:
   - file: lectures/Week2/case_study_atlanta_fed_wage_growth_tracker.md
   - file: output/_01_wage_growth_during_the_recession.ipynb
-- file: lectures/subject_to_change_after_this_week.md
+# ----------------------------
+# Week 2: Task Runners, Env Files, and Secrets
+# Data: CRSP and yfinance Data
+# Handling Jupyter Notebooks in PyDoit
+# CRSP for historical data, yfinance for real-time data
+# Tear sheet for individual stocks
+# CRSP Market Portfolio and HW constructs SP 500 index
+# TA Session: Pull requests on GitHub. GitHub skills page.
 - file: lectures/Week2/overview_w2.md
   sections:
   - file: lectures/Week2/virtual_environments.md
@@ -25,6 +37,12 @@ chapters:
 - file: lectures/Week2/HW2.md
   sections:
   - file: output/_01_repo_spikes.ipynb
+- file: lectures/subject_to_change_after_this_week.md
+# ----------------------------
+# Week 3: Automating Queries and the Basics of SQL
+# Data: CRSP and Compustat Data, Merged
+# Pushing large computations to the cloud
+# TA Session: No TA session because of the holiday. Lecture uses TA session as makeup day.
 - file: lectures/Week3/overview_w3.md
   sections:
   - file: lectures/Week3/WRDS_intro_and_web_queries.md
@@ -34,20 +52,51 @@ chapters:
   sections:
   - file: output/_02_CRSP_market_index.ipynb
   - file: output/_03_Fama_French_1993.ipynb
+# ----------------------------
+# Week 4: Publishing Reports: Markdown, LaTeX, and Github Pages
+# Data: Datastream??
+# Publishing charts to ChartBook. Individual pipeline page. Publishing to GitHub Pages
+# Everybody contributes their own new chart to the ChartBook. Each student must contribute
+# a unique chart to the ChartBook. Use GitHub Issue tracker to claim a chart BEFORE
+# starting work on it. The issue must be approved by the instructor before you can start.
+# Then, the repo that collects charts simply has a URL that points to the student's GitHub
+# repo that contains the pipeline.
+# TA Session: LaTeX essentials
 - file: lectures/Week4/overview_w4.md
   sections:
   - file: lectures/Week4/reports_with_jupyter_notebooks.md
   - file: lectures/Week4/intro_to_LaTeX.md
   - file: lectures/Week4/latex_essentials.md
+# ----------------------------
+# Week 5: Medium Data
+# Python Polars Package: Lazy evaluation, parallel execution, and streaming
+# Data: Corporate TRACE Data
 - file: lectures/Week5/overview_w5.md
   sections:
   - file: lectures/Week5/sphinx.md
   - file: lectures/Week5/unit_tests.md
+# ----------------------------
+# Week 6: Creating your own Python Package, plus CI/CD and GitHub Actions
+# Hatch and Hatchling, Sphinx, Click CLI
+# Yield Curve Estimation
+# CRSP Treasury Data
 - file: lectures/Week6/overview_w6.md
   sections:
   - file: lectures/Week6/bloomberg_terminal.md
   - file: lectures/Week6/GitHub_pull_requests.md
+# ----------------------------
+# Week 7: Working with Remotes, HPC Scheduler, GNU Parallel
+# SSH, SCP, SFTP
+# Data: SEC Filings
+# Jupyter Notebooks running remotely, port forwarding. Connect traditional way and via VS Code
+# Try Remote Tunnels: https://code.visualstudio.com/docs/remote/tunnels and https://www.youtube.com/watch?v=SyLHXdXhE1U
+# TA Session: Bloomberg Terminal
 - file: lectures/Week7/overview_w7.md
+# ----------------------------
+# Week 8: Big Data
+# Data: NYSE Trade and Quote Data (TAQ)
+# NBBO Calculation
+# TA Session: SAS
 - file: lectures/Week8/overview_w8.md
   sections:
   - file: lectures/Week8/github_actions_interactive_dashboard.md
@@ -56,3 +105,6 @@ chapters:
   sections:
   - file: lectures/Misc/potential_final_projects.md
 - file: lectures/Misc/appendix.md
+# ----------------------------
+# Week 9: Publishing a live dashboard to the web
+# IPUMS CPS Data 

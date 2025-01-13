@@ -5,6 +5,93 @@ When developing software, particularly in data science and quantitative finance,
 A common tool that you will encounter are Conda environments, often using `environment.yml` files, or sometimes paired with  `pip` and its `requirements.txt` files.
 This short note will explain the importance of these tools and files in creating reproducible and reliable software environments.
 
+
+## Examples: Streamlit Finance Dashboards
+
+These two examples demonstrate examples of end products that might inspire you.
+These are very simple examples that are easy to construct, but they are here to give you
+ideas for what you might want to build.
+
+Reproducing these example is made easy with the use of software environments.
+
+### Example 1: Streamlit Finance Dashboard
+
+This app is a simple example of using Streamlit to create a financial data web app.
+This demo use streamlit, pandas and yfinance modules.
+
+Allows you to select one of the 500 companies that compose the S&P 500 and
+display a updated chart of adjusted closing prices, as well as add a pair of
+moving averages.
+
+![Sample Animation](assets/streamlit_finance_chart.gif "Sample Animation")
+
+
+ - Clone the repository located here: https://github.com/jmbejara/streamlit_finance_chart
+ - Navigate the command line to the source directory. Or, open the cloned repo in VS Code and then open the VS Code terminal.
+ - In the terminal, use the following commands to create and install the associated environment.
+
+```
+conda create -n streamlit python=3.12
+conda activate streamlit
+pip install -r requirements.txt
+```
+You can then run the dashboard with
+```
+streamlit run app.py
+```
+
+After this, you can remove the conda environment if you like: `conda remove --name streamlit --all`
+
+### Example 2: Another Streamlit Dashboard, except that it requires API keys for data service
+
+FinStockDash is a web application that allows users to analyze stock data using various financial ratios, balance sheet, income statement, and other financial metrics. User can enter a stock ticker symbol to retrieve relevant financial information, view stock prices over time, and generate visualizations to gather insights on the company performance. The application makes use of APIs provided by Financial Modeling Prep and Alpha Vantage to retrieve real-time stock data.
+
+
+![Demo](assets/web_app_demo.gif)
+
+This example requires API keys for data service. API keys are an example of a **secret**.
+Secrets are a type of information that should not be shared with others. In this example, the
+secrets are stored in a file called `.env`. We'll learn more about this in today's lecture.
+
+ - Clone the repository located here: https://github.com/jmbejara/FinStockDash
+ - Navigate the command line to the source directory. Or, open the cloned repo in VS Code and then open the VS Code terminal.
+ - In the terminal, use the following commands to create and install the associated environment.
+
+To run the app locally, follow these steps:
+
+1. Clone the repository: <br>
+
+       $ git clone https://github.com/abeltavares/financial_dashboard_app.git 
+
+2. Create and activate a virtual environment: <br>
+
+       $ python3 -m venv .venv
+       $ source .venv/bin/activate
+
+3. Install the required libraries:<br>
+
+       $ pip install -r requirements.txt
+
+4. Create a `.env` file with the proper API keys. Use the `.env.example` file as a template.
+
+5. Run the app:
+
+       $ streamlit run app.py
+
+You can deactivate the environment with
+```
+deactivate
+```
+You can delete the virtual environment with
+```
+rm -rf .venv
+```
+or on Windows command prompt:
+```
+rmdir .venv
+```
+(or `rmdir /S /Q .venv` to remove the directory and all its contents)
+
 ## Understanding Dependency Management
 
 Dependencies are external libraries or packages that your project needs to function correctly. In data science, examples include NumPy for numerical operations, pandas for data manipulation, and Matplotlib for plotting.
@@ -196,41 +283,3 @@ pip freeze > requirements.txt
 - Create blank conda environment: `mamba create --name myenv --no-default-packages`
 - Create blank conda environment with different version of Python: `mamba create --name myenv --no-default-packages python` Note that the addition of "python" will install the most up-to-date version of Python. Without this, it may use the system version of Python, which will likely have some packages installed already.
 
-
-## Example: Streamlit Finance Dashboard
-
- - Clone the repository located here: https://github.com/jmbejara/streamlit_finance_chart
- - Navigate the command line to the source directory. Or, open the cloned repo in VS Code and then open the VS Code terminal.
- - In the terminal, use the following commands to create and install the associated environment.
-
-```
-conda create -n streamlit python=3.12
-conda activate streamlit
-pip install -r requirements.txt
-```
-You can then run the dashboard with
-```
-streamlit run app.py
-```
-
-After this, you can remove the conda environment if you like: `conda remove --name finm --all`
-
-<!-- ## Example 2: Another Streamlit Dashboard
-
-TODO: Needs API keys for data service. Maybe don't use this example then.
-
- - Clone the repository located here: https://github.com/jmbejara/FinStockDash
- - Navigate the command line to the source directory. Or, open the cloned repo in VS Code and then open the VS Code terminal.
- - In the terminal, use the following commands to create and install the associated environment.
-
-```
-python -m venv venv 
-venv\Scripts\activate.bat
-pip install -r requirements.txt
-```
-
-
-Afterwards, you can deactivate the `venv` with
-```
-venv\Scripts\deactivate.bat
-``` -->
