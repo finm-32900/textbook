@@ -22,3 +22,7 @@ Also, if you're looking for more instruction about how to use Git, here are two 
 
 - [What is Version Control? (Learn Git Video Course)](https://www.youtube.com/watch?v=M-O8ZNW9icQ)
 - [Using Git with Visual Studio Code (Official Beginner Tutorial)](https://www.youtube.com/watch?v=i_23KUAEtUM)
+
+## Part 2 (graded)
+
+TDB. This will include a task of replicating the CRSP market index example from the lecture as well as a task of replicating the S&P 500 index from its constituent companies. This will be released in the next 2 days.
