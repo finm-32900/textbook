@@ -159,15 +159,15 @@ book_source_files = [
     "output/_01_repo_spikes.ipynb",
     ##
     "lectures/Week2/HW2.md",
+    "lectures/Week2/what_is_a_task_runner.md",
+    "lectures/Week2/env_files.md",
+    "lectures/Week2/WRDS_intro_and_web_queries.md",
     "lectures/Week2/project_structure.md",
     "lectures/Week2/overview_w2.md",
-    "lectures/Week2/what_is_a_task_runner.md",
     ##
     "output/_01_wage_growth_during_the_recession.ipynb",
     ##
     "lectures/Week3/overview_w3.md",
-    "lectures/Week3/WRDS_intro_and_web_queries.md",
-    "lectures/Week3/env_files.md",
     "lectures/Week3/HW3.md",
     ##
     "output/_01_wrds_python_package.ipynb",

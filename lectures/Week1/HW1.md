@@ -17,7 +17,7 @@
 - Consider, if you'd like, posting an introduction here on the course discussion board: https://github.com/orgs/finm-32900/discussions/2
 
 
-### Part 1
+### Part 1 (ungraded, but required)
 
 In order to start mastering the many features of Github, please complete the following tutorials from the [GitHub Skills](https://skills.github.com/) page. Please make sure to use **public repositories** for this in your own GitHub user account. You will provide a link later to demonstrate that it was completed.
 
@@ -29,7 +29,7 @@ In order to start mastering the many features of Github, please complete the fol
  
 These tutorials are not graded, but please make sure to complete them before the next class.
 
-### Part 2
+### Part 2 (graded)
 
 Next, a coding assignment is located at the following GitHub Education link: https://classroom.github.com/a/uDoKANYN
 Click on the link and accept the assignment.

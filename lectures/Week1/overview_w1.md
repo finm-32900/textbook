@@ -25,6 +25,7 @@ how to access the [course textbook](https://finm-32900.github.io/), and how to d
     - Show students how to sign up for GitHub Classroom (use assignment link)
     - Complete Example HWs together and submit them on GitHub Classroom
 - Discuss [Virtual Environments](./virtual_environments.md)
+- Discuss Case Study: Atlanta Fed Wage Growth Tracker
 - Discuss and start [Homework 1](./HW1.md)
 
 ## Homework 1

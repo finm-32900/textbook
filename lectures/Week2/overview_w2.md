@@ -2,6 +2,8 @@
 
 ## Objectives
 
+- No class on Jan 20 because of holiday. I will hold a make-up class on Friday, January 24 during the TA office hours.
+This will be on Zoom. See the Zoom link on the Canvas calendar. I will use the same Zoom link as the TA office hours.
 - Review [HW 1](../Week1/HW1.md):
   - Even with precise instructions, replicating results exactly is still hard. 
   - The manual data download step is one common source of error. In today's lecture,
@@ -23,6 +25,11 @@
     These tutorials created by GitHub are a great resource, but I will augment these
     with some of my own exercises.
 - Review "Virtual Environments" from [Week 1](../Week1/virtual_environments.md)
-- Discuss [Build Systems and Task Runners](./what_is_a_task_runner.md)
+- Given the motivation for automating data downloads and the inspiration to create various financial reports, let's discuss the main platform for data that we'll use in this course: WRDS. 
+  - [Introduction to WRDS and WRDS Web Queries](./WRDS_intro_and_web_queries.md) 
+  - [Demo of the WRDS Python package](../../output/_01_wrds_python_package.ipynb).
+- Now, discuss incorporating automated data downloads into our workflow. Discuss [Build Systems and Task Runners](./what_is_a_task_runner.md)
+- Discuss `.env` files and secretes, and how to use them in our workflow. See [Env Files](./env_files.md)
+- CRSP value weighted index example
 - Discuss [HW 2](./HW2.md)
-- Discuss Case Study: Atlanta Fed Wage Growth Tracker
+

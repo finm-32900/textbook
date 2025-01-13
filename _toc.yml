@@ -32,12 +32,14 @@ chapters:
 # TA Session: Pull requests on GitHub. GitHub skills page.
 - file: lectures/Week2/overview_w2.md
   sections:
+  - file: lectures/Week2/WRDS_intro_and_web_queries.md
+  - file: output/_01_wrds_python_package.ipynb
   - file: lectures/Week2/what_is_a_task_runner.md
+  - file: lectures/Week2/env_files.md
   - file: lectures/Week2/project_structure.md
 - file: lectures/Week2/HW2.md
   sections:
-  - file: output/_01_repo_spikes.ipynb
-- file: lectures/subject_to_change_after_this_week.md
+  - file: output/_02_CRSP_market_index.ipynb
 # ----------------------------
 # Week 3: Automating Queries and the Basics of SQL
 # Data: CRSP and Compustat Data, Merged
@@ -45,12 +47,10 @@ chapters:
 # TA Session: No TA session because of the holiday. Lecture uses TA session as makeup day.
 - file: lectures/Week3/overview_w3.md
   sections:
-  - file: lectures/Week3/WRDS_intro_and_web_queries.md
-  - file: output/_01_wrds_python_package.ipynb
-  - file: lectures/Week3/env_files.md
+  - file: lectures/subject_to_change_after_this_week.md
 - file: lectures/Week3/HW3.md
   sections:
-  - file: output/_02_CRSP_market_index.ipynb
+  - file: output/_01_repo_spikes.ipynb
   - file: output/_03_Fama_French_1993.ipynb
 # ----------------------------
 # Week 4: Publishing Reports: Markdown, LaTeX, and Github Pages
