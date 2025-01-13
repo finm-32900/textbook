@@ -154,14 +154,14 @@ book_source_files = [
     "lectures/Week1/reproducible_analytical_pipelines.md",
     "lectures/Week1/what_is_this_course_about.md",
     "lectures/Week1/case_study_atlanta_fed_wage_growth_tracker.md",
+    "lectures/Week1/virtual_environments.md",
     ##
     "output/_01_repo_spikes.ipynb",
     ##
     "lectures/Week2/HW2.md",
     "lectures/Week2/project_structure.md",
     "lectures/Week2/overview_w2.md",
-    "lectures/Week2/virtual_environments.md",
-    "lectures/Week2/what_is_a_build_system.md",
+    "lectures/Week2/what_is_a_task_runner.md",
     ##
     "output/_01_wage_growth_during_the_recession.ipynb",
     ##

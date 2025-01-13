@@ -8,7 +8,7 @@ chapters:
 # so that it can be viewed on GitHub as well.
 - file: lectures/Week1/HW0.md
 # ----------------------------
-# Week 1: Getting Started with GitHub and GitHub Classroom
+# Week 1: GitHub, GitHub Classroom, and Virtual Environments
 # Data:IPUMS CPS
 # HW: Wage growth during the recession
 # TA Session: Setting up VS Code for HW
@@ -17,6 +17,7 @@ chapters:
   - file: lectures/Week1/what_is_this_course_about.md
   - file: lectures/Week1/reproducible_analytical_pipelines.md
   - file: lectures/Week1/case_study_reproducibility_in_finance.md
+  - file: lectures/Week1/virtual_environments.md
 - file: lectures/Week1/HW1.md
   sections:
   - file: lectures/Week1/case_study_atlanta_fed_wage_growth_tracker.md
@@ -31,8 +32,7 @@ chapters:
 # TA Session: Pull requests on GitHub. GitHub skills page.
 - file: lectures/Week2/overview_w2.md
   sections:
-  - file: lectures/Week2/virtual_environments.md
-  - file: lectures/Week2/what_is_a_build_system.md
+  - file: lectures/Week2/what_is_a_task_runner.md
   - file: lectures/Week2/project_structure.md
 - file: lectures/Week2/HW2.md
   sections:
