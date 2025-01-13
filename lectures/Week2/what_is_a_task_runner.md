@@ -1,14 +1,14 @@
 # What is a build system or task runner?
 
 ##  Introduction to Build Systems and Task Runners
-A build system is a collection of tools and scripts that automate the process of compiling source code into executable programs or libraries. It can handle tasks like tracking dependencies between files, compiling source code in the necessary sequence, and executing unit tests. Build systems are crucial in software development, especially in large projects with numerous source files and complex dependency chains. GNU Make and Makefiles are a common example of a build system.
+A build system is a collection of tools and scripts that automate the process of compiling source code into executable programs or libraries. It can handle tasks like tracking dependencies between files, compiling source code in the necessary sequence, and executing unit tests. Build systems are crucial in software development, especially in large projects with numerous source files and complex dependency chains. Make and Makefiles are a common example of a build system.
 
 A task runner is similar. It is a software utility designed to automate the execution of repetitive tasks in the software development process. These tasks can include but are not limited to, scripting routine operations such as minifying code, running tests, compiling source files, and deploying to production servers. Task runners streamline the workflow by reducing the need for manual intervention, enhancing consistency, and saving valuable time. They are particularly beneficial in complex projects where the frequency and complexity of these tasks can be substantial. By defining a series of tasks and their respective commands in a configuration file, task runners enable developers to execute complex sequences with simple commands, thus improving efficiency and productivity in the development lifecycle.
 
-_Note that here I will sometimes use these phrases interchangeably, though they are somewhat different._
+_Note that here I will sometimes use these phrases interchangeably, though they are somewhat different. Some build systems can be used as task runners, and some task runners can be used as build systems._
 
 
-A build system in this context addresses multiple challenges:
+A task runner in this context addresses multiple challenges:
 - **Workflow Management**: Manages the execution order of various scripts and notebooks based on dependencies.
 - **Data Integrity**: Ensures that any changes in data or scripts trigger the re-run of dependent tasks, maintaining data integrity.
 - **Reproducibility**: Facilitates reproducibility of results, crucial in research settings, by automating the workflow.
@@ -19,12 +19,16 @@ A build system in this context addresses multiple challenges:
 ```{admonition} Discussion
 :class: tip 
 When working on a large coding project, have you ever stepped away for a few weeks and then tried to return to the project only to find difficulty remembering the steps you used to get the results you had before?
+
+Or, even if you took the time to document the steps you used to get the results you had before, have you ever found that the steps you used to get the results you had before are no longer valid? (task runners are self-documenting)
 ```
 
 Suppose you are trying to manage a complex data science workflow
 in a research setting. In a finance research setting, 
 a data science project often involves several interdependent stages: data collection, preprocessing, analysis, model training, validation, and reporting. Each stage may depend on the output of the previous stages, and the project might include a mix of Python scripts, Jupyter notebooks, and data files in various formats.
 
+**Simple Workflow**
+The following flow chart represents a simple data science workflow. Each step depends on the previous step. It starts with data collection, then preprocessing, then analysis, then model training, then validation, and finally reporting. If one of the early steps in changed, all steps after it will need to be re-run.
 ![A data science project with several interdependent stages: data collection, preprocessing, analysis, model training, validation, and reporting.](assets/example_workflow.png)
 
 <!-- 
@@ -62,9 +66,22 @@ plt.xlim(-0.5, len(stages) * 1.5 - 0.5)
 plt.ylim(-1, 1)
 plt.show()
 -->
+**Complex Workflow, represented as a directed acyclic graph (DAG)**
+The following is a hypothetical workflow that is more complex than the simple workflow above.
+Such workflows can, without loss of generality, be represented as a directed acyclic graph (DAG).
+![A complex workflow, represented as a directed acyclic graph (DAG)](assets/example_workflow_dag.jpg)
 
-### Example of a Task Runner/Build System Managing a Project
+**Mapping Tasks into DAGs is a Key Insight into Parallelizing Workflows**
+The following figure demonstrates how PySpark represents a workflow as a DAG, 
+which in combination with a job scheduler, allows for parallelizing the workflow.
+Representing your workflow as a DAG can help you to identify opportunities to parallelize your workflow.
+![PySpark DAG](assets/pyspark_dag.jpg)
 
+
+
+## Example of a Task Runner/Build System Managing a Project
+
+Consider as an example, the simple data science workflow we discussed above.
 Suppose that we have a hypothetical project that completes runs a set of abstract tasks:
 data collection, preprocessing, analysis, model training, validation, and reporting.
 Each of these tasks depend on the previous task.
@@ -73,9 +90,28 @@ This script is a file called `dodo.py` that uses the `PyDoit` Python-based build
 The task runner script documents the scripts associated with each step as follows:
 
 1. **Data Collection**: A script (`data_collection.py`) gathers financial data from various sources.
-2. **Preprocessing**: Another script (`preprocess_data.py`) cleans and preprocesses the data.
-3. **Analysis and Modeling**: A Jupyter notebook (`analysis.ipynb`) performs data analysis and model training.
-4. **Reporting**: Finally, a script (`generate_report.py`) compiles the results into a report.
+   - Dependencies: None
+   - Output: `data/raw_data.csv`
+
+2. **Preprocessing**: Another script (`preprocess.py`) cleans and preprocesses the data.
+   - Dependencies: `data/raw_data.csv`
+   - Output: `data/processed_data.csv`
+
+3. **Analysis**: A Jupyter notebook (`analysis.ipynb`) performs data analysis.
+   - Dependencies: `data/processed_data.csv`
+   - Output: `reports/analysis_output.html`
+
+4. **Model Training**: A script (`train_model.py`) trains the model.
+   - Dependencies: `data/processed_data.csv`
+   - Output: `models/trained_model.pkl`
+
+5. **Validation**: A script (`validate_model.py`) validates the trained model.
+   - Dependencies: `models/trained_model.pkl`
+   - Output: `reports/validation_report.txt`
+
+6. **Reporting**: A script (`generate_report.py`) compiles the results into a report.
+   - Dependencies: `reports/analysis_output.html`, `reports/validation_report.txt`
+   - Output: `reports/final_report.pdf`
 
 The `dodo.py` script then looks like this:
 
@@ -84,61 +120,54 @@ The `dodo.py` script then looks like this:
 
 def task_data_collection():
     return {
+        'file_dep': [],
         'actions': ['python scripts/data_collection.py'],
         'targets': ['data/raw_data.csv'],
-        'file_dep': [],
-        'clean': True,
     }
 
 def task_preprocessing():
     return {
-        'actions': ['python scripts/preprocess.py'],
         'file_dep': ['data/raw_data.csv'],
+        'actions': ['python scripts/preprocess.py'],
         'targets': ['data/processed_data.csv'],
-        'clean': True,
     }
 
 def task_analysis():
     return {
-        'actions': ['jupyter nbconvert --execute notebooks/analysis.ipynb'],
         'file_dep': ['data/processed_data.csv'],
+        'actions': ['jupyter nbconvert --execute notebooks/analysis.ipynb'],
         'targets': ['reports/analysis_output.html'],
-        'clean': True,
     }
 
 def task_model_training():
     return {
-        'actions': ['python scripts/train_model.py'],
         'file_dep': ['data/processed_data.csv'],
+        'actions': ['python scripts/train_model.py'],
         'targets': ['models/trained_model.pkl'],
-        'clean': True,
     }
 
 def task_validation():
     return {
-        'actions': ['python scripts/validate_model.py'],
         'file_dep': ['models/trained_model.pkl'],
+        'actions': ['python scripts/validate_model.py'],
         'targets': ['reports/validation_report.txt'],
-        'clean': True,
     }
 
 def task_reporting():
     return {
-        'actions': ['python scripts/generate_report.py'],
         'file_dep': ['reports/analysis_output.html', 'reports/validation_report.txt'],
+        'actions': ['python scripts/generate_report.py'],
         'targets': ['reports/final_report.pdf'],
-        'clean': True,
     }
 
 ```
 
 In this `dodo.py`:
 
-- Each `task_` function defines a stage in the workflow.
+- Each `task_` function defines a stage in the workflow. Each function must start with `task_` if it is to be recognized as a task by the task runner. Each function returns a dictionary with the keys `'actions'`, `'file_dep'`, and `'targets'`.
 - The `'actions'` key specifies the command to run for each task.
 - The `'file_dep'` (file dependencies) key lists the files that the task depends on.
 - The `'targets'` key lists the files that the task produces.
-- The `'clean'` key, when set to `True`, allows PyDoit to clean up the targets if the `doit clean` command is used.
 
 With this setup, the entire workflow can be automated and executed in the correct order with a single command (`doit`), significantly streamlining the research process and ensuring consistency and reproducibility in the results.
 
@@ -163,15 +192,15 @@ When the project becomes large enough and complex enough, the following problems
 Thus, a build system, by automating and standardizing various aspects of the data science workflow, can significantly mitigate these common pitfalls, leading to more efficient, reproducible, and collaborative research in data science settings.
 
 
-##  GNU Make: The most commonly used build system in the world
-GNU Make is a widely-used build system that, while particularly prominent in C/C++ projects, offers a versatile toolset extendable to many different programming languages and environments. It functions by automating complex workflows, primarily the compilation process, through the interpretation of a `Makefile`. This file, central to its operation, details a set of rules and dependencies that guide the build process.
+##  Make: The most commonly used build system in the world
+[Make](https://en.wikipedia.org/wiki/Make_(software)), e.g. [GNU Make](https://www.gnu.org/software/make/), is a widely-used build system that, while particularly prominent in C/C++ projects, offers a versatile toolset extendable to many different programming languages and environments. It functions by automating complex workflows, primarily the compilation process, through the interpretation of a `Makefile`. This file, central to its operation, details a set of rules and dependencies that guide the build process.
 
-Contrary to a common misconception, GNU Make's utility is not confined to C/C++ environments. Its capabilities are effectively applicable to a broad spectrum of programming tasks. For instance, it can be used to manage workflows involving scripting languages like Python or R, automate the generation of reports or data files, and even orchestrate complex data analysis pipelines. Its language-agnostic nature allows it to execute arbitrary shell commands, making it a powerful tool for a variety of automation tasks beyond just compilation.
+Contrary to a common misconception, Make's utility is not confined to C/C++ environments. Its capabilities are effectively applicable to a broad spectrum of programming tasks. For instance, it can be used to manage workflows involving scripting languages like Python or R, automate the generation of reports or data files, and even orchestrate complex data analysis pipelines. Its language-agnostic nature allows it to execute arbitrary shell commands, making it a powerful tool for a variety of automation tasks beyond just compilation.
 
-Given its widespread adoption and flexibility, GNU Make is a tool that all data scientists should be at least aware of. Understanding its basic functions can significantly enhance the efficiency of managing various aspects of data science projects. The ability to automate repetitive tasks, ensure consistency in data processing, and manage complex dependencies makes GNU Make an invaluable asset in the toolbox of modern data scientists, regardless of their primary programming language.
+Given its widespread adoption and flexibility, Make is a tool that all data scientists should be at least aware of. Understanding its basic functions can significantly enhance the efficiency of managing various aspects of data science projects. The ability to automate repetitive tasks, ensure consistency in data processing, and manage complex dependencies makes Make an invaluable asset in the toolbox of modern data scientists, regardless of their primary programming language.
 
 ### Makefile: The Blueprint
-A Makefile is a script utilized by GNU Make, consisting of:
+A Makefile is a script utilized by Make, consisting of:
 
 - **Targets**: These are usually file names, representing the output of a build process.
 - **Dependencies**: Files that need to be updated before the target can be processed.
@@ -182,7 +211,7 @@ A Makefile is a script utilized by GNU Make, consisting of:
 target: dependencies
     command to build
 ```
-Now, consider the `dodo.py` example file above. When written as a `Makefile` to be used with GNU Make, it would look like this:
+Now, consider the `dodo.py` example file above. When written as a `Makefile` to be used with Make, it would look like this:
 
 ```makefile
 # Makefile for managing a data science research project workflow
@@ -234,19 +263,13 @@ In this `Makefile`:
 
 This Makefile can be run using the `make` command to execute the entire workflow or specific tasks, and `make clean` to clean up the outputs.
 
-
-**GNU Make: Characteristics**
-- **Efficiency**: Only rebuilds parts of a project that have changed.
-- **Flexibility**: Can be used for various types of projects beyond just C/C++.
-- **Customization**: Allows writing complex build rules.
-
 ##  Python PyDoit: An Python-based Alternative
 
-Python PyDoit is a task management and automation tool that offers several advantages, especially for Python-centric workflows, compared to GNU Make:
+Python PyDoit is a task management and automation tool that offers several advantages, especially for Python-centric workflows, compared to Make:
 
 1. **Ease of Installation with pip or conda**:
    - PyDoit can be conveniently installed using pip, which is a standard tool in Python development.
-   - This contrasts with GNU Make, which, while ubiquitous in Linux environments, may not be readily available on Windows systems without additional installation steps.
+   - This contrasts with Make, which, while ubiquitous in Linux environments, may not be readily available on Windows systems without additional installation steps.
    - The ability to install PyDoit as part of the normal Python environment setup enhances its accessibility and ease of integration into existing Python projects.
 
 2. **Simplified Workflow Description**:
@@ -258,32 +281,31 @@ Python PyDoit is a task management and automation tool that offers several advan
    - This consistency ensures that the entire codebase, including the automation scripts, is in a single, familiar language, reducing the learning curve and increasing the efficiency of managing workflows.
    - Being in the same language ecosystem as the main project code, PyDoit allows for more seamless integration and utilization of existing Python skills and tools.
 
+4. **Scales down as well as scales up**:
+   - While some other task runners may be more feature-rich, this abundance of features can be a hindrance to simple projects. 
+   - PyDoit is simple, and can be used for simple projects, or complex projects. For simple projects, PyDoit's `dodo.py` file scales down to a few lines of code.
+
 I personally find that these features make PyDoit a particularly attractive option for data scientists and developers who are already immersed in the Python ecosystem and are looking for an effective way to automate their workflows. That said, PyDoit is not ubiquitous. There are many other such systems or task runners, even many others that are written in Python.
 
 ### Examples of other Build Systems or Task Runners
 
 Here are some examples of other build systems and/or task runners along with the languages they are typically associated with or the languages they are written in:
 
-- **Apache Ant** ([Ant Home Page](https://ant.apache.org/)): Primarily used with Java projects. Although mainly a build system for Java, it can also function as a task runner, executing predefined tasks.
-- **Apache Maven** ([Maven Home Page](https://maven.apache.org/)): Also commonly used for managing Java projects.
+- **Airflow** ([Apache Airflow](https://airflow.apache.org/)): A platform created by Airbnb to programmatically author, schedule, and monitor workflows. While primarily known as a workflow scheduler for data pipelines, it can be used as a sophisticated task runner. It represents workflows as Directed Acyclic Graphs (DAGs) and includes a rich web interface for monitoring and managing tasks.
 - **Bazel** ([Bazel Home Page](https://bazel.build/)): Developed by Google, it supports multiple languages including Java, C++, and Python.
 - **Celery** ([Celery Home Page](https://docs.celeryproject.org/en/stable/)): An asynchronous task queue/job queue based on distributed message passing, primarily used in Python applications.
+- **clusterjob** ([clusterjob docs](https://clusterjob.readthedocs.io/)): A tool for managing computational pipelines in High Performance Computing (HPC) environments. It specializes in submitting and monitoring jobs to cluster job schedulers like SLURM and TORQUE/PBS, making it easier to integrate HPC workflows into computational pipelines. Note that this tool integrates with PyDoit task pipelines (see https://clusterjob.readthedocs.io/en/latest/pydoit_pipeline.html). The tool provides a unified interface for job submission, status monitoring, and resource management across different HPC backend systems.
 - **CMake** ([CMake Home Page](https://cmake.org/)): Widely used for C and C++ projects, but also supports other languages.
-- **Gradle** ([Gradle Home Page](https://gradle.org/)): Known for its use with Java, Groovy, and Kotlin.
-- **Grunt** ([Grunt Home Page](https://gruntjs.com/)): A JavaScript task runner, primarily used for automating mundane tasks in web development.
-- **Gulp** ([Gulp Home Page](https://gulpjs.com/)): A JavaScript-based build system, often used in web development. Another JavaScript task runner, known for its use in front-end web development for tasks like minification, concatenation, cache busting, etc.
 - **Invoke** ([Invoke Home Page](http://www.pyinvoke.org/)): A task runner written in Python, offering a clean and high-level API for running shell commands and defining/organizing task functions.
-- **Just** ([Just Home Page](https://github.com/casey/just)): A handy command runner written in Rust, designed to save you from writing shell scripts.
-- **MSBuild** ([MSBuild Home Page](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild)): The build system for Microsoft's .NET framework.
-- **Ninja** ([Ninja Home Page](https://ninja-build.org/)): Designed to be used with a higher-level build system; often used with C and C++ projects.
-- **npm scripts** ([npm Documentation](https://docs.npmjs.com/cli/v7/using-npm/scripts)): Part of the npm package manager for JavaScript, allowing the definition of various scripts for task automation in the `package.json` file.
+- **joblib** ([joblib docs](https://joblib.readthedocs.io/)): A set of tools to provide lightweight pipelining in Python. Particularly useful for saving computation time and memory when dealing with large data processing tasks through transparent disk-caching and parallel computing.
+- **Luigi** ([Luigi Home Page](https://github.com/spotify/luigi)): A Python package developed by Spotify that helps you build complex pipelines of batch jobs. It handles dependency resolution, workflow management, visualization, and more, making it particularly useful for data engineering and ETL workflows.
+- **PyDoit** ([PyDoit docs](https://pydoit.org/)): As discussed above, PyDoit is a Python-based task management and automation tool that offers several advantages for Python-centric workflows. It provides a flexible way to define tasks and their dependencies using Python functions, making it particularly suitable for data science workflows.
 - **pypyr** ([pypyr Home Page](https://pypyr.io/)): A task runner written in Python, designed to handle complex workflows by chaining together different tasks.
-- **Rake** ([Rake Home Page](https://ruby.github.io/rake/)): A Ruby-based task runner that provides a standard way of handling repetitive tasks like building, packaging, or testing.
 - **SCons** ([SCons Home Page](https://scons.org/)): Written in Python, and used primarily for C, C++, and Fortran projects.
-- **Webpack** ([Webpack Home Page](https://webpack.js.org/)): Popular in the JavaScript community, particularly for bundling web assets. Commonly used as a module bundler for JavaScript applications, it can also automate tasks like code transpilation, optimization, and more.
+- **Snakemake** ([Snakemake](https://snakemake.github.io/)): A workflow management system particularly popular in bioinformatics and data science. It's Python-based and combines the benefits of Make with Python's flexibility. Uses a Python-based DSL (Domain Specific Language) to define workflows and automatically handles dependency resolution and parallel execution.
 
-### dodo.py: PyDoit's Configuration File
-A `dodo.py` file in PyDoit is analogous to a Makefile in GNU Make. It defines tasks, which are Python functions or dictionaries, and their dependencies.
+### PyDoit's Configuration File: `dodo.py`
+A `dodo.py` file in PyDoit is analogous to a Makefile in Make. It defines tasks, which are Python functions or dictionaries, and their dependencies.
 
 ```python
 # Sample dodo.py
@@ -300,4 +322,4 @@ def task_hello():
 For a more complex workflow with PyDoit, see the example at the beginning of this page. To see a working example, examine now the `blank_project` repository I've made available here: https://github.com/jmbejara/blank_project. My template here borrows from the template created by [Cookie Cutter Data Science](https://drivendata.github.io/cookiecutter-data-science/). We'll now walk through this project, after concluding.
 
 ##  Conclusion
-Both GNU Make and Python PyDoit offer powerful solutions for automating build processes and task execution. The choice between them often depends on the specific requirements of a project, such as the programming language used, the complexity of the task, and the user's familiarity with Python. While GNU Make is more traditional and widely used in compiling, PyDoit provides a more flexible and Python-centric approach to task automation.
+Both Make and Python PyDoit offer powerful solutions for automating build processes and task execution. The choice between them often depends on the specific requirements of a project, such as the programming language used, the complexity of the task, and the user's familiarity with Python. While Make is more traditional and widely used in compiling, PyDoit provides a more flexible and Python-centric approach to task automation.

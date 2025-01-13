@@ -1,5 +1,4 @@
-# Week 2: Build Systems and Task Runners
-
+# Week 2: Task Runners, Env Files, and Secrets
 
 ## Objectives
 
@@ -23,8 +22,7 @@
     - Future assignments will contain additional GitHub skill-building exercises. 
     These tutorials created by GitHub are a great resource, but I will augment these
     with some of my own exercises.
-- Discuss [Virtual Environments](./virtual_environments.md)
-- Demonstration of 
-- Discuss [Build Systems and Task Runners](./what_is_a_build_system.md)
+- Review "Virtual Environments" from [Week 1](../Week1/virtual_environments.md)
+- Discuss [Build Systems and Task Runners](./what_is_a_task_runner.md)
 - Discuss [HW 2](./HW2.md)
 - Discuss Case Study: Atlanta Fed Wage Growth Tracker
