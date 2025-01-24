@@ -118,7 +118,9 @@ def task_doit_fama_french():
     notebooks = [
         "01_wrds_python_package.ipynb",
         "02_CRSP_market_index.ipynb",
-        "03_Fama_French_1993.ipynb",
+        "03_SP500_constituents_and_index.ipynb",
+        "04_Fama_French_1993.ipynb",
+        "05_basics_of_SQL.ipynb",
     ]
     stems = [notebook.split(".")[0] for notebook in notebooks]
 
@@ -136,7 +138,9 @@ def task_doit_fama_french():
         "targets": [
             OUTPUT_DIR / "_01_wrds_python_package.ipynb",
             OUTPUT_DIR / "_02_CRSP_market_index.ipynb",
-            OUTPUT_DIR / "_03_Fama_French_1993.ipynb",
+            OUTPUT_DIR / "_03_SP500_constituents_and_index.ipynb",
+            OUTPUT_DIR / "_04_Fama_French_1993.ipynb",
+            OUTPUT_DIR / "_05_basics_of_SQL.ipynb",
         ],
         "verbosity": 2,  # Print everything immediately. This is important in
         # case WRDS asks for credentials.
@@ -159,7 +163,7 @@ book_source_files = [
     "output/_01_repo_spikes.ipynb",
     ##
     "lectures/Week2/HW2.md",
-    "lectures/Week2/what_is_a_task_runner.md",
+    "lectures/Week3/what_is_a_task_runner.md",
     "lectures/Week2/env_files.md",
     "lectures/Week2/WRDS_intro_and_web_queries.md",
     "lectures/Week2/project_structure.md",
