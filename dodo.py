@@ -163,23 +163,27 @@ book_source_files = [
     "output/_01_repo_spikes.ipynb",
     ##
     "lectures/Week2/HW2.md",
-    "lectures/Week3/what_is_a_task_runner.md",
     "lectures/Week2/env_files.md",
     "lectures/Week2/WRDS_intro_and_web_queries.md",
-    "lectures/Week2/project_structure.md",
+    "output/_01_wrds_python_package.ipynb",
     "lectures/Week2/overview_w2.md",
     ##
     "output/_01_wage_growth_during_the_recession.ipynb",
     ##
     "lectures/Week3/overview_w3.md",
+    "lectures/Week2/project_structure.md",
+    "lectures/Week3/what_is_a_task_runner.md",
+    "output/_05_basics_of_SQL.ipynb",
     "lectures/Week3/HW3.md",
     ##
-    "output/_01_wrds_python_package.ipynb",
+    "output/_02_CRSP_market_index.ipynb",
+    "output/_03_SP500_constituents_and_index.ipynb",
     ##
     "lectures/Week4/overview_w4.md",
     "lectures/Week4/intro_to_LaTeX.md",
     "lectures/Week4/reports_with_jupyter_notebooks.md",
     "lectures/Week4/latex_essentials.md",
+    "output/_04_Fama_French_1993.ipynb",
     ##
     "lectures/Week5/overview_w5.md",
     "lectures/Week5/sphinx.md",
