@@ -146,66 +146,22 @@ def task_doit_fama_french():
         # case WRDS asks for credentials.
     }
 
+book_source_md_files = [
+    str(p) for p in Path('lectures').glob('**/*')
+    if not p.name == '.DS_Store' and p.is_file()
+]
+book_source_ipynb_files = [
+    str(p) for p in Path('output').glob('**/*')
+    if not p.name == '.DS_Store' and p.is_file()
+]
+book_source_files = book_source_md_files + book_source_ipynb_files
 
-book_source_files = [
-    "intro.md",
-    "README.md",
-    ##
-    "lectures/Week1/case_study_reproducibility_in_finance.md",
-    "lectures/Week1/HW0.md",
-    "lectures/Week1/HW1.md",
-    "lectures/Week1/overview_w1.md",
-    "lectures/Week1/reproducible_analytical_pipelines.md",
-    "lectures/Week1/what_is_this_course_about.md",
-    "lectures/Week1/case_study_atlanta_fed_wage_growth_tracker.md",
-    "lectures/Week1/virtual_environments.md",
-    ##
-    "output/_01_repo_spikes.ipynb",
-    ##
-    "lectures/Week2/HW2.md",
-    "lectures/Week2/env_files.md",
-    "lectures/Week2/WRDS_intro_and_web_queries.md",
-    "output/_01_wrds_python_package.ipynb",
-    "lectures/Week2/overview_w2.md",
-    ##
-    "output/_01_wage_growth_during_the_recession.ipynb",
-    ##
-    "lectures/Week3/overview_w3.md",
-    "lectures/Week2/project_structure.md",
-    "lectures/Week3/what_is_a_task_runner.md",
-    "output/_05_basics_of_SQL.ipynb",
-    "lectures/Week3/HW3.md",
-    ##
-    "output/_02_CRSP_market_index.ipynb",
-    "output/_03_SP500_constituents_and_index.ipynb",
-    ##
-    "lectures/Week4/overview_w4.md",
-    "lectures/Week4/intro_to_LaTeX.md",
-    "lectures/Week4/reports_with_jupyter_notebooks.md",
-    "lectures/Week4/latex_essentials.md",
-    "output/_04_Fama_French_1993.ipynb",
-    ##
-    "lectures/Week5/overview_w5.md",
-    "lectures/Week5/sphinx.md",
-    "lectures/Week5/unit_tests.md",
-    ##
-    "lectures/Week6/overview_w6.md",
-    "lectures/Week6/bloomberg_terminal.md",
-    "lectures/Week6/GitHub_pull_requests.md",
-    ##
-    "lectures/Week7/overview_w7.md",
-    ##
-    "lectures/Week8/overview_w8.md",
-    "lectures/Week8/github_actions_interactive_dashboard.md",
-    ##
-    "lectures/Week8/HW4.md",
-    ##
-    "lectures/Misc/appendix.md",
-    "lectures/Misc/final_project.md",
-    "lectures/Misc/potential_final_projects.md",
+_book_compiled = [
+    f.replace('.md', '.html').replace('.ipynb', '.html')
+    for f in book_source_files
+    if f.endswith(('.md', '.ipynb'))
 ]
 
-_book_compiled = [page.split(".")[0] + ".html" for page in book_source_files]
 book_compiled = [
     "genindex.html",
     "search.html",
@@ -233,7 +189,6 @@ def task_compile_book():
         "file_dep": file_dep,
         "clean": [clean_targets, remove_build_dir],
     }
-
 
 def copy_build_files_to_github_page_repo():
     # shutil.rmtree(GITHUB_PAGES_REPO_DIR, ignore_errors=True)
