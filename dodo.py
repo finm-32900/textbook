@@ -146,20 +146,23 @@ def task_doit_fama_french():
         # case WRDS asks for credentials.
     }
 
+
 book_source_md_files = [
-    str(p) for p in Path('lectures').glob('**/*')
-    if not p.name == '.DS_Store' and p.is_file()
+    str(p)
+    for p in Path("lectures").glob("**/*")
+    if not p.name == ".DS_Store" and p.is_file()
 ]
 book_source_ipynb_files = [
-    str(p) for p in Path('output').glob('**/*')
-    if not p.name == '.DS_Store' and p.is_file()
+    str(p)
+    for p in Path("output").glob("**/*")
+    if not p.name == ".DS_Store" and p.is_file()
 ]
 book_source_files = book_source_md_files + book_source_ipynb_files
 
 _book_compiled = [
-    f.replace('.md', '.html').replace('.ipynb', '.html')
+    f.replace(".md", ".html").replace(".ipynb", ".html")
     for f in book_source_files
-    if f.endswith(('.md', '.ipynb'))
+    if f.endswith((".md", ".ipynb"))
 ]
 
 book_compiled = [
@@ -187,8 +190,14 @@ def task_compile_book():
         ],
         "targets": targets,
         "file_dep": file_dep,
+        "task_dep": [
+            "doit_repo_spikes",
+            "doit_atlanta_fed_wage_growth",
+            "doit_fama_french",
+        ],
         "clean": [clean_targets, remove_build_dir],
     }
+
 
 def copy_build_files_to_github_page_repo():
     # shutil.rmtree(GITHUB_PAGES_REPO_DIR, ignore_errors=True)
@@ -223,5 +232,6 @@ def task_copy_compiled_book_to_github_pages_repo():
         ],
         "targets": targets,
         "file_dep": file_dep,
+        "task_dep": ["compile_book"],
         "clean": True,
     }
