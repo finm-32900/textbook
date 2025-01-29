@@ -9,7 +9,7 @@ chapters:
 - file: lectures/Week1/HW0.md
 # ----------------------------
 # Week 1: GitHub, GitHub Classroom, and Virtual Environments
-# Data:IPUMS CPS
+# Data: IPUMS CPS
 # HW: Wage growth during the recession
 # TA Session: Setting up VS Code for HW
 - file: lectures/Week1/overview_w1.md
@@ -49,7 +49,6 @@ chapters:
     - file: lectures/Week3/what_is_a_task_runner.md
     - file: lectures/Week2/project_structure.md
     - file: output/_05_basics_of_SQL.ipynb
-- file: lectures/subject_to_change_after_this_week.md
 # ----------------------------
 # Week 4: Publishing Reports: Markdown, LaTeX, and Github Pages
 # Data: CRSP and Compustat Data, Merged
@@ -66,6 +65,7 @@ chapters:
   - file: lectures/Week4/reports_with_jupyter_notebooks.md
   - file: lectures/Week4/intro_to_LaTeX.md
   - file: lectures/Week4/latex_essentials.md
+- file: lectures/subject_to_change_after_this_week.md
 - file: lectures/Week3/HW3.md
   sections:
   - file: output/_01_repo_spikes.ipynb
