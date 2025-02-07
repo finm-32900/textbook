@@ -51,7 +51,7 @@ chapters:
     - file: output/_05_basics_of_SQL.ipynb
 - file: lectures/Week3/HW3.md
   sections:
-  - file: output/04_Fama_French_1993.ipynb
+  - file: output/_04_Fama_French_1993.ipynb
 # ----------------------------
 # Week 4: Publishing Reports: Markdown, LaTeX, and Github Pages
 # Data: CRSP and Compustat Data, Merged
