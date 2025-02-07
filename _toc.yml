@@ -49,6 +49,9 @@ chapters:
     - file: lectures/Week3/what_is_a_task_runner.md
     - file: lectures/Week2/project_structure.md
     - file: output/_05_basics_of_SQL.ipynb
+- file: lectures/Week3/HW3.md
+  sections:
+  - file: output/04_Fama_French_1993.ipynb
 # ----------------------------
 # Week 4: Publishing Reports: Markdown, LaTeX, and Github Pages
 # Data: CRSP and Compustat Data, Merged
@@ -65,11 +68,6 @@ chapters:
   - file: lectures/Week4/reports_with_jupyter_notebooks.md
   - file: lectures/Week4/intro_to_LaTeX.md
   - file: lectures/Week4/latex_essentials.md
-- file: lectures/subject_to_change_after_this_week.md
-- file: lectures/Week3/HW3.md
-  sections:
-  - file: output/_01_repo_spikes.ipynb
-  - file: output/_04_Fama_French_1993.ipynb
 # ----------------------------
 # Week 5: Medium Data
 # Python Polars Package: Lazy evaluation, parallel execution, and streaming
@@ -78,6 +76,7 @@ chapters:
   sections:
   - file: lectures/Week5/sphinx.md
   - file: lectures/Week5/unit_tests.md
+- file: lectures/subject_to_change_after_this_week.md
 # ----------------------------
 # Week 6: Creating your own Python Package, plus CI/CD and GitHub Actions
 # Hatch and Hatchling, Sphinx, Click CLI
