@@ -13,6 +13,7 @@
 # platform: win-64
 altair==5.1.2
 beautifulsoup4==4.12.2
+colorama
 doit==0.36.0
 ipython==8.17.2
 jupyter==1.0.0

@@ -76,7 +76,6 @@ chapters:
   sections:
   - file: lectures/Week5/sphinx.md
   - file: lectures/Week5/unit_tests.md
-- file: lectures/subject_to_change_after_this_week.md
 # ----------------------------
 # Week 6: Creating your own Python Package, plus CI/CD and GitHub Actions
 # Hatch and Hatchling, Sphinx, Click CLI
@@ -84,8 +83,9 @@ chapters:
 # CRSP Treasury Data
 - file: lectures/Week6/overview_w6.md
   sections:
-  - file: lectures/Week6/bloomberg_terminal.md
   - file: lectures/Week6/GitHub_pull_requests.md
+  - file: lectures/Week6/python_packaging_with_hatch.md
+- file: lectures/subject_to_change_after_this_week.md
 # ----------------------------
 # Week 7: Working with Remotes, HPC Scheduler, GNU Parallel
 # SSH, SCP, SFTP
@@ -94,6 +94,8 @@ chapters:
 # Try Remote Tunnels: https://code.visualstudio.com/docs/remote/tunnels and https://www.youtube.com/watch?v=SyLHXdXhE1U
 # TA Session: Bloomberg Terminal
 - file: lectures/Week7/overview_w7.md
+  sections:
+  - file: lectures/Week6/bloomberg_terminal.md
 # ----------------------------
 # Week 8: Big Data
 # Data: NYSE Trade and Quote Data (TAQ)
@@ -105,6 +107,7 @@ chapters:
 - file: lectures/Week8/HW4.md
 - file: lectures/Misc/final_project.md
   sections:
+  - file: lectures/Misc/final_project_rubric.md
   - file: lectures/Misc/potential_final_projects.md
 - file: lectures/Misc/appendix.md
 # ----------------------------
