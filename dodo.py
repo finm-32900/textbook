@@ -6,7 +6,6 @@ import shutil
 from pathlib import Path
 
 from doit.task import clean_targets
-from doit.tools import run_once
 
 import config
 
@@ -147,6 +146,35 @@ def task_doit_fama_french():
     }
 
 
+
+def task_doit_yield_curve():
+    """Run yield curve dodo"""
+    notebooks = [
+        "01_CRSP_treasury_overview.ipynb",
+        "02_replicate_GSW2005.ipynb",
+    ]
+    stems = [notebook.split(".")[0] for notebook in notebooks]
+
+    return {
+        "actions": [
+            "doit -f ../case_study_yield_curve/dodo.py",
+            *[
+                (
+                    copy_notebook_to_folder,
+                    (notebook, "../case_study_yield_curve/_output", OUTPUT_DIR),
+                )
+                for notebook in stems
+            ],
+        ],
+        "targets": [
+            OUTPUT_DIR / "_01_CRSP_treasury_overview.ipynb",
+            OUTPUT_DIR / "_02_replicate_GSW2005.ipynb",
+        ],
+        "verbosity": 2,  # Print everything immediately. This is important in
+        # case WRDS asks for credentials.
+    }
+
+
 book_source_md_files = [
     str(p)
     for p in Path("lectures").glob("**/*")
@@ -194,6 +222,7 @@ def task_compile_book():
             "doit_repo_spikes",
             "doit_atlanta_fed_wage_growth",
             "doit_fama_french",
+            "doit_yield_curve",
         ],
         "clean": [clean_targets, remove_build_dir],
     }

@@ -85,7 +85,10 @@ chapters:
   sections:
   - file: lectures/Week6/GitHub_pull_requests.md
   - file: lectures/Week6/python_packaging_with_hatch.md
-- file: lectures/subject_to_change_after_this_week.md
+- file: lectures/Week6/HW4.md
+  sections:
+  - file: output/_01_CRSP_treasury_overview.ipynb
+  - file: output/_02_replicate_GSW2005.ipynb
 # ----------------------------
 # Week 7: Working with Remotes, HPC Scheduler, GNU Parallel
 # SSH, SCP, SFTP
@@ -95,7 +98,8 @@ chapters:
 # TA Session: Bloomberg Terminal
 - file: lectures/Week7/overview_w7.md
   sections:
-  - file: lectures/Week6/bloomberg_terminal.md
+  - file: lectures/Week7/bloomberg_terminal.md
+- file: lectures/subject_to_change_after_this_week.md
 # ----------------------------
 # Week 8: Big Data
 # Data: NYSE Trade and Quote Data (TAQ)
@@ -104,7 +108,7 @@ chapters:
 - file: lectures/Week8/overview_w8.md
   sections:
   - file: lectures/Week8/github_actions_interactive_dashboard.md
-- file: lectures/Week8/HW4.md
+  - file: output/_01_repo_spikes.ipynb
 - file: lectures/Misc/final_project.md
   sections:
   - file: lectures/Misc/final_project_rubric.md
