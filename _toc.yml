@@ -99,6 +99,7 @@ chapters:
 - file: lectures/Week7/overview_w7.md
   sections:
   - file: lectures/Week7/bloomberg_terminal.md
+  - file: lectures/Week7/LSEG_datastream.md
 - file: lectures/subject_to_change_after_this_week.md
 # ----------------------------
 # Week 8: Big Data
