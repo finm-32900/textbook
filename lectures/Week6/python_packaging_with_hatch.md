@@ -57,31 +57,21 @@ Let's explore several concrete scenarios where understanding Python packaging is
      - Verify their results
      - Apply the algorithm to new problems
      - Cite the work in academic papers
+     - See [Open Source Asset Pricing](https://www.openassetpricing.com/) and an associated Python package: https://github.com/mk0417/open-asset-pricing-download
 
-4. **Microservices and DevOps**
-   - Modern software architectures often use internal packages to:
-     - Share common code between microservices
-     - Standardize logging, monitoring, and security practices
-     - Manage configuration and deployment utilities
-   - Example: A tech company maintains internal packages for:
-     - Service authentication and authorization
-     - Standardized logging and metrics collection
-     - Database connection management
-     - Common API patterns and middleware
 
-Understanding Python packaging is useful because it enables code sharing and reuse at any scale - from individual developers to large organizations. Whether you're building your career, contributing to open source, or developing enterprise software, packaging is a fundamental skill in the Python ecosystem.
 
 ### Evolution of Python Packaging
 
 The Python packaging ecosystem has evolved significantly over the years. The landscape has evolved significantly:
 
 1. **Early Days (pre-2012)**:
-   - Pip struggled with binary distributions
+   - Pip didn't support binary distributions
    - Scientific packages were difficult to install
    - No standardized solution for non-Python dependencies
 
 2. **Conda Era (2012-present)**:
-   - Solved binary distribution problems
+   - Conda solved the binary distribution problem
    - Provided consistent environments across platforms
    - Became standard in scientific computing
 
@@ -253,7 +243,7 @@ Some criticisms of Conda include:
   - Project-based environment management
 
 ```{note}
-While Pixi is promising, it's still relatively new (launched 2023) and the ecosystem is evolving. Some users report that certain edge cases aren't yet handled as well as in Conda.
+While Pixi is promising, it's still relatively new (launched 2023) and the ecosystem is evolving. Some users report that certain edge cases aren't yet handled as well as in Conda. Note, however, that the exciting Mojo project's package manager is [built on top of Pixi.](https://docs.modular.com/magic/)
 ```
 
 ## New Patterns in Modern Package Management
@@ -292,6 +282,7 @@ While Pixi is promising, it's still relatively new (launched 2023) and the ecosy
 #### Pros and Cons
 
 **Project-Based Approach**
+
 Pros:
 - Clearer dependency specification
 - Better reproducibility
@@ -306,6 +297,7 @@ Cons:
 - Multiple projects = multiple environments
 
 **Environment-Based Approach**
+
 Pros:
 - Handles non-Python dependencies well
 - More flexible for scientific computing
