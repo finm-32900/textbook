@@ -110,6 +110,8 @@ chapters:
   sections:
   - file: lectures/Week8/github_actions_interactive_dashboard.md
   - file: output/_01_repo_spikes.ipynb
+  - file: output/_corporate_hedging.ipynb
+  - file: output/_spx_hedging.ipynb
 - file: lectures/Misc/final_project.md
   sections:
   - file: lectures/Misc/final_project_rubric.md

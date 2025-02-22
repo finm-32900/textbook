@@ -175,6 +175,35 @@ def task_doit_yield_curve():
     }
 
 
+
+def task_doit_options():
+    """Run options case study dodo"""
+    notebooks = [
+        "corporate_hedging.ipynb",
+        "spx_hedging.ipynb",
+    ]
+    stems = [notebook.split(".")[0] for notebook in notebooks]
+
+    return {
+        "actions": [
+            "doit -f ../case_study_options/dodo.py",
+            *[
+                (
+                    copy_notebook_to_folder,
+                    (notebook, "../case_study_options/_output", OUTPUT_DIR),
+                )
+                for notebook in stems
+            ],
+        ],
+        "targets": [
+            OUTPUT_DIR / "_corporate_hedging.ipynb",
+            OUTPUT_DIR / "_spx_hedging.ipynb",
+        ],
+        "verbosity": 2,  # Print everything immediately. This is important in
+        # case WRDS asks for credentials.
+    }
+
+
 book_source_md_files = [
     str(p)
     for p in Path("lectures").glob("**/*")
