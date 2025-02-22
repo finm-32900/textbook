@@ -1,29 +1,35 @@
-###########################################
-# Project Environment Variables and Secrets
-###########################################
+
+##########################
+# Project Input and Output
+##########################
+
+# Exclude _data folder, since it should all be pulled automatically (unless in the manual folder)
+_data/
+
+# Exclude _output directory since it's should generated automatically
+_output
+
+# Exclude PDFs generated from source LaTeX files, which are kept in the reports directory
+/reports/*.pdf
+
+# Secrets saved in environment files
 .env*
+# Allow example environment file
+!.env.example*
 
-
-############
-# NOTES    #
-############
-# I am not excluding pdfs here because some of the papers
-# include pdfs as images. Maybe there is a good way to get
-# around this.
-
-Exclude data folder
-/data/*
-!/data/manual/
+# Other
 temp*.csv
+*/_build/
+drafts/draft_bp.pdf
 
+# venv virtual environment folder
+/venv/*
+/.venv/*
+/.venv/*
 
-###################
-# Product Specific
-###################
-# I'm excluding *.graphml files. They're too large. Just run the appropriate files
-# to generate them when you need them.
-*.graphml
-~*
+# Sphinx build files
+_docs/
+docs/
 
 
 ##############
@@ -96,21 +102,17 @@ coverage.xml
 *.log
 
 # Sphinx documentation
-docs/_build/
+# docs/
+/docs_src/apidocs
+/docs_src/notebooks
 
 # PyBuilder
 target/
 
-
 # emacs
 *~
-
-
 # C extensions
 *.so
-
-
-
 
 ##############
 # LaTex Files
@@ -141,13 +143,11 @@ target/
 .RData
 .Rapp.history
 
-
 ################
 # Database Files
 ################
 *.hdf5
 *.npz
-
 
 ###################################
 # Exclude Output From Scripted Jobs
@@ -223,33 +223,30 @@ vignettes/*.pdf
 ########
 # *.zip
 # *.tar.gz
-*.ini
-*.xdv
-\.pytest_cache/
-src/temp\.csv
-src/temp_notebook\.ipynb
-src/data/temp\.csv
-*.bcf
 *.aux
 *.bbl
+*.bcf
 *.blg
+*.dat
+*.dir
 *.fdb_latexmk
 *.fls
+*.graphml
+*.gz
+*.ini
 *.log
 *.out
-*.gz
-*.xdv
-
-*.dat
-
-*.dir
-
-drafts/draft_bp.pdf
-
 *.vrb
-
-_build/
-
-data/manual/cps.csv
+*.xdv
+*.xdv
+\.pytest_cache/
+~$*
 
 .doit.db.db
+.doit-db.sqlite
+
+src/z_scratch_project_template.ipynb
+
+*Thumbs.db
+
+src/z_scratch_pipeline_template.ipynb
