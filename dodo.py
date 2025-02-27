@@ -240,8 +240,8 @@ def task_doit_yield_curve():
 def task_doit_options():
     """Run options case study dodo"""
     notebooks = [
-        "corporate_hedging.ipynb",
-        "spx_hedging.ipynb",
+        "01_corporate_hedging.ipynb",
+        "02_spx_hedging.ipynb",
     ]
     stems = [notebook.split(".")[0] for notebook in notebooks]
 
@@ -268,8 +268,8 @@ def task_doit_options():
             ),
         ],
         "targets": [
-            Path("_docs/notebooks") / "_corporate_hedging.ipynb",
-            Path("_docs/notebooks") / "_spx_hedging.ipynb",
+            Path("_docs/notebooks") / "_01_corporate_hedging.ipynb",
+            Path("_docs/notebooks") / "_02_spx_hedging.ipynb",
         ],
         "verbosity": 2,  # Print everything immediately. This is important in
         # case WRDS asks for credentials.
