@@ -8,7 +8,7 @@ pushed to GitHub pages. This is all done automatically by GitHub Actions.
 
 ## Steps, Simplified
 
-Fork the repository available here: https://github.com/jmbejara/example-updating-dashboard
+Fork the repository available here: https://github.com/jmbejara/example-updating-dashboard. You can see the final product here: https://jeremybejarano.com/example-updating-dashboard
  - Make sure that a `.nojekyll` file is added to the root of the folder that you will be serving HTML from. This is done for you in the repo above, but I wanted to remind you of it because it's a common pitfall. (Done for you.)
  - Give GitHub Actions permission to commit to your repo. You can find this setting in the "Settings" tab, and then in the Actions subtab.
     ![Actions Settings](./assets/github_settings_actions_general.png)
