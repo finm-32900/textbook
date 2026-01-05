@@ -1,6 +1,7 @@
 # Homework 0
 
-Due date: flexible since it's the first homework and the first week, but try to finish it during the first week.
+**Due date:** Flexible since it's the first homework and the first week, but try to finish it during the first week.
+**Link to Assignment:** https://classroom.github.com/a/yuuC4j0j
 
 ## Setting up your computing environment
 
@@ -25,7 +26,7 @@ Students should also sign up for an account with the following websites. We will
 
 ## How to submit HW: Go through in-class HW example
 
-Go through the in-class HW example together. The link for the GitHub Classroom assignment is here: https://classroom.github.com/a/yuuC4j0j
+Go through the in-class HW example together. The link for the GitHub Classroom assignment is above. 
 
 ### Unit Tests and GitHub Actions
 

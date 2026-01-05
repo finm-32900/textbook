@@ -6,6 +6,9 @@ notebooks/_02_CRSP_market_index.ipynb
 notebooks/_03_SP500_constituents_and_index.ipynb
 ```
 
+**Due Date:** Friday, Jan 16 at 11:59 pm.
+**Link to Assignment:** https://classroom.github.com/a/NTIt0NQ1
+
 ## Learning Outcomes
 
 - **Do in class:** Introduction to GitHub and GitHub Education
@@ -42,7 +45,7 @@ These tutorials are not graded, but please make sure to complete them before the
 
 ### Part 2 (graded)
 
-This will include a task of replicating the CRSP market index example from the lecture as well as a task of replicating the S&P 500 index from its constituent companies. The link to accept the assignment is here: TBD
+This will include a task of replicating the CRSP market index example from the lecture as well as a task of replicating the S&P 500 index from its constituent companies. 
 
 To complete this assignment, please read the two HW guides here:
 

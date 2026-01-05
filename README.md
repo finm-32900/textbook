@@ -104,8 +104,8 @@ agenda is listed in the first sub-section of the chapter.
 
 ### HW Due Dates
 
-- [HW 0: Ungraded. Please complete ASAP](HW0.md)
-- [HW 1: Due Friday, Jan 16 at 6 pm](HW1.md)
+- [HW 0: Flexible. Please complete ASAP](HW0.md)
+- [HW 1: Due Friday, Jan 16 at 11:59 pm](HW1.md)
 - [HW 2: TBD](HW2.md)
 - [HW 3: TBD](HW3.md)
 - [HW 4: TBD](HW4.md)
