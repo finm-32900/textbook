@@ -4,7 +4,7 @@
 title: Full Stack Quantitative Finance
 author: Jeremy Bejarano
 logo: ./assets/logo.png
-copyright: "2025"
+copyright: "2026"
 
 # Auto-exclude files not in the toc
 only_build_toc_files: true

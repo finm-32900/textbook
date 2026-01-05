@@ -18,11 +18,11 @@
 # -- Project information -----------------------------------------------------
 
 project = "Full Stack Quantitative Finance"
-copyright = "2025, Jeremiah Bejarano"
+copyright = "2026, Jeremiah Bejarano"
 author = "Jeremiah Bejarano"
 
 # The full version, including alpha/beta/rc tags
-release = "0.2"
+release = "0.3"
 
 
 # -- General configuration ---------------------------------------------------
