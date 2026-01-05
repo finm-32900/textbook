@@ -40,10 +40,6 @@ overview_w9.md
 :caption: Homework 📝
 HW0.md
 HW1.md
-HW2.md
-HW3.md
-HW4.md
-HW5.md
 final_project.md
 ```
 

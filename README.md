@@ -51,7 +51,7 @@ page here: https://github.com/orgs/finm-32900/discussions
 
 ### Assignments
 
-- Assignments will typically be due on Fridays at 6 pm. Check GitHub Classroom 
+- Assignments will typically be due on Fridays at 11:59 pm. Check GitHub Classroom 
   for the due date for each assignment. Each
   assignment will be distributed on a Monday, and will be due the on the Friday
   of the following week (11 days later).
@@ -75,7 +75,7 @@ scheduled individually.
 
 ## Assessment
 
-Grades will be based on coding assignments (50%), a final group project (25%),
+Grades will be based on coding assignments (60%), a final group project (35%),
 and participation (5%). 
 
 - Assignments will be submitted individually and will be graded using GitHub’s
