@@ -1,7 +1,7 @@
 # Homework 0
 
-**Due date:** Flexible since it's the first homework and the first week, but try to finish it during the first week.
-**Link to Assignment:** https://classroom.github.com/a/yuuC4j0j
+- **Due date:** Flexible since it's the first homework and the first week, but try to finish it during the first week.
+- **Link to Assignment:** https://classroom.github.com/a/yuuC4j0j
 
 ## Setting up your computing environment
 
@@ -89,3 +89,4 @@ Also, if you're looking for more instruction about how to use Git, here are two 
 
 - [What is Version Control? (Learn Git Video Course)](https://www.youtube.com/watch?v=M-O8ZNW9icQ)
 - [Using Git with Visual Studio Code (Official Beginner Tutorial)](https://www.youtube.com/watch?v=i_23KUAEtUM)
+
