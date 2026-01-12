@@ -158,11 +158,11 @@ def task_doit_atlanta_fed_wage_growth():
 def task_doit_fama_french():
     """Run fama french dodo"""
     notebooks = [
-        "01_wrds_python_package.ipynb",
-        "02_CRSP_market_index.ipynb",
-        "03_SP500_constituents_and_index.ipynb",
-        "04_Fama_French_1993.ipynb",
-        "05_basics_of_SQL.ipynb",
+        "01_wrds_python_package_ipynb.ipynb",
+        "02_CRSP_market_index_ipynb.ipynb",
+        "03_SP500_constituents_and_index_ipynb.ipynb",
+        "04_Fama_French_1993_ipynb.ipynb",
+        "05_basics_of_SQL_ipynb.ipynb",
     ]
     stems = [notebook.split(".")[0] for notebook in notebooks]
 
@@ -174,7 +174,7 @@ def task_doit_fama_french():
                     copy_notebook_to_folder,
                     (
                         notebook,
-                        "../case_study_wrds_fama_french/_output",
+                        "../case_study_wrds_fama_french/_output/_notebook_build",
                         Path("_docs/notebooks"),
                     ),
                 )
