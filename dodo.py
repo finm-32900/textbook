@@ -90,71 +90,6 @@ def task_config():
     }
 
 
-def task_doit_repo_spikes():
-    """Run repo spikes dodo"""
-    notebooks = ["01_repo_spikes.ipynb"]
-    stems = [notebook.split(".")[0] for notebook in notebooks]
-    return {
-        "actions": [
-            "doit -f ../case_study_repo_spikes/dodo.py",
-            *[
-                (
-                    copy_notebook_to_folder,
-                    (
-                        notebook,
-                        Path("../case_study_repo_spikes/_output"),
-                        Path("_docs/notebooks"),
-                    ),
-                )
-                for notebook in stems
-            ],
-            (
-                copy_directory,
-                (
-                    Path("../case_study_repo_spikes/src/assets"),
-                    Path("_docs/notebooks") / "assets",
-                ),
-            ),
-        ],
-        "targets": [Path("_docs/notebooks") / "_01_repo_spikes.ipynb"],
-        "verbosity": 2,
-    }
-
-
-def task_doit_atlanta_fed_wage_growth():
-    """Run atlanta fed wage growth tracker dodo"""
-    notebooks = ["01_wage_growth_during_the_recession.ipynb"]
-    stems = [notebook.split(".")[0] for notebook in notebooks]
-    return {
-        "actions": [
-            "doit -f ../case_study_wage_growth/dodo.py",
-            *[
-                (
-                    copy_notebook_to_folder,
-                    (
-                        notebook,
-                        Path("../case_study_wage_growth/_output"),
-                        Path("_docs/notebooks"),
-                    ),
-                )
-                for notebook in stems
-            ],
-            (
-                copy_directory,
-                (
-                    Path("../case_study_wage_growth/src/assets"),
-                    Path("_docs/notebooks") / "assets",
-                ),
-            ),
-        ],
-        "targets": [
-            Path("_docs/notebooks") / "_01_wage_growth_during_the_recession.ipynb"
-        ],
-        "verbosity": 2,  # Print everything immediately. This is important in
-        # case WRDS asks for credentials.
-    }
-
-
 def task_doit_fama_french():
     """Run fama french dodo"""
     notebooks = [
@@ -189,11 +124,11 @@ def task_doit_fama_french():
             ),
         ],
         "targets": [
-            Path("_docs/notebooks") / "_01_wrds_python_package.ipynb",
-            Path("_docs/notebooks") / "_02_CRSP_market_index.ipynb",
-            Path("_docs/notebooks") / "_03_SP500_constituents_and_index.ipynb",
-            Path("_docs/notebooks") / "_04_Fama_French_1993.ipynb",
-            Path("_docs/notebooks") / "_05_basics_of_SQL.ipynb",
+            Path("_docs/notebooks") / "_01_wrds_python_package_ipynb.ipynb",
+            Path("_docs/notebooks") / "_02_CRSP_market_index_ipynb.ipynb",
+            Path("_docs/notebooks") / "_03_SP500_constituents_and_index_ipynb.ipynb",
+            Path("_docs/notebooks") / "_04_Fama_French_1993_ipynb.ipynb",
+            Path("_docs/notebooks") / "_05_basics_of_SQL_ipynb.ipynb",
         ],
         "verbosity": 2,  # Print everything immediately. This is important in
         # case WRDS asks for credentials.
@@ -240,8 +175,8 @@ def task_doit_yield_curve():
 def task_doit_options():
     """Run options case study dodo"""
     notebooks = [
-        "01_corporate_hedging.ipynb",
-        "02_spx_hedging.ipynb",
+        "01_corporate_hedging_ipynb.ipynb",
+        "02_spx_hedging_ipynb.ipynb",
     ]
     stems = [notebook.split(".")[0] for notebook in notebooks]
 
@@ -268,8 +203,8 @@ def task_doit_options():
             ),
         ],
         "targets": [
-            Path("_docs/notebooks") / "_01_corporate_hedging.ipynb",
-            Path("_docs/notebooks") / "_02_spx_hedging.ipynb",
+            Path("_docs/notebooks") / "_01_corporate_hedging_ipynb.ipynb",
+            Path("_docs/notebooks") / "_02_spx_hedging_ipynb.ipynb",
         ],
         "verbosity": 2,  # Print everything immediately. This is important in
         # case WRDS asks for credentials.
@@ -386,8 +321,6 @@ def task_compile_book():
         "targets": targets,
         "file_dep": book_source_files,
         "task_dep": [
-            "doit_repo_spikes",
-            "doit_atlanta_fed_wage_growth",
             "doit_fama_french",
             "doit_yield_curve",
             "doit_options",
