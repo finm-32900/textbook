@@ -138,8 +138,8 @@ def task_doit_fama_french():
 def task_doit_yield_curve():
     """Run yield curve dodo"""
     notebooks = [
-        "01_CRSP_treasury_overview.ipynb",
-        "02_replicate_GSW2005.ipynb",
+        "01_CRSP_treasury_overview_ipynb.ipynb",
+        "02_replicate_GSW2005_ipynb.ipynb",
     ]
     stems = [notebook.split(".")[0] for notebook in notebooks]
 
@@ -164,8 +164,8 @@ def task_doit_yield_curve():
             # ),
         ],
         "targets": [
-            Path("_docs/notebooks") / "_01_CRSP_treasury_overview.ipynb",
-            Path("_docs/notebooks") / "_02_replicate_GSW2005.ipynb",
+            Path("_docs/notebooks") / "01_CRSP_treasury_overview_ipynb.ipynb",
+            Path("_docs/notebooks") / "02_replicate_GSW2005_ipynb.ipynb",
         ],
         "verbosity": 2,  # Print everything immediately. This is important in
         # case WRDS asks for credentials.

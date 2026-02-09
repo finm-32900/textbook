@@ -137,8 +137,8 @@ chapters:
   - file: lectures/Week6/python_packaging_with_hatch.md
 - file: lectures/Week6/HW4.md
   sections:
-  - file: output/_01_CRSP_treasury_overview.ipynb
-  - file: output/_02_replicate_GSW2005.ipynb
+  - file: output/01_CRSP_treasury_overview_ipynb.ipynb
+  - file: output/02_replicate_GSW2005_ipynb.ipynb
 # ----------------------------
 # Week 7: Working with Remotes, HPC Scheduler, GNU Parallel
 # SSH, SCP, SFTP
