@@ -496,3 +496,4 @@ cleaning pipeline in detail.
 - [Polars Hive Partitioning](https://docs.pola.rs/user-guide/io/hive/)
 - [Apache Arrow](https://arrow.apache.org/)
 - [Apache Spark Overview](https://spark.apache.org/docs/latest/)
+- {doc}`./polars_exercises` --- Code snippets from in-class Polars exercises
