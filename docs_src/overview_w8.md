@@ -1,17 +1,14 @@
-# Week 8: Web Authentication and Authorization
+# Week 8: Medium-Sized Data and Remote Machines
 
 ```{toctree}
 :maxdepth: 1
-notebooks/_01_corporate_hedging_ipynb.ipynb
-notebooks/_02_spx_hedging_ipynb.ipynb
-Week8/web_authentication.md
+
+notebooks/_01_data_sources_overview_ipynb.ipynb
+notebooks/_02_trace_cleaning_walkthrough_ipynb.ipynb
 ```
-<!-- Week8/github_actions.md -->
-<!-- Week8/publishing_a_live_dashboard.md -->
 
 ## Learning Outcomes
 
-- Overview of GitHub Actions
-- Overview of GitHub Pages
-- Static HTML widgets with plotly
-- Review of PCA-based Index
+- Introduction to TRACE corporate bond data
+- Working with medium-sized datasets
+- Working with remote machines (e.g., using SSH)

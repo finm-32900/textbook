@@ -211,6 +211,37 @@ def task_doit_options():
     }
 
 
+def task_doit_clean_trace():
+    """Run clean trace dodo"""
+    notebooks = [
+        "01_data_sources_overview_ipynb.ipynb",
+        "02_trace_cleaning_walkthrough_ipynb.ipynb",
+    ]
+    stems = [notebook.split(".")[0] for notebook in notebooks]
+
+    return {
+        "actions": [
+            "doit -f ../case_study_clean_trace/dodo.py",
+            *[
+                (
+                    copy_notebook_to_folder,
+                    (
+                        notebook,
+                        "../case_study_clean_trace/_output",
+                        Path("_docs/notebooks"),
+                    ),
+                )
+                for notebook in stems
+            ],
+        ],
+        "targets": [
+            Path("_docs/notebooks") / "_01_data_sources_overview_ipynb.ipynb",
+            Path("_docs/notebooks") / "_02_trace_cleaning_walkthrough_ipynb.ipynb",
+        ],
+        "verbosity": 2,
+    }
+
+
 # ###############################################################
 # ## Sphinx documentation
 # ###############################################################
@@ -324,6 +355,7 @@ def task_compile_book():
             "doit_fama_french",
             "doit_yield_curve",
             "doit_options",
+            "doit_clean_trace",
         ],
         "clean": True,
     }
