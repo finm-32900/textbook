@@ -76,6 +76,13 @@ numbers vary by hardware, data shape, and operation):
 | GroupBy aggregate | ~3--7x faster |
 | Peak memory usage | ~80--90% less |
 
+
+![Pandas vs. Polars benchmark](./assets/pdsh-sf10-0.7t-fUPiG_1zuB9P.svg)
+![Pandas vs. Polars benchmark](./assets/pdsh-sf10-1.HbQqtlG6_2fHteL.svg)
+
+
+See the full benchmark [here](https://pola.rs/posts/benchmarks/).
+
 ```{admonition} When is Pandas still the right choice?
 :class: tip
 

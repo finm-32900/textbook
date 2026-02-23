@@ -11,6 +11,12 @@ notebooks/_01_data_sources_overview_ipynb.ipynb
 notebooks/_02_trace_cleaning_walkthrough_ipynb.ipynb
 ```
 
+## Agenda
+
+- Medium-sized data strategies and Polars
+- Remote machines and HPC
+- Go over Homework 5: running the Clean TRACE pipeline on RCC
+
 ## Learning Outcomes
 
 - Understand strategies for working with medium-sized datasets (1GB-100GB)
