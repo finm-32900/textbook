@@ -2,6 +2,8 @@
 like a Makefile, but is Python-based
 """
 
+import json
+import re
 import sys
 from os import environ
 from pathlib import Path
@@ -68,6 +70,56 @@ def copy_notebook_to_folder(notebook_stem, origin_folder, destination_folder):
     origin_path = Path(origin_folder) / f"{notebook_stem}.ipynb"
     destination_path = Path(destination_folder) / f"_{notebook_stem}.ipynb"
     shutil.copy2(origin_path, destination_path)
+
+
+## Strip Plotly's MathJax 2 scripts to prevent conflicts with Sphinx's MathJax 3
+# fmt: off
+MATHJAX2_PATTERN = re.compile(
+    r'<script src="https://cdnjs\.cloudflare\.com/ajax/libs/mathjax/2\.[^"]*">[^<]*</script>'
+    r'(?:\s*<script type="text/javascript">if \(window\.MathJax && window\.MathJax\.Hub'
+    r" && window\.MathJax\.Hub\.Config\) \{window\.MathJax\.Hub\.Config\(\{SVG:"
+    r' \{font: "STIX-Web"\}\}\);\}</script>)?'
+)
+# fmt: on
+
+
+def strip_mathjax2_from_notebook(notebook_path):
+    """Strip MathJax 2 script tags injected by Plotly from notebook cell outputs."""
+    notebook_path = Path(notebook_path)
+    with open(notebook_path, "r", encoding="utf-8") as f:
+        nb = json.load(f)
+
+    modified = False
+    for cell in nb.get("cells", []):
+        for output in cell.get("outputs", []):
+            if "data" in output and "text/html" in output["data"]:
+                html_parts = output["data"]["text/html"]
+                if isinstance(html_parts, list):
+                    new_parts = []
+                    for part in html_parts:
+                        cleaned = MATHJAX2_PATTERN.sub("", part)
+                        if cleaned != part:
+                            modified = True
+                        new_parts.append(cleaned)
+                    output["data"]["text/html"] = new_parts
+                elif isinstance(html_parts, str):
+                    cleaned = MATHJAX2_PATTERN.sub("", html_parts)
+                    if cleaned != html_parts:
+                        modified = True
+                        output["data"]["text/html"] = cleaned
+
+    if modified:
+        with open(notebook_path, "w", encoding="utf-8") as f:
+            json.dump(nb, f, indent=1, ensure_ascii=False)
+            f.write("\n")
+
+    return modified
+
+
+def strip_mathjax2_from_notebooks():
+    """Strip MathJax 2 script tags from all notebooks in _docs/notebooks/."""
+    for nb_path in Path("_docs/notebooks").rglob("*.ipynb"):
+        strip_mathjax2_from_notebook(nb_path)
 
 
 ##################################
@@ -345,6 +397,7 @@ def task_compile_book():
 
     return {
         "actions": [
+            strip_mathjax2_from_notebooks,
             copy_docs_src_to_docs,
             "sphinx-build -M html ./_docs/ ./_docs/_build",
             copy_docs_build_to_docs,
