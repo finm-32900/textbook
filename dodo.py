@@ -271,9 +271,13 @@ def task_doit_clean_trace():
     ]
     stems = [notebook.split(".")[0] for notebook in notebooks]
 
+    ## Short sample dates for case study sub-pipelines
+    CLEAN_TRACE_START = "2024-01-01"
+    CLEAN_TRACE_END = "2024-02-28"
+
     return {
         "actions": [
-            "doit -f ../case_study_clean_trace/dodo.py",
+            # f"START_DATE={CLEAN_TRACE_START} END_DATE={CLEAN_TRACE_END} doit -f ../case_study_clean_trace/dodo.py",
             *[
                 (
                     copy_notebook_to_folder,
