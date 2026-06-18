@@ -12,6 +12,7 @@ sys.path.insert(1, "./src/")
 
 import shutil
 
+from doit.tools import config_changed
 from settings import config
 
 DATA_DIR = Path(config("DATA_DIR"))
@@ -83,12 +84,9 @@ MATHJAX2_PATTERN = re.compile(
 # fmt: on
 
 
-def strip_mathjax2_from_notebook(notebook_path):
-    """Strip MathJax 2 script tags injected by Plotly from notebook cell outputs."""
-    notebook_path = Path(notebook_path)
-    with open(notebook_path, "r", encoding="utf-8") as f:
-        nb = json.load(f)
-
+def _strip_mathjax2_in_notebook(nb):
+    """Strip MathJax 2 script tags injected by Plotly from a parsed notebook dict
+    (in place). Returns True if anything was changed."""
     modified = False
     for cell in nb.get("cells", []):
         for output in cell.get("outputs", []):
@@ -107,6 +105,16 @@ def strip_mathjax2_from_notebook(notebook_path):
                     if cleaned != html_parts:
                         modified = True
                         output["data"]["text/html"] = cleaned
+    return modified
+
+
+def strip_mathjax2_from_notebook(notebook_path):
+    """Strip MathJax 2 script tags injected by Plotly from notebook cell outputs."""
+    notebook_path = Path(notebook_path)
+    with open(notebook_path, "r", encoding="utf-8") as f:
+        nb = json.load(f)
+
+    modified = _strip_mathjax2_in_notebook(nb)
 
     if modified:
         with open(notebook_path, "w", encoding="utf-8") as f:
@@ -120,6 +128,30 @@ def strip_mathjax2_from_notebooks():
     """Strip MathJax 2 script tags from all notebooks in _docs/notebooks/."""
     for nb_path in Path("_docs/notebooks").rglob("*.ipynb"):
         strip_mathjax2_from_notebook(nb_path)
+
+
+def stripped_notebooks_signature():
+    """A formatting-independent, MathJax-stripped content hash of every notebook
+    in ``_docs/notebooks``.
+
+    The upstream case-study tasks recopy these notebooks (with the
+    nondeterministic MathJax 2 tags that Plotly injects) into ``_docs/notebooks``
+    on *every* run, while ``compile_book`` strips those tags back out. If the raw
+    notebook bytes were used as a ``file_dep``, that tug-of-war would leave
+    ``compile_book`` permanently out-of-date. Hashing the notebooks *after*
+    stripping MathJax (and re-serializing canonically) yields a signature that is
+    identical whether the on-disk copy is the stripped or unstripped version, so
+    it only changes when the notebooks' real content changes."""
+    import hashlib
+
+    parts = []
+    for nb_path in sorted(Path("_docs/notebooks").rglob("*.ipynb")):
+        with open(nb_path, "r", encoding="utf-8") as f:
+            nb = json.load(f)
+        _strip_mathjax2_in_notebook(nb)
+        parts.append(str(nb_path.relative_to("_docs")))
+        parts.append(json.dumps(nb, sort_keys=True, ensure_ascii=False))
+    return hashlib.md5("".join(parts).encode("utf-8")).hexdigest()
 
 
 ##################################
@@ -407,7 +439,14 @@ def task_compile_book():
             copy_docs_build_to_docs,
         ],
         "targets": targets,
-        "file_dep": book_source_files,
+        # Only the (stable) markdown sources are tracked as file_dep. The
+        # notebooks under _docs/notebooks are intentionally *not* listed here:
+        # upstream tasks recopy them (with nondeterministic MathJax 2 tags) on
+        # every run while this task strips those tags back out, so their raw
+        # bytes flip every build and would make this task never up-to-date.
+        # Their real content is tracked via the stripped-content signature below.
+        "file_dep": book_source_md_files,
+        "uptodate": [config_changed(stripped_notebooks_signature())],
         "task_dep": [
             "doit_fama_french",
             "doit_yield_curve",
