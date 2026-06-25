@@ -4,6 +4,7 @@ like a Makefile, but is Python-based
 
 import json
 import re
+import subprocess
 import sys
 from os import environ
 from pathlib import Path
@@ -71,6 +72,61 @@ def copy_notebook_to_folder(notebook_stem, origin_folder, destination_folder):
     origin_path = Path(origin_folder) / f"{notebook_stem}.ipynb"
     destination_path = Path(destination_folder) / f"_{notebook_stem}.ipynb"
     shutil.copy2(origin_path, destination_path)
+
+
+# The WRDS Python package notebook now lives in the inclass_examples repo. The
+# textbook first tries to rebuild it fresh by running that repo's master dodo
+# (which executes the notebook against WRDS); if that can't run (e.g. WRDS is
+# unreachable), it falls back to the copy committed in inclass_examples so the
+# textbook can still compile.
+WRDS_PKG_NOTEBOOK_STEM = "01_wrds_python_package_ipynb"
+INCLASS_REPO = Path("../inclass_examples")
+WRDS_PKG_INCLASS = INCLASS_REPO / "wrds" / f"{WRDS_PKG_NOTEBOOK_STEM}.ipynb"
+
+
+def run_case_study_fama_french_build():
+    """Attempt a fresh build of the Fama-French case-study notebooks (02-05).
+
+    Tolerant of failure: if the case-study repo can't run (for example, when
+    WRDS is unreachable), we log a warning and continue, relying on previously
+    built output so the textbook can still compile. Notebook 01 is sourced
+    separately from the inclass_examples repo (see
+    ``source_wrds_python_package_notebook``)."""
+    try:
+        subprocess.run(
+            ["doit", "-f", "../case_study_wrds_fama_french/dodo.py"], check=True
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError) as e:
+        print(f"WARNING: Fama-French case-study build failed: {e}")
+        print("Continuing with previously built / cached notebooks.")
+
+
+def source_wrds_python_package_notebook():
+    """Source the WRDS Python package notebook from the inclass_examples repo.
+
+    First try to refresh it by running that repo's master dodo, which executes
+    the notebook against WRDS. If that build can't run (for example, WRDS is
+    unreachable), fall back to the copy committed in inclass_examples so the
+    textbook can still compile."""
+    dest = Path("_docs/notebooks") / f"_{WRDS_PKG_NOTEBOOK_STEM}.ipynb"
+
+    try:
+        subprocess.run(
+            ["doit", "-f", str(INCLASS_REPO / "dodo.py"), "wrds_python_package"],
+            check=True,
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError) as e:
+        print(f"WARNING: could not refresh WRDS notebook from inclass_examples: {e}")
+        print("Falling back to the copy committed in inclass_examples.")
+
+    if not WRDS_PKG_INCLASS.exists():
+        raise FileNotFoundError(
+            f"WRDS notebook not found at {WRDS_PKG_INCLASS}; cannot source it for "
+            f"the build."
+        )
+
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(WRDS_PKG_INCLASS, dest)
 
 
 ## Strip Plotly's MathJax 2 scripts to prevent conflicts with Sphinx's MathJax 3
@@ -175,9 +231,13 @@ def task_config():
 
 
 def task_doit_fama_french():
-    """Run fama french dodo"""
+    """Run fama french dodo and source its notebooks.
+
+    Notebook 01 (the WRDS Python package walkthrough) now lives in the
+    inclass_examples repo and is sourced with a fresh-or-cached fallback (see
+    ``source_wrds_python_package_notebook``). Notebooks 02-05 are copied from the
+    case-study build output."""
     notebooks = [
-        "01_wrds_python_package_ipynb.ipynb",
         "02_CRSP_market_index_ipynb.ipynb",
         "03_SP500_constituents_and_index_ipynb.ipynb",
         "04_Fama_French_1993_ipynb.ipynb",
@@ -187,7 +247,8 @@ def task_doit_fama_french():
 
     return {
         "actions": [
-            "doit -f ../case_study_wrds_fama_french/dodo.py",
+            run_case_study_fama_french_build,
+            source_wrds_python_package_notebook,
             *[
                 (
                     copy_notebook_to_folder,
