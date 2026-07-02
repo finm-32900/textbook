@@ -74,14 +74,16 @@ def copy_notebook_to_folder(notebook_stem, origin_folder, destination_folder):
     shutil.copy2(origin_path, destination_path)
 
 
-# The WRDS Python package notebook now lives in the inclass_examples repo. The
-# textbook first tries to rebuild it fresh by running that repo's master dodo
-# (which executes the notebook against WRDS); if that can't run (e.g. WRDS is
-# unreachable), it falls back to the copy committed in inclass_examples so the
-# textbook can still compile.
+# The WRDS Python package notebook lives in the inclass_examples repo as a
+# jupytext .py source. The textbook rebuilds it by running that repo's master
+# dodo, which converts, executes (against WRDS), and publishes the executed
+# notebook to _output/_notebook_build/. There is no committed fallback: the
+# textbook build requires WRDS to be reachable.
 WRDS_PKG_NOTEBOOK_STEM = "01_wrds_python_package_ipynb"
 INCLASS_REPO = Path("../inclass_examples")
-WRDS_PKG_INCLASS = INCLASS_REPO / "wrds" / f"{WRDS_PKG_NOTEBOOK_STEM}.ipynb"
+WRDS_PKG_INCLASS = (
+    INCLASS_REPO / "_output" / "_notebook_build" / f"{WRDS_PKG_NOTEBOOK_STEM}.ipynb"
+)
 
 
 def run_case_study_fama_french_build():
@@ -104,20 +106,22 @@ def run_case_study_fama_french_build():
 def source_wrds_python_package_notebook():
     """Source the WRDS Python package notebook from the inclass_examples repo.
 
-    First try to refresh it by running that repo's master dodo, which executes
-    the notebook against WRDS. If that build can't run (for example, WRDS is
-    unreachable), fall back to the copy committed in inclass_examples so the
-    textbook can still compile."""
+    Runs that repo's master dodo, which converts the jupytext .py source to a
+    notebook, executes it against WRDS, and publishes it to
+    ``_output/_notebook_build/``. The executed notebook is a build artifact
+    (not committed), so this step requires WRDS to be reachable and fails the
+    build otherwise."""
     dest = Path("_docs/notebooks") / f"_{WRDS_PKG_NOTEBOOK_STEM}.ipynb"
 
-    try:
-        subprocess.run(
-            ["doit", "-f", str(INCLASS_REPO / "dodo.py"), "wrds_python_package"],
-            check=True,
-        )
-    except (subprocess.CalledProcessError, FileNotFoundError) as e:
-        print(f"WARNING: could not refresh WRDS notebook from inclass_examples: {e}")
-        print("Falling back to the copy committed in inclass_examples.")
+    subprocess.run(
+        [
+            "doit",
+            "-f",
+            str(INCLASS_REPO / "dodo.py"),
+            f"run_notebooks:{WRDS_PKG_NOTEBOOK_STEM}",
+        ],
+        check=True,
+    )
 
     if not WRDS_PKG_INCLASS.exists():
         raise FileNotFoundError(
