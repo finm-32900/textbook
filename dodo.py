@@ -237,15 +237,17 @@ def task_config():
 def task_doit_fama_french():
     """Run fama french dodo and source its notebooks.
 
-    Notebook 01 (the WRDS Python package walkthrough) now lives in the
-    inclass_examples repo and is sourced with a fresh-or-cached fallback (see
-    ``source_wrds_python_package_notebook``). Notebooks 02-05 are copied from the
+    Notebook 01 (the WRDS Python package walkthrough) lives in the
+    inclass_examples repo and is rebuilt from its jupytext .py source (see
+    ``source_wrds_python_package_notebook``). Notebooks 02-07 are copied from the
     case-study build output."""
     notebooks = [
         "02_CRSP_market_index_ipynb.ipynb",
         "03_SP500_constituents_and_index_ipynb.ipynb",
         "04_Fama_French_1993_ipynb.ipynb",
         "05_basics_of_SQL_ipynb.ipynb",
+        "06_CAPM_analysis_ipynb.ipynb",
+        "07_Fama_French_3_factor_ipynb.ipynb",
     ]
     stems = [notebook.split(".")[0] for notebook in notebooks]
 
@@ -278,6 +280,8 @@ def task_doit_fama_french():
             Path("_docs/notebooks") / "_03_SP500_constituents_and_index_ipynb.ipynb",
             Path("_docs/notebooks") / "_04_Fama_French_1993_ipynb.ipynb",
             Path("_docs/notebooks") / "_05_basics_of_SQL_ipynb.ipynb",
+            Path("_docs/notebooks") / "_06_CAPM_analysis_ipynb.ipynb",
+            Path("_docs/notebooks") / "_07_Fama_French_3_factor_ipynb.ipynb",
         ],
         "verbosity": 2,  # Print everything immediately. This is important in
         # case WRDS asks for credentials.
