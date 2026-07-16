@@ -9,7 +9,7 @@ Week3/github_pages_preview.md
 ## Announcements
 
 - **Project assignments go out Friday morning.** Each group will be emailed its assigned paper from the [Potential Final Projects](./FinalProject/potential_final_projects.md) list. **If you haven't submitted your project preferences yet, please do so by tonight.**
-- **Proposal presentations begin next week, Wednesday July 16.** The schedule of who presents when, and your assigned date, will be posted on Canvas.
+- **Proposal presentations begin next week, Thursday July 16.** The schedule of who presents when, and your assigned date, will be posted on Canvas.
 - **[HW 3](./HW3.md) is assigned, due Friday, July 24** — the yield-curve pipeline, published as a ChartBook site on GitHub Pages.
 
 ## Agenda Item 1: Final Project Proposals — Schedule & What's Required
