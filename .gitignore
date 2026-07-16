@@ -219,7 +219,7 @@ vignettes/*.pdf
 .Renviron
 
 ########
-# MISC.
+# MISC
 ########
 # *.zip
 # *.tar.gz
