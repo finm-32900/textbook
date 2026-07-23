@@ -17,9 +17,8 @@ Week6/python_packaging_with_hatch.md
 ## Announcements
 
 - [HW 3](./HW3.md) is due **this Friday, July 24**.
-- **HW 4 is *not* released tonight.** It comes next week: a short options case study (hedging with options, using WRDS OptionMetrics data). Tonight's packaging and catalog material is the lead-up to it.
 - **Upgrade ChartBook**: a new major release shipped this week. Run `pip install --upgrade chartbook` (you want 0.1.1 or later). It contains breaking changes we'll discuss tonight; see [The ChartBook Catalog](./Week6/chartbook_catalog.md).
-- **Midterm report: claim your topic now if you haven't.** Every candidate topic is an open issue in [finm-32900/finm_midterm_report](https://github.com/finm-32900/finm_midterm_report); assign one to yourself to claim it. PR deadlines are on Canvas. Don't wait to open your pull request: an early draft PR gets you review comments while there is still time to act on them.
+- **Midterm report: claim your topic now if you haven't.** Every candidate topic is an open issue in [finm-32900/finm_midterm_report](https://github.com/finm-32900/finm_midterm_report); assign one to yourself to claim it. Your merged contribution is due **Monday, August 10 at 11:59 pm CT**. Don't wait to open your pull request: an early draft PR gets you review comments while there is still time to act on them.
 - **Peer-feedback survey** for tonight's two groups: same as last week. Submit during the quiet time after each presentation; the [form](./FinalProject/proposal_feedback_survey.md) stays open until **Friday at 11:59 PM** and doubles as the attendance record.
 - **If you present July 30**, your instructor consultation must happen this week; [book it now](https://finm-32900.youcanbook.me/) if you haven't.
 

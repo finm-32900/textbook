@@ -24,7 +24,7 @@ The report lives in a private GitHub repository, [finm-32900/finm_midterm_report
 4. **Instructor review.** After both classmate reviews are complete, I review and merge.
 5. **Review two others.** You must also serve as a reviewer on two classmates' pull requests.
 
-All of this must be complete before the deadline posted on Canvas.
+All of this must be complete by the deadline: **Monday, August 10 at 11:59 pm CT**.
 
 ## Grading
 
